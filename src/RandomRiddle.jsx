@@ -22,7 +22,7 @@ const RandomRiddle = () => {
       setIsLoading(true);
 
       const response = await fetch(
-        "https://the-path-of-riddles.onrender.com/openai/riddle-img",
+        "https://the-path-of-riddles.onrender.com/api/v1/combined/random",
         {
           method: "POST",
         }
