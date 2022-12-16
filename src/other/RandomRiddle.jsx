@@ -2,7 +2,7 @@ import { useState } from "react";
 import {
   checkSetSimilarity,
   checkSynonymSimilarity,
-} from "./game-logic/checkSimilarity";
+} from "../game-logic/checkSimilarity";
 import placeholder from "./assets/placeholder.jpg";
 
 const RandomRiddle = () => {

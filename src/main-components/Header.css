@@ -1,0 +1,15 @@
+.header {
+    height: 100px;
+    width: 100%;
+    color: var(--color2);
+    background-color: var(--color3);
+    display: flex;
+    align-items: flex-end;
+  }
+  
+  .header-line {
+    height: 10px;
+    width: 100%;
+    background-color: black;
+    position: fixed;
+  }

@@ -1,0 +1,32 @@
+.start {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid black;
+}
+
+.start-image {
+    width: 512px;
+    padding: 20px;
+    border-radius: 7%;
+}
+
+.welcome-text {
+    padding: 0.5em;
+}
+
+.start-button {
+    background-color: var(--color4);
+    font-family: var(--font1);
+    font-size: 36px;
+    width: 300px;
+    height: 70px;
+    margin: 1em;
+    border-radius: 15px;
+}
+
+.start-button:hover {
+    transform: scale(1.1);
+    transition: 1s;
+}

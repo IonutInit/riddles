@@ -1,0 +1,12 @@
+.game {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.background {
+    width: 1024px;
+    height: 1024px;
+    opacity: 0.3;
+}
