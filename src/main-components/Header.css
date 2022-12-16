@@ -1,5 +1,9 @@
 .header {
-    height: 100px;
+    position: fixed;  
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--headerHeight);
     width: 100%;
     color: var(--color2);
     background-color: var(--color3);
@@ -12,4 +16,13 @@
     width: 100%;
     background-color: black;
     position: fixed;
+  }
+
+  .header-content {
+    width: 512px;
+  }
+
+
+  .submit-riddle {
+    height: 100px;
   }

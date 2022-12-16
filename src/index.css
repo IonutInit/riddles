@@ -15,6 +15,10 @@
   --font1: Alphakind;
   --font2: DieBruecke;
 
+  --headerHeight: 100px;
+  --footerHeight: 70px;
+
+
   font-family: var(--font1);
   font-size: 24px;
   line-height: 24px;

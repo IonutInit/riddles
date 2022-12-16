@@ -1,14 +1,17 @@
 .start {
+    height: 100vh - (var(--headerHeight) + var(--footerHeight));
+    overflow: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border: 3px solid black;
+    padding-top: var(--headerHeight);
+    padding-bottom: var(--footerHeight);
 }
 
 .start-image {
     width: 512px;
-    padding: 20px;
     border-radius: 7%;
 }
 
@@ -28,5 +31,10 @@
 
 .start-button:hover {
     transform: scale(1.1);
+    transition: 1s;
+}
+
+.start-button:not(:hover) {
+    transform: scale(1);
     transition: 1s;
 }
