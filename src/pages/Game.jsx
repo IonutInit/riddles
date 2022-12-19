@@ -12,9 +12,7 @@ import {
   randomLetter,
   synonym,
 } from "../game-logic/hints";
-import {
-  averageLetterCounter,
-} from "../game-logic/hints";
+import { averageLetterCounter } from "../game-logic/hints";
 
 const Game = () => {
   const [points, setPoints] = useState(20);
@@ -60,7 +58,6 @@ const Game = () => {
   // };
 
   const getRandomRiddle = () => {
-    
     async function randomRiddle() {
       setIsLoading(true);
       const response = await fetch(
@@ -78,128 +75,126 @@ const Game = () => {
     randomRiddle();
   };
 
-//IMAGE REFRESH
-const handleImageRefresh = () => {
-  async function getImage() {
-    setIsLoading(true);
-    setPoints(points - 1);
-    try {
-      const response = await fetch(
-        "https://the-path-of-riddles.onrender.com/api/v1/openai/img",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            prompt: `${riddle} expressionist painting`,
-          }),
+  //IMAGE REFRESH
+  const handleImageRefresh = () => {
+    async function getImage() {
+      setIsLoading(true);
+      setPoints(points - 1);
+      try {
+        const response = await fetch(
+          "https://the-path-of-riddles.onrender.com/api/v1/openai/img",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              prompt: `${riddle} expressionist painting`,
+            }),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`That didn't work`);
         }
-      );
 
-      if (!response.ok) {
-        throw new Error(`That didn't work`);
+        const data = await response.json();
+        console.log(data.url);
+        setRiddleImage(data.url);
+      } catch (error) {
+        setResponse(error.message);
       }
-
-      const data = await response.json();
-      console.log(data.url);
-      setRiddleImage(data.url);
-    } catch (error) {
-      setResponse(error.message);
+      setIsLoading(false);
+      // handlePrompt((e) => {
+      //   e.target.value = "";
+      // });
     }
-    setIsLoading(false);
-    // handlePrompt((e) => {
-    //   e.target.value = "";
-    // });
-  }
-  getImage();
-};
+    getImage();
+  };
 
+  const handleHint = () => {
+    let allHints = [...hint];
 
+    const possibleHints = [
+      approximateLength(riddleSolution),
+      averageLetter(riddleSolution),
+      randomLetter(riddleSolution),
+      synonym(solutionSynonyms.split(",")),
+    ];
 
-const handleHint = () => {
-  let allHints = [...hint];
+    //explanation
+    let randNum = Math.floor(Math.random() * hintOptions.length);
 
-  const possibleHints = [
-    approximateLength(riddleSolution),
-    averageLetter(riddleSolution),
-    randomLetter(riddleSolution),
-    synonym(solutionSynonyms.split(",")),
-  ];
+    averageLetterCounter > 0
+      ? possibleHints.filter((x) => x !== 0)
+      : possibleHints;
 
-  //explanation
-  let randNum = Math.floor(Math.random() * hintOptions.length);
+    allHints.push(possibleHints[hintOptions[randNum]]);
 
-  averageLetterCounter > 0
-    ? possibleHints.filter((x) => x !== 0)
-    : possibleHints;
+    setHint(allHints);
+    console.log(averageLetterCounter);
+    console.log(hintOptions);
 
-  allHints.push(possibleHints[hintOptions[randNum]]);
+    if (hintCounter < 3) {
+      setPoints(points - 1);
+    } else if (hintCounter < 5) {
+      setPoints(points - 2);
+    } else {
+      setPoints(points - 3);
+    }
 
-  setHint(allHints);
-  console.log(averageLetterCounter);
-  console.log(hintOptions);
+    setHintCounter(hintCounter + 1);
+  };
 
-  if (hintCounter < 3) {
-    setPoints(points - 1);
-  } else if (hintCounter < 5) {
-    setPoints(points - 2);
-  } else {
-    setPoints(points - 3);
-  }
+  return (
+    <div className="game">
+      <div className="image-container">
+        <img
+          src={!riddleImage ? placeholder2 : riddleImage}
+          alt={"rendered representation of the riddle"}
+          className="riddle-image"
+        ></img>
+        <RefreshIcon
+          className="refresh-icon"
+          sx={{ fontSize: "64px" }}
+          role="button"
+          onClick={handleImageRefresh}
+        />
 
-  setHintCounter(hintCounter + 1);
-};
-
-return (
-  <div className="game">
-    <div className="image-container">
-      <img
-        src={!riddleImage ? placeholder2 : riddleImage}
-        alt={"rendered representation of the riddle"}
-        className="riddle-image"
-      ></img>
-      <RefreshIcon
-        className="refresh-icon"
-        sx={{ fontSize: "64px" }}
-        role="button"
-        onClick={handleImageRefresh}
-      />
-
-      <div className="points-container">
-        <h3>{points}</h3>
-        <p>points</p>
+        <div className="points-container">
+          <h3>{points}</h3>
+          <p>points</p>
+        </div>
       </div>
+
+      <p className="riddle-container">{riddle}</p>
+
+      <div className="input-container">
+        <input
+          type="text"
+          className="input-box"
+          placeholder="tell me..."
+        ></input>
+        <button
+          className={!isLoading ? "submit-button" : "submit-button-disabled"}
+          onClick={getRandomRiddle}
+          disabled={isLoading}
+        >
+          {isLoading ? "Loading..." : "Submit"}
+        </button>
+      </div>
+
+      <p>hints</p>
+      <ul>
+        {hint.map((h) => (
+          <li key={hint[h]}>{h}</li>
+        ))}
+      </ul>
+      <HintsButton handleHint={handleHint} />
+      <p>{riddleSolution}</p>
     </div>
-
-    <p className="riddle-container">{riddle}</p>
-
-    <div className="input-container">
-      <input
-        type="text"
-        className="input-box"
-        placeholder="tell me..."
-      ></input>
-      <button
-        className={!isLoading ? "submit-button" : "submit-button-disabled"}
-        onClick={getRandomRiddle}
-        disabled={isLoading}
-      >
-        {isLoading ? "Loading..." : "Submit"}
-      </button>
-    </div>
-
-    <p>hints</p>
-    <ul>
-      {hint.map((h) => (
-        <li key={hint[h]}>{h}</li>
-      ))}
-    </ul>
-    <HintsButton handleHint={handleHint} />
-    <p>{riddleSolution}</p>
-  </div>
-);
-// </div>
+  );
+  // </div>
 };
 
 export default Game;
