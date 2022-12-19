@@ -3,7 +3,9 @@ import {
   checkSetSimilarity,
   checkSynonymSimilarity,
 } from "../game-logic/checkSimilarity";
-import placeholder from "./assets/placeholder.jpg";
+
+import placeholder2 from "../assets/images/placeholder2.jpg";
+
 
 const RandomRiddle = () => {
   const [randomRiddle, setRandomRiddle] = useState("");
@@ -49,7 +51,7 @@ const RandomRiddle = () => {
     <div>
       <div>
         <img
-          src={!riddleImage ? placeholder : riddleImage}
+          src={!riddleImage ? placeholder2 : riddleImage}
           alt="riddle representation"
         ></img>
       </div>
