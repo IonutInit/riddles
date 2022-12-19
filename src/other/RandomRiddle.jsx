@@ -6,7 +6,6 @@ import {
 
 import placeholder2 from "../assets/images/placeholder2.jpg";
 
-
 const RandomRiddle = () => {
   const [randomRiddle, setRandomRiddle] = useState("");
   const [riddleSolution, setRiddleSolution] = useState("");
