@@ -1,0 +1,98 @@
+.submit-popup {
+
+    --submit-width: 90%;
+    --submit-heigth: 90%;
+
+    position: fixed;
+    top: 50px;
+    left: 100% - (var(--submit-width) /2);
+    width: var(--submit-width);
+    height: var(--submit-heigth);
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 5px solid var(--color2);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    gap: 50px;
+}
+
+
+
+/* .popup-inner {
+    background-color: red;
+    position: relative;
+    padding: 32px;
+    width: 50%;
+    max-width: 640px;
+    background-color: #fff;
+
+} */
+
+/* .popup-inner .close-button {
+    /* position: fixed;
+    top: 16px;
+    right: 16px;
+    height: 50px; */
+
+    font-size: 48px;
+/* } */ */
+
+.header .submission .popup-inner {
+    display: flex;
+}
+
+.riddle-title {
+    letter-spacing: 0.07em;
+}
+
+.close-button {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 48px;
+    color: var(--color2)
+    background-color: none; 
+    border: none;    
+}
+
+.riddle-text {    
+    width: 400px;
+    height: 150px;
+    font-family: var(--font1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+
+.riddle-solution {    
+    width: 400px;
+    height: 70px;
+    font-family: var(--font1);
+    border-radius: 10px;
+    text-align: center;
+    
+}
+
+.riddle-submit {
+    background-color: var(--color4);
+    font-family: var(--font1);
+    font-size: 36px;
+    width: 300px;
+    height: 70px;
+    margin: 1em;
+    border-radius: 15px;
+
+}
+
+.riddle-submit:hover {
+    transform: scale(1.1);
+    transition: 1s;
+}
+
+.riddle-submit:not(:hover) {
+    transform: scale(1);
+    transition: 1s;
+}

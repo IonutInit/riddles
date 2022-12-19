@@ -58,8 +58,7 @@ console.log(availableRiddles)
 }
 
   // if (goToGame) {
-    
-  //   RiddleArray()
+  
   //   console.log(availableRiddles)
   //   return <Navigate to={"/play"} />;
   // }

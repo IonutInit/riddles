@@ -1,0 +1,19 @@
+.info-popup {
+    
+    --submit-width: 90%;
+    --submit-heigth: 90%;
+
+    position: fixed;
+    top: 50px;
+    left: 100% - (var(--submit-width) /2);
+    width: var(--submit-width);
+    height: var(--submit-heigth);
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 5px solid var(--color2);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    gap: 50px
+}

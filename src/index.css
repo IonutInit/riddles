@@ -1,9 +1,13 @@
 @font-face {
-  font-family: DieBruecke;
-  src: url('./assets/fonts/DieBruecke.otf');
   font-family: Alphakind;
   src: url('./assets/fonts/Alphakind.otf');
+  font-family: DieBruecke;
+  src: url('./assets/fonts/DieBruecke.otf')
 }
+
+/* @font-face {
+  
+} */
 
 
 :root {
@@ -28,7 +32,6 @@
 
   text-align: center;
   
- 
   /* font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

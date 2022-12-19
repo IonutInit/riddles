@@ -9,6 +9,8 @@
     background-color: var(--color3);
     display: flex;
     align-items: flex-end;
+    justify-content: center;
+    z-index: 2;
   }
   
   .header-line {
@@ -19,10 +21,28 @@
   }
 
   .header-content {
-    width: 512px;
+    width: 700px;
+    height: var(--headerHeight);
+ display: flex;
+ justify-content: flex-end;
+ gap: 20px;
   }
 
 
-  .submit-riddle {
-    height: 100px;
+  .submissions {
+    width: 72px;
   }
+
+.submissions:hover {
+  transform: scale(1.2);
+  transition: 1.5s;
+}
+
+.submissions:not(:hover) {
+  transition: 1s;
+}
+
+.header .popup {
+  display: flex;
+  align-items: center;
+}
