@@ -1,8 +1,9 @@
 import { useState } from "react";
-import HintsButton from "../components/HintsButton";
 
 import "./Game.css";
 import placeholder2 from "../assets/images/placeholder2.jpg";
+
+import RefreshPopUp from "../components/RefreshPopUp";
 
 import RefreshIcon from "@mui/icons-material/Refresh";
 
@@ -14,7 +15,7 @@ import {
 } from "../game-logic/hints";
 import { averageLetterCounter } from "../game-logic/hints";
 
-const Game = () => {
+const Game = ({imageOptions}) => {
   const [points, setPoints] = useState(20);
 
   //HINT HANDLERS
@@ -28,12 +29,29 @@ const Game = () => {
   const [riddleSolution, setRiddleSolution] = useState("");
   const [solutionSynonyms, setSolutionSynonyms] = useState("");
   const [riddleImage, setRiddleImage] = useState("");
+  
 
   const [isLoading, setIsLoading] = useState(false);
+  const [pictureIsLoading, setPictureIsLoading] = useState(false);
 
-  const [newImagePrompt, setNewImagePrompt] = useState("");
+  const [refreshPopUp, setRefreshPopUp] = useState(false)
+  const [refreshEffect, setRefreshEffect] = useState(false)
+
+
+  const handleRefresh = () => {
+    setRefreshPopUp(true)
+    setRefreshEffect(true)
+  }
+
+  // const [newImagePrompt, setNewImagePrompt] = useState("");
 
   const [response, setResponse] = useState("");
+
+
+ 
+  
+
+ 
 
   //RANDOM RIDDLE
   //   const getRandomRiddle = () => {
@@ -77,8 +95,10 @@ const Game = () => {
 
   //IMAGE REFRESH
   const handleImageRefresh = () => {
+    
     async function getImage() {
-      setIsLoading(true);
+      setPictureIsLoading(true);
+      setIsLoading(true)
       setPoints(points - 1);
       try {
         const response = await fetch(
@@ -89,7 +109,7 @@ const Game = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              prompt: `${riddle} expressionist painting`,
+              prompt: `${riddle} cartoon style no text`,
             }),
           }
         );
@@ -104,12 +124,14 @@ const Game = () => {
       } catch (error) {
         setResponse(error.message);
       }
-      setIsLoading(false);
+      setPictureIsLoading(false);
+      setIsLoading(false)
       // handlePrompt((e) => {
       //   e.target.value = "";
       // });
     }
     getImage();
+    console.log(JSON.stringify(prompt))
   };
 
   const handleHint = () => {
@@ -147,7 +169,7 @@ const Game = () => {
   };
 
   return (
-    <div className="game">
+    <div className={`game ${refreshEffect ? 'refresh-effect' : ''}`}>
       <div className="image-container">
         <img
           src={!riddleImage ? placeholder2 : riddleImage}
@@ -155,7 +177,7 @@ const Game = () => {
           className="riddle-image"
         ></img>
         <RefreshIcon
-          className="refresh-icon"
+          className={`refresh-icon ${pictureIsLoading ? 'picture-loading' : ''}`}
           sx={{ fontSize: "64px" }}
           role="button"
           onClick={handleImageRefresh}
@@ -184,14 +206,25 @@ const Game = () => {
         </button>
       </div>
 
+      <div className="control">
+      <button  className='control-buttons refresh-button' onClick={() => setRefreshPopUp(true)}>REFRESH</button>
+      <button className='control-buttons hints-button' onClick={handleRefresh}>HINTS</button>
+      </div>
+      
+      <p>{riddleSolution}</p>
+
       <p>hints</p>
       <ul>
         {hint.map((h) => (
           <li key={hint[h]}>{h}</li>
         ))}
       </ul>
-      <HintsButton handleHint={handleHint} />
-      <p>{riddleSolution}</p>
+
+          <RefreshPopUp 
+            trigger={refreshPopUp}
+        setTrigger={setRefreshPopUp}
+          />
+
     </div>
   );
   // </div>

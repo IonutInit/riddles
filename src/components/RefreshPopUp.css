@@ -1,0 +1,95 @@
+.refresh-popup {
+    position: fixed;
+    width: 100vw;
+    height: 1500px;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    z-index: 3;
+    animation: showBackground 1.0s forwards;
+  }
+
+  @keyframes showBackground{
+    0%{
+        opacity: 0%;
+    }
+    100%{
+        opacity: 100%; 
+    }
+}
+
+
+/* .refresh-popup {
+    --submit-width: 90%;
+    --submit-heigth: 90%;
+
+    position: fixed;
+    top: 50px;
+    left: 100% - (var(--submit-width) /2);
+    width: var(--submit-width);
+    height: var(--submit-heigth);
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 5px solid var(--color2);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    gap: 50px;
+} */
+
+.refresh-display {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 300px;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 5px solid var(--color2);
+    border-radius: 15px;
+    margin-top: 30vh;
+    animation: showMe 0.5s forwards;
+}
+
+@keyframes showMe{
+    0%{
+        transform: scale(0.3);
+    }
+    80%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1) 
+    }
+}
+
+.refresh-button-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.refresh-buttons {
+    height: 50px;
+    width: 100px;
+    background-color: var(--color2);
+    /* border: 2px solid var(--color3); */
+    border-radius: 5px;
+    font-family: var(--font2);
+    font-size: 24px;
+    letter-spacing: 5px;
+}
+
+.refresh-buttons:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
+    /* background-color: var(--color3); */
+    border: 3px solid var(--color3);
+    color: var(--color3);
+}
+
+.refresh-buttons:not(:hover) {
+    transition: 0.5s;
+}

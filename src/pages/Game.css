@@ -11,6 +11,10 @@
     z-index: 1;
 }
 
+.refresh-effect {
+    filter: blur(5px);
+}
+
 /* .background {
     width: 1024px;
     height: 1024px;
@@ -27,6 +31,20 @@
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
+
+
+.picture-loading {
+    -webkit-animation: name 4s infinite linear;
+}
+@-webkit-keyframes name {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+}}
+
+
 .refresh-icon {
     color: black;
     position: absolute;
@@ -38,13 +56,15 @@
 .refresh-icon:hover {
     transform: scale(1.2);
     rotate: 145deg;
-    transition: 3s;
+    transition: 1s;
     /* animation: rotate 2s linear infinite; */
 }
 
 .refresh-icon:not(:hover) {
-    transition: 3s;
+    transition: 1s;
 }
+
+
 
 /* @keyframes rotate {
     from {
@@ -131,6 +151,7 @@
 }
 
 .submit-button {
+    width: 175px;
     box-shadow: none;
     position: absolute;
     bottom: -15px;
@@ -142,19 +163,25 @@
     font-family: var(--font2);
     font-size: 24px;
     letter-spacing: 0.07em;
-    border: 1px solid var(--color3);
+    border: 1px solid black;
     box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23);
     
-  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s;  
 
-  
+}
 
+.submit-button:hover {
+    transform: rotate(-2deg) scale(1.05);
+    transition: 0.5s;
+}
+
+.submit-button:not(:hover) {
+    transition: 0.5s;
 }
 
 .submit-button:active {
     box-shadow: 0 0 0 30px rgba(0, 0, 0, 0.1);
     transform: scale(1.05);
-    transform: perspective();
 }
 
 
@@ -167,8 +194,40 @@
     padding: 35px;
     color: black;
     border-radius: 100%;
-    font-family: var(--font1);
+    font-family: var(--font2);
     font-size: 24px;
-    border: 1px solid var(--color3);
+    letter-spacing: 0.07em;
+    border: 1px solid black;
     box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23);
 }
+
+
+
+.control {
+    width: 512px;
+    display: flex;
+   height: 80px;
+   justify-content: center;
+   gap: 75px;
+    
+}
+
+.control-buttons {
+    width: 35%;
+    background-color: var(--color3);
+    border-radius: 10px;
+    font-family: var(--font2);
+    font-size: 36px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23);
+}
+
+.control-buttons:hover {
+    transform: scale(1.05);
+    transition: 0.5s;
+}
+
+.control-buttons:not(:hover) {
+    transition: 0.5s;
+}
+
+

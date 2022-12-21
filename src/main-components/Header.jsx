@@ -12,7 +12,18 @@ const Header = () => {
   const [buttonSubmitPopUp, setButtonSubmitPopUp] = useState(false);
   const [buttonInfoPopUp, setButtonInfoPopUp] = useState(false);
 
-  return (
+  const handleKeyDown = (e) => {
+    if(e.key === 'i') {
+      setButtonInfoPopUp(true)
+      console.log('you pressed i')
+    }
+    if(e.key === 'r') {
+      setButtonSubmitPopUp(true)
+      console.log('you pressed r')
+    }
+  }
+
+   return (
     <div className="header">
       <div className="header-line"></div>
       <div className="header-content">
@@ -20,13 +31,15 @@ const Header = () => {
           src={submit_button}
           className="submissions submit-riddle"
           onClick={() => setButtonSubmitPopUp(true)}
-          alt="submit your own riddle"
+          tabIndex='0'
+          onKeyDown={(e) => handleKeyDown(e)}
         />
         <img
           src={info_button}
           className=" submissions info"
           onClick={() => setButtonInfoPopUp(true)}
-          alt="how to play the game"
+          tabIndex='0'
+          onKeyDown={(e) => handleKeyDown(e)}
         />
       </div>
 

@@ -16,9 +16,33 @@
     justify-content: center;
     align-items:center;
     gap: 50px;
+    animation: showMe 0.5s forwards;
 }
 
+@keyframes showMe{
+    0%{
+        transform: scale(0.3);
+    }
+    80%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1) 
+    }
+}
 
+.hide-submit {
+    animation: hideMe 3s forwards;
+}
+
+@keyframes hideMe{
+    0%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(0.1) 
+    }
+}
 
 /* .popup-inner {
     background-color: red;
@@ -52,7 +76,7 @@
     top: 30px;
     right: 30px;
     font-size: 48px;
-    color: var(--color2)
+    color: var(--color2);
     background-color: none; 
     border: none;    
 }
