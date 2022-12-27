@@ -64,6 +64,9 @@ const Header = ({imageOptions, handleImageOptions}) => {
           <button value='photorealistic painting' className={`options-button ${imageOptions === 'photorealistic painting' ? 'option-active' : ''}`} onClick={(e) => handleImageOptions(e)}>Photorealist</button>
           <button value='cartoon style' className={`options-button ${imageOptions === 'cartoon style' ? 'option-active' : ''}`} onClick={(e) => handleImageOptions(e)}>Cartoonish</button>
         </div>
+
+        
+
       </InfoPopUp>
     </div>
   );

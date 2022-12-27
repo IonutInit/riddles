@@ -7,33 +7,28 @@ import RefreshPopUp from "../components/RefreshPopUp";
 
 import RefreshIcon from "@mui/icons-material/Refresh";
 
-import {
-  approximateLength,
-  averageLetter,
-  randomLetter,
-  synonym,
-} from "../game-logic/hints";
-import { averageLetterCounter } from "../game-logic/hints";
 
-const Game = ({imageOptions}) => {
+
+
+const Game = ({imageOptions, available, startingRiddle}) => {
+  //game handles
+  const [gameSteps, setGameSteps] = useState(1);
   const [points, setPoints] = useState(20);
-
-  //HINT HANDLERS
-  const [hint, setHint] = useState([]);
-  const [hintCounter, setHintCounter] = useState(0);
-  const [getRandomLetter, setRandomLetter] = useState(0);
-  //explain what this is
-  const hintOptions = [0, 0, 1, 1, 2, 3];
-
-  const [riddle, setRiddle] = useState("");
+  
+  //riddle element handles
+  const [riddle, setRiddle] = useState(startingRiddle);
   const [riddleSolution, setRiddleSolution] = useState("");
   const [solutionSynonyms, setSolutionSynonyms] = useState("");
   const [riddleImage, setRiddleImage] = useState("");
-  
 
+   //hint handles
+   const [hint, setHint] = useState([]);
+  
+  //loading handles
   const [isLoading, setIsLoading] = useState(false);
   const [pictureIsLoading, setPictureIsLoading] = useState(false);
 
+  //action button handles
   const [refreshPopUp, setRefreshPopUp] = useState(false)
   const [refreshEffect, setRefreshEffect] = useState(false)
 
@@ -43,43 +38,22 @@ const Game = ({imageOptions}) => {
     setRefreshEffect(true)
   }
 
-  // const [newImagePrompt, setNewImagePrompt] = useState("");
-
+ 
+  //I don't know what this is
   const [response, setResponse] = useState("");
 
-
- 
-  
-
  
 
-  //RANDOM RIDDLE
-  //   const getRandomRiddle = () => {
-  //   async function randomRiddle() {
-  //     setIsLoading(true);
-
-  //     const response = await fetch(
-  //       "https://the-path-of-riddles.onrender.com/api/v1/combined/random",
-  //       {
-  //         method: "POST",
-  //       }
-  //     );
-  //     const data = await response.json();
-  //     setRiddle(data.riddle[0].riddle);
-  //     setRiddleSolution(data.riddle[0].solution);
-  //     setSolutionSynonyms(data.riddle[0].synonyms);
-  //     setRiddleImage(data.imgUrl.url);
-
-  //     setIsLoading(false);
-  //   }
-  //   randomRiddle();
-  // };
 
   const getRandomRiddle = () => {
+    console.log(available)
+    let randomPick = available[Math.floor(Math.random() * available.length)]
+    const randomId = available.splice(available.indexOf(randomPick),1)
+
     async function randomRiddle() {
       setIsLoading(true);
       const response = await fetch(
-        "https://the-path-of-riddles.onrender.com/api/v1/riddles/random"
+        `https://the-path-of-riddles.onrender.com/api/v1/riddles/${randomId}`
       );
       const data = await response.json();
       setRiddle(data[0].riddle);
@@ -91,7 +65,13 @@ const Game = ({imageOptions}) => {
       setIsLoading(false);
     }
     randomRiddle();
+    console.log(randomId)
+    console.log(available)
   };
+
+
+
+
 
   //IMAGE REFRESH
   const handleImageRefresh = () => {
@@ -134,39 +114,9 @@ const Game = ({imageOptions}) => {
     console.log(JSON.stringify(prompt))
   };
 
-  const handleHint = () => {
-    let allHints = [...hint];
+  
 
-    const possibleHints = [
-      approximateLength(riddleSolution),
-      averageLetter(riddleSolution),
-      randomLetter(riddleSolution),
-      synonym(solutionSynonyms.split(",")),
-    ];
 
-    //explanation
-    let randNum = Math.floor(Math.random() * hintOptions.length);
-
-    averageLetterCounter > 0
-      ? possibleHints.filter((x) => x !== 0)
-      : possibleHints;
-
-    allHints.push(possibleHints[hintOptions[randNum]]);
-
-    setHint(allHints);
-    console.log(averageLetterCounter);
-    console.log(hintOptions);
-
-    if (hintCounter < 3) {
-      setPoints(points - 1);
-    } else if (hintCounter < 5) {
-      setPoints(points - 2);
-    } else {
-      setPoints(points - 3);
-    }
-
-    setHintCounter(hintCounter + 1);
-  };
 
   return (
     <div className={`game ${refreshEffect ? 'refresh-effect' : ''}`}>
@@ -214,7 +164,8 @@ const Game = ({imageOptions}) => {
       <p>{riddleSolution}</p>
 
       <p>hints</p>
-      <p>{imageOptions}</p>
+      <p>{gameSteps}</p>
+      
       <ul>
         {hint.map((h) => (
           <li key={hint[h]}>{h}</li>
