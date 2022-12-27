@@ -73,7 +73,6 @@ const Start = ({handleStart, isLoading, available}) => {
       <button className="start-button" onClick={handleStart}>
         {!isLoading ? "START GAME" : "Loading..."}
       </button>
-      <p>{available[0]}</p>
     </div>
   );
 };

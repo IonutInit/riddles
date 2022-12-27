@@ -1,6 +1,6 @@
 import './RefreshPopUp.css'
 
-const RefreshPopUp = (props) => {
+const RefreshPopUp = (props, getRandomRiddle) => {
      return props.trigger ? (     
      <div className='refresh-popup'>
         <div className='refresh-display'>

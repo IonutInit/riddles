@@ -11,7 +11,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [available, setAvailable] = useState([])
-  const [startingRiddle, setStartingRiddle] = useState([])
+  // const [startingRiddle, setStartingRiddle] = useState([])
+
+  let startingRiddle = ''
   
 
   const getAvailable = () => {   
@@ -28,29 +30,23 @@ function App() {
   }
 
 
-  const getFirstRiddle = () => {
-    let id = available[Math.floor(Math.random() * available.length)]
+  // const getFirstRiddle = () => {
+  //   let id = available[Math.floor(Math.random() * available.length)]
 
-    async function firstRiddle() {
-      const response = await fetch(`https://the-path-of-riddles.onrender.com/api/v1/riddles/${id}`)
-      const data = await response.json()
-      setStartingRiddle(data[0].riddle)
-    }
-    firstRiddle()
-  }
+  //   async function firstRiddle() {
+  //     const response = await fetch(`https://the-path-of-riddles.onrender.com/api/v1/riddles/${id}`)
+  //     const data = await response.json()
+  //     startingRiddle = data[0].riddle
+  //   }
+  //   firstRiddle()
+  // }
 
   const handleStart = () => {
     setIsLoading(true)
     getAvailable()    
-    getFirstRiddle()
     setIsLoading(false)
-    console.log(startingRiddle)
    
   }
-
-
-
-
 
 
 
@@ -66,7 +62,7 @@ function App() {
         <Header imageOptions={imageOptions} handleImageOptions={handleImageOptions}/>
         <Routes>
           <Route path="/" element={<Start handleStart={handleStart} isLoading={isLoading} available={available}/>} />
-          <Route path="/play" element={<Game imageOptions={imageOptions} available={available} startingRiddle={startingRiddle}/>} />
+          <Route path="/play" element={<Game imageOptions={imageOptions} available={available} />} />
         </Routes>
         <Footer />
       </Router>
