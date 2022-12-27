@@ -8,7 +8,7 @@ import info_button from "../assets/images/info_button.svg";
 
 import "./Header.css";
 
-const Header = () => {
+const Header = ({imageOptions, handleImageOptions}) => {
   const [buttonSubmitPopUp, setButtonSubmitPopUp] = useState(false);
   const [buttonInfoPopUp, setButtonInfoPopUp] = useState(false);
 
@@ -55,7 +55,16 @@ const Header = () => {
         <p>this is my popup</p> */}
       </SubmitPopUp>
 
-      <InfoPopUp trigger={buttonInfoPopUp} setTrigger={setButtonInfoPopUp} />
+      <InfoPopUp trigger={buttonInfoPopUp} setTrigger={setButtonInfoPopUp} > 
+      <div className="options-container">
+          <button value='expressionist painting' className={`options-button ${imageOptions === 'expressionist painting' ? 'option-active' : ''}`} onClick={(e) => handleImageOptions(e)}>Expressionist</button>
+          <button value='impressionist painting' className={`options-button ${imageOptions === 'impressionist painting' ? 'option-active' : ''}`} onClick={(e) => handleImageOptions(e)}>Impressionist</button>
+          <button value='abstract cubist painting' className={`options-button ${imageOptions === 'abstract cubist painting' ? 'option-active' : ''}`} onClick={(e) => handleImageOptions(e)}>Abstract</button>
+          <button value='renaissance painting' className={`options-button ${imageOptions === 'renaissance painting' ? 'option-active' : ''}`} onClick={(e) => handleImageOptions(e)}>Classical</button>
+          <button value='photorealistic painting' className={`options-button ${imageOptions === 'photorealistic painting' ? 'option-active' : ''}`} onClick={(e) => handleImageOptions(e)}>Photorealist</button>
+          <button value='cartoon style' className={`options-button ${imageOptions === 'cartoon style' ? 'option-active' : ''}`} onClick={(e) => handleImageOptions(e)}>Cartoonish</button>
+        </div>
+      </InfoPopUp>
     </div>
   );
 };

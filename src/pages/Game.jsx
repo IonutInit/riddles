@@ -109,7 +109,7 @@ const Game = ({imageOptions}) => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              prompt: `${riddle} cartoon style no text`,
+              prompt: `${riddle} ${imageOptions}`,
             }),
           }
         );
@@ -214,6 +214,7 @@ const Game = ({imageOptions}) => {
       <p>{riddleSolution}</p>
 
       <p>hints</p>
+      <p>{imageOptions}</p>
       <ul>
         {hint.map((h) => (
           <li key={hint[h]}>{h}</li>
