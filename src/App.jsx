@@ -56,9 +56,14 @@ function App() {
         <Header imageOptions={imageOptions} handleImageOptions={handleImageOptions} gameStart={gameStart}/>
         <Routes>
           <Route path="/" element={<Start handleStart={handleStart} isLoading={isLoading} available={available} gameStart={gameStart}/>} />
-          {gameStart && <Route path="/play" element={<Game imageOptions={imageOptions} available={available} />} />}
+          {/* {gameStart && <Route path="/play" element={<Game imageOptions={imageOptions} available={available} />} />}
           {gameStart && <Route path='/win' element={<Win />}/>}
-          {gameStart && <Route path='gameover' element={<Lose />}/>}
+          {gameStart && <Route path='gameover' element={<Lose />}/>} */}
+
+          <Route path="/play" element={<Game imageOptions={imageOptions} available={available} />} />
+          <Route path='/win' element={<Win />}/>
+          && <Route path='gameover' element={<Lose />}/>
+
         </Routes>
         <Footer />
       </Router>

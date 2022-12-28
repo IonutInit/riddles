@@ -217,6 +217,10 @@ const handleSubmit = () => {
     //CORRECT
     setGameSteps(gameSteps => gameSteps + 1)
     setPoints(points => points + 7)
+    //resets the "points" of each hint, as the process will start anew
+    for(let hint in hints) {
+      hints[hint].points = 0
+    }
     setInput('')
     getRandomRiddle()
     // setNotice('Correct!')
