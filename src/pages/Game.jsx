@@ -217,6 +217,7 @@ const handleSubmit = () => {
     //CORRECT
     setGameSteps(gameSteps => gameSteps + 1)
     setPoints(points => points + 7)
+    setInput('')
     getRandomRiddle()
     // setNotice('Correct!')
   } else if(checkSetSimilarity(input, riddleSolution) === 1) {
@@ -231,8 +232,8 @@ const handleSubmit = () => {
       setNotice('Incorrect')
       setGameSteps(gameSteps => gameSteps + 1)
       setPoints(points => points - 5)
-      setInput()  
-    }
+      setInput('')  
+    }    
   }
 }
 
@@ -309,7 +310,7 @@ const handleSubmit = () => {
           className="input-box"
           placeholder="tell me..."
           onChange={(e) => setInput(e.target.value)}
-          // onSubmit={(e) => e.target.value = null}
+          value={input}
         >
         </input>
         <button
