@@ -1,6 +1,7 @@
 import { threshold } from "./threshold";
 
 
+
 export const averageLetter = (word, synonymsString) => {
   const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
   const arr = []
@@ -44,8 +45,8 @@ export const randomLetter = (word, synonymsString) => {
 export const synonym = (word, synonymsString) => {
   let synonyms = synonymsString.split(',')
   const rand = Math.floor(Math.random() * synonyms.length)  
-  // let synonym = synonyms.splice(synonyms.indexOf(rand), 1) 
-  return `Another word for it might be ${synonyms[rand].replace(' ', '')}.`
+  
+  return `Another word for it could be ${synonyms[rand].replace(' ', '')}.`
 }
 
 
@@ -56,8 +57,6 @@ export const firstLetter = (word, synonymsString) => {
 export const endLetter = (word, synonymsString) => {
   return `The solution ends in ${word[word.length - 1].toUpperCase()}.`
 }
-
-
 
 
 // let hints = [

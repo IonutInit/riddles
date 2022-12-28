@@ -9,6 +9,10 @@ import { threshold } from "./threshold";
 //however, integrating this with a letter similarity checker may be too much
 
 export function checkSetSimilarity(input, keyword) {
+    if(input.length === 0) {
+        return null
+    }
+    
   input.toLowerCase()
   if(input === keyword) {
       return true

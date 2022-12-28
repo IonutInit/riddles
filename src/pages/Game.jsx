@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import {Navigate} from 'react-router-dom'
 
 import "./Game.css";
 import "../components/RefreshPopUp.css"
@@ -31,11 +32,17 @@ let result = [];
 
 
 const Game = ({imageOptions, available}) => { 
- 
-  useEffect(() => {
+
+  const [startEffect, setStartEffect] = useState(false)
+
+   useEffect(() => {
+    // setStartEffect(true)
+    setStartEffect(true)
     getRandomRiddle()
-    console.log(hints)
+    // stopStartEffect()
   },[])
+
+ 
 
   //game handles
   const [gameSteps, setGameSteps] = useState(1);
@@ -60,7 +67,7 @@ const Game = ({imageOptions, available}) => {
 
   //submit Handles
   const [input, setInput] = useState('')
-  const [notice, setNotice] = useState('This is the notice')
+  const [notice, setNotice] = useState('')
 
   // const handleRefresh = () => {
   //   setRefreshPopUp(true)
@@ -71,17 +78,23 @@ const Game = ({imageOptions, available}) => {
   //I don't know what this is
   const [response, setResponse] = useState("");
  
+  // if (points <= 0) {
+  //   return <Navigate to={"/gameover"} />;
+  // }
 
-
+  
   const getRandomRiddle = () => {
     // console.log(available)
     let randomPick = available[Math.floor(Math.random() * available.length)]
     const randomId = available.splice(available.indexOf(randomPick),1)
+    
 
     async function randomRiddle() {
-      setIsLoading(true);
-
+      
+     
       if (!randomRiddleWithPicture) {
+        setIsLoading(true);
+    console.log(isLoading)
         const response = await fetch(
         `https://the-path-of-riddles.onrender.com/api/v1/riddles/${randomId}`
       );
@@ -94,7 +107,9 @@ const Game = ({imageOptions, available}) => {
       // setRiddleImage(data.imgUrl.url);
 
       setIsLoading(false);
+      setStartEffect(false) //for some reason it didn't want to set itself off in the useEffect at the beginning
       } else {
+        setIsLoading(true);
         const response = await fetch(`https://the-path-of-riddles.onrender.com/api/v1/combined/${randomId}`, 
         {
           method: 'POST',
@@ -112,12 +127,11 @@ const Game = ({imageOptions, available}) => {
         setRiddleSolution(data.riddle[0].solution)
         setSolutionSynonyms(data.riddle[0].synonyms)
         setRiddleImage(data.imgUrl.url)
-      }      
+      }  
+      setIsLoading(false) 
+      setStartEffect(false) //see comment on first block of IF statement
     }
     randomRiddle();
-    setIsLoading(false);
-    // console.log(randomId)
-    // console.log(available)
   };
 
 ///GAMES BEGIN!!!
@@ -207,6 +221,8 @@ const handleSubmit = () => {
     // setNotice('Correct!')
   } else if(checkSetSimilarity(input, riddleSolution) === 1) {
     setNotice(`You're very close`)
+  } else if(checkSetSimilarity(input, riddleSolution) === null) {
+    setNotice(`Field is empty`)
   } else if(checkSetSimilarity(input, riddleSolution) === undefined) {
     if(checkSynonymSimilarity(input, solutionSynonyms) === 2) {
       setNotice(`You're on the right track`)
@@ -214,7 +230,8 @@ const handleSubmit = () => {
       //INCORRECT!!
       setNotice('Incorrect')
       setGameSteps(gameSteps => gameSteps + 1)
-      setPoints(points => points - 5)  
+      setPoints(points => points - 5)
+      setInput()  
     }
   }
 }
@@ -264,7 +281,7 @@ const handleSubmit = () => {
 
 
   return (
-    <div className={`game ${refreshEffect ? 'refresh-effect' : ''}`}>
+    <div className={`game ${startEffect ? 'start-effect' : ''}`}>
       <div className="image-container">
         <img
           src={!riddleImage ? placeholder2 : riddleImage}
@@ -292,6 +309,7 @@ const handleSubmit = () => {
           className="input-box"
           placeholder="tell me..."
           onChange={(e) => setInput(e.target.value)}
+          // onSubmit={(e) => e.target.value = null}
         >
         </input>
         <button
@@ -304,8 +322,8 @@ const handleSubmit = () => {
       </div>
 
       <div className="control">
-      <button  className='control-buttons refresh-button' onClick={() => setRefreshPopUp(true)}>REFRESH</button>
-      <button className='control-buttons hints-button' onClick={handleHints}>HINTS</button>
+      <button  className='control-buttons refresh-button' onClick={() => setRefreshPopUp(true)} disabled={isLoading}>REFRESH</button>
+      <button className='control-buttons hints-button' onClick={handleHints} disabled={isLoading}>HINTS</button>
       </div>
       
       <p>{riddleSolution}</p>

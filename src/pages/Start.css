@@ -5,10 +5,24 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 3px solid black;
     padding-top: var(--headerHeight);
     padding-bottom: var(--footerHeight);
 }
+
+/* .start-start {
+    -webkit-animation: startStart 1s infinite linear;
+}
+@-webkit-keyframes startStart {
+    0% {
+        filter: sepia(20%) blur(1px)
+    }
+    25% {
+        filter: sepia(50%) blur(3px)
+    }
+    100% {
+        filter: sepia(80%) blur(5px)
+    }
+} */
 
 .start-image {
     width: 512px;

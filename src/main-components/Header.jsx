@@ -8,7 +8,7 @@ import info_button from "../assets/images/info_button.svg";
 
 import "./Header.css";
 
-const Header = ({imageOptions, handleImageOptions}) => {
+const Header = ({imageOptions, handleImageOptions, gameStart}) => {
   const [buttonSubmitPopUp, setButtonSubmitPopUp] = useState(false);
   const [buttonInfoPopUp, setButtonInfoPopUp] = useState(false);
 
@@ -27,20 +27,20 @@ const Header = ({imageOptions, handleImageOptions}) => {
     <div className="header">
       <div className="header-line"></div>
       <div className="header-content">
-        <img
+       { gameStart && <img
           src={submit_button}
           className="submissions submit-riddle"
           onClick={() => setButtonSubmitPopUp(true)}
           tabIndex='0'
           onKeyDown={(e) => handleKeyDown(e)}
-        />
-        <img
+        />}
+        {gameStart && <img
           src={info_button}
           className=" submissions info"
           onClick={() => setButtonInfoPopUp(true)}
           tabIndex='0'
           onKeyDown={(e) => handleKeyDown(e)}
-        />
+        />}
       </div>
 
       {/* <button className="submit-riddle" onClick={() => setButtonPopUp(true)}>

@@ -6,18 +6,21 @@ import Footer from "./main-components/Footer";
 
 import Start from "./pages/Start";
 import Game from "./pages/Game";
+import Win from './pages/Win'
+import Lose from './pages/Lose'
 
 function App() {
+  const [gameStart, setGameStart] = useState(false)
   const [isLoading, setIsLoading] = useState(false);
 
   const [available, setAvailable] = useState([])
-  // const [startingRiddle, setStartingRiddle] = useState([])
-
-  let startingRiddle = ''
-  
-
-  const getAvailable = () => {   
-    async function availableArray() {
+ 
+  const getAvailable = () => { 
+    setIsLoading(true)
+    setTimeout(() => {
+      
+      async function availableArray() {
+      
       const arr = []
       const response = await fetch('https://the-path-of-riddles.onrender.com/api/v1/riddles/available')
       const data = await response.json();
@@ -25,26 +28,17 @@ function App() {
               arr.push(data[i].id);
             }
       setAvailable(arr)
+      setIsLoading(false)
     } 
-    availableArray()    
+    availableArray() 
+    }, 1000)  
+       
   }
 
-
-  // const getFirstRiddle = () => {
-  //   let id = available[Math.floor(Math.random() * available.length)]
-
-  //   async function firstRiddle() {
-  //     const response = await fetch(`https://the-path-of-riddles.onrender.com/api/v1/riddles/${id}`)
-  //     const data = await response.json()
-  //     startingRiddle = data[0].riddle
-  //   }
-  //   firstRiddle()
-  // }
-
   const handleStart = () => {
-    setIsLoading(true)
+    setGameStart(true)
+    
     getAvailable()    
-    setIsLoading(false)
    
   }
 
@@ -59,10 +53,12 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Header imageOptions={imageOptions} handleImageOptions={handleImageOptions}/>
+        <Header imageOptions={imageOptions} handleImageOptions={handleImageOptions} gameStart={gameStart}/>
         <Routes>
-          <Route path="/" element={<Start handleStart={handleStart} isLoading={isLoading} available={available}/>} />
-          <Route path="/play" element={<Game imageOptions={imageOptions} available={available} />} />
+          <Route path="/" element={<Start handleStart={handleStart} isLoading={isLoading} available={available} gameStart={gameStart}/>} />
+          {gameStart && <Route path="/play" element={<Game imageOptions={imageOptions} available={available} />} />}
+          {gameStart && <Route path='/win' element={<Win />}/>}
+          {gameStart && <Route path='gameover' element={<Lose />}/>}
         </Routes>
         <Footer />
       </Router>
