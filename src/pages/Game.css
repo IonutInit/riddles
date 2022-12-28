@@ -246,3 +246,12 @@
 }
 
 
+.solution {
+    font-size: 36px;
+    letter-spacing: 0.3em;
+}
+
+.winning-puzzle {
+    color: var(--color2);
+    -webkit-text-stroke: 1px var(--color3);
+}

@@ -28,6 +28,7 @@ import {
 } from "../lib/checkSimilarity";
 
 let randomRiddleWithPicture = false;
+let winningWord = 'beautiful'
 
 let options = [];
 let result = [];
@@ -51,6 +52,7 @@ const Game = ({ imageOptions, available }) => {
   const [riddleSolution, setRiddleSolution] = useState("");
   const [solutionSynonyms, setSolutionSynonyms] = useState("");
   const [riddleImage, setRiddleImage] = useState("");
+  const [solutionArray, setSolutionArray] = useState([])
 
   //hint handles
   const [hint, setHint] = useState(result);
@@ -205,6 +207,12 @@ const Game = ({ imageOptions, available }) => {
     setHint(result)
   };
 
+  const handleSolution = () => {
+    const array = riddleSolution.split('')
+    setSolutionArray(array)
+  }
+
+
   const handleSubmit = () => {
     if (checkSetSimilarity(input, riddleSolution) === true) {
       //CORRECT
@@ -217,7 +225,13 @@ const Game = ({ imageOptions, available }) => {
         hints[hint].points = 0;
       }
       setInput("");
-      getRandomRiddle();
+      handleSolution()
+      setNotice('Correct')      
+      setTimeout(() => {
+        getRandomRiddle();
+        setNotice('')
+      }, 5000)
+      
       // setNotice('Correct!')
     } else if (checkSetSimilarity(input, riddleSolution) === 1) {
       setNotice(`You're very close`);
@@ -334,6 +348,10 @@ const Game = ({ imageOptions, available }) => {
 
       <p>{riddleSolution}</p>
       <p>{notice}</p>
+      
+      <span className="solution">{solutionArray.map((s) => (
+        <span key={solutionArray.indexOf(s)} className={winningWord.includes(s) ? 'winning-puzzle' : ''}>{s.toUpperCase()}</span>
+      ))}</span>
 
       <p>hints</p>
       <p>Game steps: {gameSteps}</p>
