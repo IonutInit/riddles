@@ -201,7 +201,8 @@ const Game = ({ imageOptions, available }) => {
     setPoints((points) => points - 5);
     setGameSteps((gameSteps) => gameSteps + 1);
     setRefreshPopUp(false);
-    setHint([]);
+    result = [];
+    setHint(result)
   };
 
   const handleSubmit = () => {
@@ -209,6 +210,8 @@ const Game = ({ imageOptions, available }) => {
       //CORRECT
       setGameSteps((gameSteps) => gameSteps + 1);
       setPoints((points) => points + 7);
+      result = [];
+      setHint(result)
       //resets the "points" of each hint, as the process will start anew
       for (let hint in hints) {
         hints[hint].points = 0;
