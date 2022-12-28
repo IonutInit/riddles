@@ -42,7 +42,7 @@ const Game = ({imageOptions, available}) => {
   },[])
 
   //game handles
-  const [gameSteps, setGameSteps] = useState(5);
+  const [gameSteps, setGameSteps] = useState(1);
   const [points, setPoints] = useState(20);
   
   //riddle element handles
@@ -157,7 +157,7 @@ const Game = ({imageOptions, available}) => {
 const getHints = (solution, synonymsString) => {  
 
   //filters for optiions that are still within the game play and which haven't been yet called more than they are supposed to 
-  hints.map(x => (x.lowerLimit < gameSteps && x.upperLimit > gameSteps) ? x.status = true : x.status = false)
+  hints.map(x => (x.lowerLimit <= gameSteps && x.upperLimit >= gameSteps) ? x.status = true : x.status = false)
 
   for (let i = 0; i < hints.length; i++) {
       if (hints[i].points === hints[i].limit) {
@@ -315,7 +315,7 @@ const handleHints =() => {
       
       <ul>
         {hint.map((h) => (
-          <li >{h}</li>
+          <li key={hint.indexOf(h)}>{h}</li>
         ))}
         
       </ul>
