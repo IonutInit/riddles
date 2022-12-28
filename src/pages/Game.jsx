@@ -17,89 +17,17 @@ import {
   firstLetter, 
   endLetter  
 } from "../lib/hints";
-import { CompressOutlined } from "@mui/icons-material";
 
+import {hints} from '../lib/hintStructure'
+import { avatarClasses } from "@mui/material";
 
-let randomRiddleWithPicture = true;
+let randomRiddleWithPicture = false;
 
 let options = [];
 let result = [];
 
 
-let hints = [
-  {
-      call: averageLetter,
-      status: null,
-      points: 0, //how many times has been played this turn
-      limit: 1, //how many times can be played by turn
-      lowerLimit: 1, //it is available each turn within the lower/upper limits of the game
-      upperLimit: 4, 
-      chance: 2, //the chance of it being called out of the summ of all chances 
-  },
-  {
-      call: approximateLengthHarder,
-      status: null,
-      points: 0,
-      limit: 1,
-      lowerLimit: 1,
-      upperLimit: 5, 
-      chance: 2,       
-  },
-  {
-      call: approximateLengthEasier,
-      status: null,
-      points: 0,
-      limit: 1,
-      lowerLimit: 6,
-      upperLimit: 10,
-      chance: 1,       
-  },
-  {
-      call: approximateLengthEasiest,
-      status: null,
-      points: 0,
-      limit: 1,
-      lowerLimit: 11,
-      upperLimit: 200,
-      chance: 1,        
-  },
-  {
-      call: randomLetter,
-      status: null,
-      points: 0,
-      limit: 3,
-      lowerLimit: 1,
-      upperLimit: 200, 
-      chance: 1,       
-  },
-  {
-      call: synonym,
-      status: null,
-      points: 0,
-      limit: 2,
-      lowerLimit: 1,
-      upperLimit: 200,
-      chance: 1,        
-  },
-  {
-      call: endLetter,
-      status: null,
-      points: 0,
-      limit: 1,
-      lowerLimit: 3,
-      upperLimit: 200,
-      chance: 1,        
-  },
-  {
-      call: firstLetter,
-      status: null,
-      points: 0,
-      limit: 1,
-      lowerLimit: 5,
-      upperLimit: 200, 
-      chance: 2,       
-  },
-]
+
 
 
 
@@ -159,7 +87,7 @@ const Game = ({imageOptions, available}) => {
         const response = await fetch(
         `https://the-path-of-riddles.onrender.com/api/v1/riddles/${randomId}`
       );
-      console.log(response)
+      // console.log(response)
       const data = await response.json();
       setRiddle(data[0].riddle);
       setRiddleSolution(data[0].solution);
@@ -240,6 +168,11 @@ const getHints = (solution, synonymsString) => {
   //creates an array enumerating the viable options each of them times their chance
   let availableHints = hints.filter(x => x.status === true)
 
+  if (availableHints.length === 0) {
+    setHint(result.push('There are no more hints available'))
+    return;
+  }
+
    for (let i = 0; i < availableHints.length; i++) {
       for(let j = 0; j < availableHints[i].chance; j++) {
           options.push(availableHints[i].call)
@@ -265,6 +198,13 @@ const getHints = (solution, synonymsString) => {
   let upcomingHints = hints.filter(x => x.upperLimit > 5)
   rand = Math.floor(Math.random() * upcomingHints.length)
   upcomingHints[rand].chance++
+
+  console.log(options)
+
+  //refreshes the options array for the next call 
+  options = [];
+
+  console.log(hints)
 
   return hints
 }
