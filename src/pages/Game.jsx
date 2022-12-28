@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import "./Game.css";
+import "../components/RefreshPopUp.css"
 import placeholder2 from "../assets/images/placeholder2.jpg";
 
 import RefreshPopUp from "../components/RefreshPopUp";
@@ -19,7 +20,8 @@ import {
 } from "../lib/hints";
 
 import {hints} from '../lib/hintStructure'
-import { avatarClasses } from "@mui/material";
+
+import {checkSetSimilarity, checkSynonymSimilarity} from '../lib/checkSimilarity'
 
 let randomRiddleWithPicture = false;
 
@@ -28,13 +30,7 @@ let result = [];
 
 
 
-
-
-
-
-const Game = ({imageOptions, available}) => {
-
-  
+const Game = ({imageOptions, available}) => { 
  
   useEffect(() => {
     getRandomRiddle()
@@ -58,20 +54,22 @@ const Game = ({imageOptions, available}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [pictureIsLoading, setPictureIsLoading] = useState(false);
 
-  //action button handles
+  //action button handles (i.e. Refresh and Hint)
   const [refreshPopUp, setRefreshPopUp] = useState(false)
   const [refreshEffect, setRefreshEffect] = useState(false)
 
+  //submit Handles
+  const [input, setInput] = useState('')
+  const [notice, setNotice] = useState('This is the notice')
 
-  const handleRefresh = () => {
-    setRefreshPopUp(true)
-    setRefreshEffect(true)
-  }
+  // const handleRefresh = () => {
+  //   setRefreshPopUp(true)
+  //   setRefreshEffect(true)
+  // }
 
  
   //I don't know what this is
   const [response, setResponse] = useState("");
-
  
 
 
@@ -121,35 +119,6 @@ const Game = ({imageOptions, available}) => {
     // console.log(randomId)
     // console.log(available)
   };
-
-
-  // const getRandomRiddle = () => {
-  //   async function randomRiddle() {
-  //     let randomPick = available[Math.floor(Math.random() * available.length)]
-  //   const randomId = available.splice(available.indexOf(randomPick),1)
-
-  //   try {
-  //     const response = await fetch(`https://the-path-of-riddles.onrender.com/api/v1/combined/${randomId}`)
-  //     console.log(response)
-      
-
-  //   // setRiddle(data.riddle[0].riddle)
-  //   // setRiddleSolution(data.riddle[0].solution)
-  //   // setSolutionSynonyms(data.riddle[0].synonyms)
-  //   // setRiddleImage(data.imgUrl.url)
-
-  //   } catch (error) {
-  //     setResponse(error.message)
-  //   }
-
-    
-  //   }
-
-  //   randomRiddle()
-  // }
-
-
-
 
 ///GAMES BEGIN!!!
 
@@ -209,6 +178,9 @@ const getHints = (solution, synonymsString) => {
   return hints
 }
 
+
+////////////////////////
+
 const handleHints =() => {
   getHints(riddleSolution, solutionSynonyms)
   let allHints = [...result] 
@@ -217,10 +189,36 @@ const handleHints =() => {
 }
 
 
+const handleRefresh = () => {
+  getRandomRiddle()
+  setPoints(points => points - 5)
+  setGameSteps(gameSteps => gameSteps + 1)
+  setRefreshPopUp(false)
+  setHint([])
+}
 
 
+const handleSubmit = () => {
+  if(checkSetSimilarity(input, riddleSolution) === true) {
+    //CORRECT
+    setGameSteps(gameSteps => gameSteps + 1)
+    setPoints(points => points + 7)
+    getRandomRiddle()
+    // setNotice('Correct!')
+  } else if(checkSetSimilarity(input, riddleSolution) === 1) {
+    setNotice(`You're very close`)
+  } else if(checkSetSimilarity(input, riddleSolution) === undefined) {
+    if(checkSynonymSimilarity(input, solutionSynonyms) === 2) {
+      setNotice(`You're on the right track`)
+    } else {
+      //INCORRECT!!
+      setNotice('Incorrect')
+      setGameSteps(gameSteps => gameSteps + 1)
+      setPoints(points => points - 5)  
+    }
+  }
+}
 
-////////////////////////
  
 
   //IMAGE REFRESH
@@ -293,10 +291,12 @@ const handleHints =() => {
           type="text"
           className="input-box"
           placeholder="tell me..."
-        ></input>
+          onChange={(e) => setInput(e.target.value)}
+        >
+        </input>
         <button
           className={!isLoading ? "submit-button" : "submit-button-disabled"}
-          onClick={getRandomRiddle}
+          onClick={handleSubmit}
           disabled={isLoading}
         >
           {isLoading ? "Loading..." : "Submit"}
@@ -309,6 +309,7 @@ const handleHints =() => {
       </div>
       
       <p>{riddleSolution}</p>
+      <p>{notice}</p>
 
       <p>hints</p>
       <p>Game steps: {gameSteps}</p>
@@ -322,13 +323,13 @@ const handleHints =() => {
 
           <RefreshPopUp 
             trigger={refreshPopUp}
-        setTrigger={setRefreshPopUp}
+        // setTrigger={setRefreshPopUp}
           > 
-          <h2>Are you sure?</h2>
-           <p>This will cost you 5 points.</p>
+          {/* <h2>Are you sure?</h2>
+           <p>This will cost you 5 points.</p> */}
            <div className='refresh-button-container'>
-            <button className="refresh-buttons">YES</button>
-        <button className="refresh-buttons" onClick={() => props.setTrigger(false)}>NO</button> 
+            <button className="refresh-buttons" onClick={handleRefresh}>YES</button>
+        <button className="refresh-buttons" onClick={() => setRefreshPopUp(false)}>NO</button> 
            </div>
           </RefreshPopUp>
 
