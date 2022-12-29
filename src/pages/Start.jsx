@@ -11,9 +11,9 @@ const Start = ({ handleStart, isLoading, available, gameStart}) => {
 
   return (
     <div className={`start ${gameStart ? "start-start" : ""}`}>
-      <h2 className="welcome-text">Welcome</h2>
+      {/* <h2 className="welcome-text">Welcome</h2> */}
       <img src={placeholder} alt={"placeholder"} className="start-image"></img>
-      <h2 className="welcome-text">to the Riddles Games</h2>
+      {/* <h2 className="welcome-text">to the Riddles Games</h2> */}
       <button className="start-button" onClick={handleStart}>
         {!isLoading ? "START GAME" : "Loading..."}
       </button>

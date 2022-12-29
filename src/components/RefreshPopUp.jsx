@@ -4,7 +4,7 @@ const RefreshPopUp = (props) => {
   return props.trigger ? (
     <div className="refresh-popup">
       <div className="refresh-display">
-        <h2>Are you sure?</h2>
+        <h2 className="refresh-title">Are you sure?</h2>
         <p>This will cost you 5 points.</p>
         <div className="refresh-button-container">
           {props.children}

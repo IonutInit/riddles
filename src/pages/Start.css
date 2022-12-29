@@ -24,9 +24,14 @@
     }
 } */
 
+.start-container {
+
+}
+
 .start-image {
-    width: 512px;
-    border-radius: 7%;
+    padding-top: 2em;
+    height: var(--imagesize);    
+    border-radius: 3%;
 }
 
 .welcome-text {
@@ -45,8 +50,9 @@
 }
 
 .start-button:hover {
+    box-shadow: 0 0 10px #fff;
     transform: scale(1.1);
-    transition: 1s;
+    transition: 0.5s;
 }
 
 .start-button:not(:hover) {

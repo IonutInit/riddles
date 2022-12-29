@@ -26,7 +26,8 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
   return (
     <div className="header">
       <div className="header-line"></div>
-      <div className="header-content">
+      <div className="header-title">The Riddle Fiddle</div>  
+      <div className="header-content">          
         {gameStart && (
           <img
             src={submit_button}
@@ -39,7 +40,7 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
         {gameStart && (
           <img
             src={info_button}
-            className=" submissions info"
+            className=" submissions submissions-leftwards info"
             onClick={() => setButtonInfoPopUp(true)}
             tabIndex="0"
             onKeyDown={(e) => handleKeyDown(e)}
@@ -111,13 +112,22 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
             Photorealist
           </button>
           <button
-            value="cartoon style"
+            value="watercolour"
             className={`options-button ${
-              imageOptions === "cartoon style" ? "option-active" : ""
+              imageOptions === "watercolour" ? "option-active" : ""
             }`}
             onClick={(e) => handleImageOptions(e)}
           >
-            Cartoonish
+            Watercolour
+          </button>
+          <button
+            value="pencil sketch"
+            className={`options-button ${
+              imageOptions === "pencil sketch" ? "option-active" : ""
+            }`}
+            onClick={(e) => handleImageOptions(e)}
+          >
+            Pencil Sketch
           </button>
         </div>
       </InfoPopUp>

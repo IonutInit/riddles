@@ -6,10 +6,11 @@ import Draggable from 'react-draggable'
 import "./Game.css";
 import "../components/RefreshPopUp.css";
 import placeholder from "../assets/images/placeholder.png";
+import refreshButton from '../assets/images/refresh-button.png'
 
 import RefreshPopUp from "../components/RefreshPopUp";
-
 import RefreshIcon from "@mui/icons-material/Refresh";
+
 
 import {
   averageLetter,
@@ -310,11 +311,13 @@ const Game = ({ imageOptions, available, magicWord }) => {
           alt={"rendered representation of the riddle"}
           className="riddle-image"
         ></img>
-        <RefreshIcon
+        <img
+          src={refreshButton}
+          alt={'generate new riddle representation'}
           className={`refresh-icon ${
             pictureIsLoading ? "picture-loading" : ""
           }`}
-          sx={{ fontSize: "64px" }}
+          // sx={{ fontSize: "64px" }}
           role="button"
           onClick={handleImageRefresh}
         />
@@ -344,7 +347,10 @@ const Game = ({ imageOptions, available, magicWord }) => {
       </div>
       </div>
 
-      <p className="riddle-container">{riddle}</p>
+          <Draggable>
+            <p className="riddle-container">{riddle}</p>
+          </Draggable>
+      
 
       <div className="input-container">
         <input

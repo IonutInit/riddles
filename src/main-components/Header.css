@@ -13,6 +13,14 @@
     z-index: 2;
   }
   
+.header-title {
+  position: relative;
+  margin-bottom: 35px;
+  font-size: larger;
+  color: var(--color3);
+  text-shadow: 1px 1px white;
+}
+
   .header-line {
     height: 10px;
     width: 100%;
@@ -25,17 +33,21 @@
     height: var(--headerHeight);
  display: flex;
  justify-content: flex-end;
- gap: 20px;
+ gap: 15px;
   }
 
 
   .submissions {
-    width: 72px;
+    width: 64px;
   }
 
 .submissions:hover {
-  transform: scale(1.2);
-  transition: 1.5s;
+  transform: scale(1.05) rotate(10deg);
+  transition: 0.5s;
+}
+
+.submissions-leftwards:hover {
+  transform: rotate(-10deg) scale(1.05);
 }
 
 .submissions:not(:hover) {

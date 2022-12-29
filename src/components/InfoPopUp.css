@@ -123,3 +123,9 @@
     margin-top: 20px;
     line-height: 1.5em;
 }
+
+.close-button {
+    color: white;
+    background-color: rgba(0,0,0,0);
+    font-weight: 700;
+}

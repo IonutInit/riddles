@@ -12,7 +12,7 @@ const SubmitPopUp = (props) => {
   const [thankYou, setThankYou] = useState(false);
 
   const handleSubmit = () => {
-    if (riddle === "" || solution === "" || email === "") {
+    if (riddle === "" || solution === "" || (email === "" || !email.includes('@'))) {
       setWarning(true);
       return;
     }
@@ -39,7 +39,7 @@ const SubmitPopUp = (props) => {
       setThankYou(false);
       setWarning(false);
       props.setTrigger(false);
-    }, 2000);
+    }, 1500);
   };
 
   return props.trigger ? (

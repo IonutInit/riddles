@@ -160,3 +160,9 @@
         transform: scale(100%) rotate(10deg);
     }    
 }
+
+.close-button {
+    color: white;
+    background-color: rgba(0,0,0,0);
+    font-weight: 700;
+}

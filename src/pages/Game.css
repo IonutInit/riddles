@@ -64,13 +64,13 @@
     color: black;
     position: absolute;
     z-index: 1;
-    top: 50px;
-    right: 0;
+    top: 55px;
+    right: 5px;
 }
 
 .refresh-icon:hover {
-    transform: scale(1.2);
-    rotate: 145deg;
+    transform: scale(1.1);
+    rotate: 100deg;
     transition: 1s;
     /* animation: rotate 2s linear infinite; */
 }
@@ -263,7 +263,7 @@
    height: 80px;
    justify-content: center;
    gap: 75px;
-    
+    margin-bottom: 50px;
 }
 
 .control-buttons {
