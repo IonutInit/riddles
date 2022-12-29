@@ -11,13 +11,13 @@ import Lose from "./pages/Lose";
 
 function App() {
   const [gameStart, setGameStart] = useState(false);
+  const [magicWord, setMagicWord] = useState('')
   const [isLoading, setIsLoading] = useState(false);
 
   const [available, setAvailable] = useState([]);
 
+  //fetches the array of available riddles, which will be passed down as 'available'
   const getAvailable = () => {
-    setIsLoading(true);
-    setTimeout(() => {
       async function availableArray() {
         const arr = [];
         const response = await fetch(
@@ -30,14 +30,24 @@ function App() {
         setAvailable(arr);
         setIsLoading(false);
       }
-      availableArray();
-    }, 1000);
+      availableArray();  
   };
+
+
+  const getMagicWord = () => {
+    setIsLoading(true);
+    async function magicWord() {
+      const response = await fetch('https://the-path-of-riddles.onrender.com/api/v1/magicword')
+      const data = await response.json()
+      setMagicWord(data[0].magicword)
+    }
+    magicWord()
+  }
 
   const handleStart = () => {
     setGameStart(true);
-
-    getAvailable();
+    getMagicWord()
+    getAvailable();    
   };
 
   const [imageOptions, setImageOptions] = useState("expressionist painting");
@@ -71,7 +81,7 @@ function App() {
           {gameStart && <Route path='gameover' element={<Lose />}/>} */}
           <Route
             path="/play"
-            element={<Game imageOptions={imageOptions} available={available} />}
+            element={<Game imageOptions={imageOptions} available={available} magicWord={magicWord}/>}
           />
           <Route path="/win" element={<Win />} />
           && <Route path="gameover" element={<Lose />} />

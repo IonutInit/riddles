@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
 import placeholder2 from "../assets/images/placeholder2.jpg";
 
 import "./Start.css";
 
-const Start = ({ handleStart, isLoading, available, gameStart }) => {
+const Start = ({ handleStart, isLoading, available, gameStart}) => {
   if (available.length > 0) {
     return <Navigate to={"/play"} />;
   }

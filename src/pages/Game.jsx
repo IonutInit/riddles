@@ -27,13 +27,18 @@ import {
   checkSynonymSimilarity,
 } from "../lib/checkSimilarity";
 
+import { changePoints } from "../lib/changePoints";
+
+//toggle between generating image or not 
 let randomRiddleWithPicture = false;
-let winningWord = 'beautiful'
 
 let options = [];
 let result = [];
 
-const Game = ({ imageOptions, available }) => {
+const Game = ({ imageOptions, available, magicWord }) => {
+
+  let winningWord = magicWord
+
   const [startEffect, setStartEffect] = useState(false);
 
   useEffect(() => {
@@ -161,8 +166,6 @@ const Game = ({ imageOptions, available }) => {
       }
     }
 
-    //OPTIONS NEED TO BE FILTERED ACCORDING TO STATUS
-
     //one of these instances is being called to provide the hint
     let rand = Math.floor(Math.random() * options.length);
     setHint(result.push(options[rand](solution, synonymsString)));
@@ -179,8 +182,6 @@ const Game = ({ imageOptions, available }) => {
     rand = Math.floor(Math.random() * upcomingHints.length);
     upcomingHints[rand].chance++;
 
-    console.log(options);
-
     //refreshes the options array for the next call
     options = [];
 
@@ -195,7 +196,7 @@ const Game = ({ imageOptions, available }) => {
     getHints(riddleSolution, solutionSynonyms);
     let allHints = [...result];
     setHint(allHints);
-    setPoints((points) => points - 1);
+    setPoints((points) => points - changePoints(gameSteps, 1, 3));
   };
 
   const handleRefresh = () => {
@@ -217,7 +218,7 @@ const Game = ({ imageOptions, available }) => {
     if (checkSetSimilarity(input, riddleSolution) === true) {
       //CORRECT
       setGameSteps((gameSteps) => gameSteps + 1);
-      setPoints((points) => points + 7);
+      setPoints((points) => points + changePoints(gameSteps, 7, 3));
       result = [];
       setHint(result)
       //resets the "points" of each hint, as the process will start anew
@@ -348,6 +349,7 @@ const Game = ({ imageOptions, available }) => {
 
       <p>{riddleSolution}</p>
       <p>{notice}</p>
+      <p>{magicWord}</p>
       
       <span className="solution">{solutionArray.map((s) => (
         <span key={solutionArray.indexOf(s)} className={winningWord.includes(s) ? 'winning-puzzle' : ''}>{s.toUpperCase()}</span>
