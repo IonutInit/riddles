@@ -1,5 +1,5 @@
 import { useState } from "react";
-import placeholder from "./assets/placeholder.jpg";
+import placeholder from "./assets/placeholder.png";
 import "./GetImage.css";
 
 const GetImage = () => {
@@ -60,7 +60,7 @@ const GetImage = () => {
       <textarea onChange={(e) => handlePrompt(e)}></textarea>
 
       <button onClick={generateImage} disabled={isLoading}>
-        {!isLoading ? "Get Image" : "Drawing..."}
+        {!isLoading ? "Get Image" : "Generating..."}
       </button>
       <p>{response}</p>
     </div>
