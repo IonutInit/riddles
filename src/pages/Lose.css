@@ -1,3 +1,6 @@
+
+/* the first three are copied from Game.css*/
+
 .game-over-container {
     height: 100vh - (var(--headerHeight) + var(--footerHeight));
     overflow: auto;
@@ -27,6 +30,7 @@
     padding-top: 30px;
 }
 
+/* copied from Start.css */
 .lose-go-back {
     background-color: var(--color4);
     font-family: var(--font2);

@@ -4,12 +4,16 @@ import { Navigate } from "react-router-dom";
 import './Lose.css'
 import gameOver from '../assets/images/game_over.png'
 
+//For the time being, on win/lose conditions gamseState is not reset, which means '/' navigates directly to '/play'
+//This might actually better, at least for losing. If kept like that, check that all the other parameters are reset
+
 const Lose = () => {
   const [goBack, setGoBack] = useState(false)
 
   if(goBack) {    
       return <Navigate to={'/'}/>   
   }
+
 
   return (
     <div>
@@ -29,7 +33,7 @@ const Lose = () => {
         </div>
 
         <button className='lose-go-back' onClick={() => setGoBack(true)}>
-            Go Back
+            Play again
         </button>
         </div>
       </div>

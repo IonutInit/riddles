@@ -12,21 +12,20 @@
 }
 
 .start-effect {
-    /* filter: blur(5px); */
     -webkit-animation: start 7s infinite linear;
 }
 @-webkit-keyframes start {
     0% {
-        filter: sepia(80%) blur(5px) 
+        filter: blur(5px) 
     }
     25% {
-        filter: sepia(100%) blur(7px)
+        filter: blur(7px)
     }
     50% {
-        filter: sepia(50%) blur(7px)
+        filter: blur(7px)
     }
     75% {
-        filter: sepia(20%) blur(3px)
+        filter: blur(3px)
     }
 }
 

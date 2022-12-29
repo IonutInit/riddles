@@ -38,16 +38,15 @@ let result = [];
 
 const Game = ({ imageOptions, available, magicWord }) => {
 
-  let winningWord = magicWord
-
-  const [startEffect, setStartEffect] = useState(false);
+   const [startEffect, setStartEffect] = useState(false);
 
   useEffect(() => {
-    // setStartEffect(true)
     setStartEffect(true);
     getRandomRiddle();
-    // stopStartEffect()
   }, []);
+
+  const [win, setWin] = useState(false)
+  let winningWord = magicWord
 
   //game hooks
   const [gameSteps, setGameSteps] = useState(1);
@@ -86,9 +85,13 @@ const Game = ({ imageOptions, available, magicWord }) => {
   //I don't know what this is
   const [response, setResponse] = useState("");
 
-  // if (points <= 0) {
-  //   return <Navigate to={"/gameover"} />;
-  // }
+  if (points <= 0) {
+    return <Navigate to={"/gameover"} />;
+  }
+
+  if(win) {
+    return <Navigate to={"/win"} />;
+  }
 
   const getRandomRiddle = () => {
     // console.log(available)
@@ -262,6 +265,10 @@ const Game = ({ imageOptions, available, magicWord }) => {
         setInput("");
       }
     }
+
+    if(input === winningWord) {    
+        setWin(true)   
+    }
   };
 
   //IMAGE REFRESH
@@ -384,25 +391,10 @@ const Game = ({ imageOptions, available, magicWord }) => {
           HINTS
         </button>
       </div>
-
-      {/* <p>{riddleSolution}</p> */}
-      
-      {/* <p>{magicWord}</p> */}
-      
-      {/* <span>
-      <span>Correct!</span>
-        <span className="solution">{solutionArray.map((s) => (
-        <span key={solutionArray.indexOf(s)} className={winningWord.includes(s) ? 'winning-puzzle' : ''}>{s.toUpperCase()}</span>
-      ))}</span>
-      </span> */}
-      
      
+      <p>{winningWord}</p>
       
-      {/* <p>Game steps: {gameSteps}</p> */}
-
-      
-
-      <RefreshPopUp
+          <RefreshPopUp
         trigger={refreshPopUp}
         // setTrigger={setRefreshPopUp}
       >

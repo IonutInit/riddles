@@ -48,16 +48,12 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
         
       </div>
 
-      {/* <button className="submit-riddle" onClick={() => setButtonPopUp(true)}>
-        Open PopUp
-      </button> */}
+
 
       <SubmitPopUp
         trigger={buttonSubmitPopUp}
         setTrigger={setButtonSubmitPopUp}
-      >
-        {/* <h1>My popup</h1>
-        <p>this is my popup</p> */}
+      > 
       </SubmitPopUp>
 
       <InfoPopUp

@@ -4,6 +4,8 @@ import { Navigate } from "react-router-dom";
 import './Win.css'
 import win from '../assets/images/win.png'
 
+//see comment in Loose.jsx regarding navigation
+
 const Win = ({magicWord}) => {
   const [goBack, setGoBack] = useState(false)
 
