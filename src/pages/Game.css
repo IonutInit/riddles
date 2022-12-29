@@ -41,7 +41,7 @@
 }
 
 .riddle-image {
-    height: 512px;    
+    height: var(--imagesize);    
     border-radius: 3%;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
@@ -99,6 +99,7 @@
     position: absolute;
     left: -70px;
     bottom: -50px;
+    z-index: 1;
     color: #c2c2c2;
     box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23);
 }
@@ -111,21 +112,36 @@
     font-size: 48px;
 }
 
-
-
 .riddle-container {
     max-width: 700px;
     height: 70px;
     padding-top: 30px;
+    font-size: larger;
+    line-height: 1.2em;
 }
 
 
 
+.hints-container {
+    position: absolute;
+    bottom: 20px;
+    right: 27px;
+    background-color: rgba(128, 128, 128, 0.75);
+    width: 90%;
+    border-radius: 10px;
+    color: black; 
+    font-size: smaller;  
+}
+
+.hints-list {
+    list-style: none;
+    line-height: 1.5em;
+}
 
 
 .input-container {
     position: relative;
-    padding-top: 100px;
+    padding-top: 50px;
     width: 512px;
 }
 
@@ -245,10 +261,10 @@
     transition: 0.5s;
 }
 
-
 .solution {
     font-size: 36px;
     letter-spacing: 0.3em;
+    line-height: 1.5em;
 }
 
 .winning-puzzle {

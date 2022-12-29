@@ -57,7 +57,6 @@ const Game = ({ imageOptions, available, magicWord }) => {
   const [riddleSolution, setRiddleSolution] = useState("");
   const [solutionSynonyms, setSolutionSynonyms] = useState("");
   const [riddleImage, setRiddleImage] = useState("");
-  const [solutionArray, setSolutionArray] = useState([])
 
   //hint handles
   const [hint, setHint] = useState(result);
@@ -208,10 +207,10 @@ const Game = ({ imageOptions, available, magicWord }) => {
     setHint(result)
   };
 
-  const handleSolution = () => {
-    const array = riddleSolution.split('')
-    setSolutionArray(array)
-  }
+  // const handleSolution = () => {
+  //   const array = riddleSolution.split('')
+  //   setSolutionArray(array)
+  // }
 
 
   const handleSubmit = () => {
@@ -226,8 +225,17 @@ const Game = ({ imageOptions, available, magicWord }) => {
         hints[hint].points = 0;
       }
       setInput("");
-      handleSolution()
-      setNotice('Correct')      
+      //displays the solution of a certain amount of time
+      const solutionArray = riddleSolution.split('')
+      setRiddle(<span>
+        <span >Correct! The answer is</span>
+        <br></br>
+          <span className="solution">{solutionArray.map((s) => (
+          <span key={solutionArray.indexOf(s)} className={winningWord.includes(s) ? 'winning-puzzle' : ''}>{s.toUpperCase()}</span>
+        ))}</span>
+        </span>)
+
+      setNotice('')      
       setTimeout(() => {
         getRandomRiddle();
         setNotice('')
@@ -309,6 +317,14 @@ const Game = ({ imageOptions, available, magicWord }) => {
           <h3>{points}</h3>
           <p>points</p>
         </div>
+
+        <div className="hints-container">
+        <ul className='hints-list'>
+        {hint.map((h) => (
+          <li key={hint.indexOf(h)} className='hints-item'>{h}</li>
+        ))}
+      </ul>
+      </div>
       </div>
 
       <p className="riddle-container">{riddle}</p>
@@ -347,22 +363,22 @@ const Game = ({ imageOptions, available, magicWord }) => {
         </button>
       </div>
 
-      <p>{riddleSolution}</p>
+      {/* <p>{riddleSolution}</p> */}
       <p>{notice}</p>
-      <p>{magicWord}</p>
+      {/* <p>{magicWord}</p> */}
       
-      <span className="solution">{solutionArray.map((s) => (
+      {/* <span>
+      <span>Correct!</span>
+        <span className="solution">{solutionArray.map((s) => (
         <span key={solutionArray.indexOf(s)} className={winningWord.includes(s) ? 'winning-puzzle' : ''}>{s.toUpperCase()}</span>
       ))}</span>
+      </span> */}
+      
+     
+      
+      {/* <p>Game steps: {gameSteps}</p> */}
 
-      <p>hints</p>
-      <p>Game steps: {gameSteps}</p>
-
-      <ul>
-        {hint.map((h) => (
-          <li key={hint.indexOf(h)}>{h}</li>
-        ))}
-      </ul>
+      
 
       <RefreshPopUp
         trigger={refreshPopUp}

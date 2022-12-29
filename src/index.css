@@ -22,6 +22,8 @@
   --headerHeight: 100px;
   --footerHeight: 70px;
 
+  --imagesize: 512px;
+
 
   font-family: var(--font1);
   font-size: 24px;
