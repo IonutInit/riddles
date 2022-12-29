@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
+import Draggable from 'react-draggable'
+
 import "./Game.css";
 import "../components/RefreshPopUp.css";
 import placeholder from "../assets/images/placeholder.png";
@@ -317,18 +319,21 @@ const Game = ({ imageOptions, available, magicWord }) => {
           onClick={handleImageRefresh}
         />
 
-        <div className={`points-container ${pointsVanish ? 'points-container-vanish' : ''}`}
-        onMouseOver={() => setPointsVanish(true)}
-        onFocus={() => setPointsVanish(true)}
+          <Draggable>
+            <div className={`points-container ${pointsVanish ? 'points-container-vanish' : ''}`}
+        onMouseOver={() => setPointsVanish(false)} //has been disabled - replaced by Draggable
+        onFocus={() => setPointsVanish(false)} //same as above
         onMouseLeave={() => setPointsVanish(false)}
         >
           <h3>{points}</h3>
           <p>points</p>
         </div>
+          </Draggable>
+        
 
         <div className={`hints-container ${hintsVanish ? 'hints-container-vanish' : ''}`}
-        onMouseOver={() => setHintsVanish(true)}
-        onFocus={() => setHintsVanish(true)}
+        onMouseOver={() => setHintsVanish(true)} 
+        onFocus={() => setHintsVanish(false)}
         onMouseLeave={() => setHintsVanish(false)}
         >
         <ul className='hints-list'>
