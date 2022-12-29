@@ -31,7 +31,7 @@ import {
 import { changePoints } from "../lib/changePoints";
 
 //toggle between generating image or not
-let randomRiddleWithPicture = false;
+let randomRiddleWithPicture = true;
 
 let options = [];
 let result = [];
