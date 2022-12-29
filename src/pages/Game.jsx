@@ -48,30 +48,34 @@ const Game = ({ imageOptions, available, magicWord }) => {
     // stopStartEffect()
   }, []);
 
-  //game handles
+  //game hooks
   const [gameSteps, setGameSteps] = useState(1);
   const [points, setPoints] = useState(20);
 
-  //riddle element handles
+  //riddle element hooks
   const [riddle, setRiddle] = useState("");
   const [riddleSolution, setRiddleSolution] = useState("");
   const [solutionSynonyms, setSolutionSynonyms] = useState("");
   const [riddleImage, setRiddleImage] = useState("");
 
-  //hint handles
+  //hint hooks
   const [hint, setHint] = useState(result);
 
-  //loading handles
+  //loading hooks
   const [isLoading, setIsLoading] = useState(false);
   const [pictureIsLoading, setPictureIsLoading] = useState(false);
 
-  //action button handles (i.e. Refresh and Hint)
+  //action button hooks (i.e. Refresh and Hint)
   const [refreshPopUp, setRefreshPopUp] = useState(false);
   const [refreshEffect, setRefreshEffect] = useState(false);
 
-  //submit Handles
+  //submit hooks
   const [input, setInput] = useState("");
   const [notice, setNotice] = useState("");
+
+  //hooks used to toggle the visibility of elements on the picture (i.e. points and hints)
+  const [pointsVanish, setPointsVanish] = useState(false)
+  const [hintsVanish, setHintsVanish] = useState(false)
 
   // const handleRefresh = () => {
   //   setRefreshPopUp(true)
@@ -228,7 +232,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
       //displays the solution of a certain amount of time
       const solutionArray = riddleSolution.split('')
       setRiddle(<span>
-        <span >Correct! The answer is</span>
+        <span className="solution-title">Correct! The answer is</span>
         <br></br>
           <span className="solution">{solutionArray.map((s) => (
           <span key={solutionArray.indexOf(s)} className={winningWord.includes(s) ? 'winning-puzzle' : ''}>{s.toUpperCase()}</span>
@@ -313,12 +317,20 @@ const Game = ({ imageOptions, available, magicWord }) => {
           onClick={handleImageRefresh}
         />
 
-        <div className="points-container">
+        <div className={`points-container ${pointsVanish ? 'points-container-vanish' : ''}`}
+        onMouseOver={() => setPointsVanish(true)}
+        onFocus={() => setPointsVanish(true)}
+        onMouseLeave={() => setPointsVanish(false)}
+        >
           <h3>{points}</h3>
           <p>points</p>
         </div>
 
-        <div className="hints-container">
+        <div className={`hints-container ${hintsVanish ? 'hints-container-vanish' : ''}`}
+        onMouseOver={() => setHintsVanish(true)}
+        onFocus={() => setHintsVanish(true)}
+        onMouseLeave={() => setHintsVanish(false)}
+        >
         <ul className='hints-list'>
         {hint.map((h) => (
           <li key={hint.indexOf(h)} className='hints-item'>{h}</li>
@@ -333,7 +345,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
         <input
           type="text"
           className="input-box"
-          placeholder="tell me..."
+          placeholder="answer me..."
           onChange={(e) => setInput(e.target.value)}
           value={input}
         ></input>
