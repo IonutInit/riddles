@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 73 73" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-16.55,-16.55)">
+        <g>
+            <g>
+                <g transform="matrix(1.01738,0,0,1.01738,2.54033,-7.73214)">
+                    <circle cx="46.649" cy="56.746" r="32.584" style="fill:rgb(50,142,19);stroke:white;stroke-width:0.59px;"/>
+                </g>
+                <g transform="matrix(1,0,0,1,-0.441266,18.9488)">
+                    <g transform="matrix(60,0,0,60,57.0754,47.8836)">
+                    </g>
+                    <text x="24.735px" y="47.884px" style="font-family:'Alphakind';font-size:60px;fill:rgb(50,142,19);stroke:white;stroke-width:1px;stroke-linecap:butt;stroke-miterlimit:2;">R</text>
+                </g>
+                <g transform="matrix(1,-0,-0,1,16.55,16.55)">
+                    <use xlink:href="#_Image1" x="35.191" y="14.924" width="38px" height="58px"/>
+                </g>
+            </g>
+            <g transform="matrix(1,0,0,1,29.3071,32.4517)">
+                <g transform="matrix(60,0,0,60,52.8154,47.8836)">
+                </g>
+                <text x="24.735px" y="47.884px" style="font-family:'Alphakind';font-size:60px;fill:rgb(50,142,19);stroke:white;stroke-width:1px;stroke-linecap:butt;stroke-miterlimit:2;">F</text>
+            </g>
+        </g>
+    </g>
+    <defs>
+        <image id="_Image1" width="38px" height="58px" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAA6CAYAAADcKStOAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAEGElEQVRogbWa4ZKbMAyEF5Jc2mvf/03b3IVA+iNeWC8yBEw944ELLnxItrQWbbDQnsPQLF2vbU3bPovXFmBKx9r2jI4OmT0sQWlv5fwouCeAIR2zrnDjgwSqTf0k50cAKsQAoLdjBtcEUCcAZ+kng3wXSscpVA/gYb1PfYQ7243aBHMBcAXwkc4vAlcCWwJWqB7AXXpj1wEA54K1rgB+APhpgLTaHjC67Q7gG8CXQA12RMliHwnqF4BPgaPV1kD0njqvOoFqkbu2T+Ob5zCMYLQaLfaBl8U+AfxOkB/pWuTONUhaq0tQp/TbAy8LdqmP93EwuvMicLTcFdNieNdawNyNbfr7niD5stkLuytpNYW7Yppza/Os1Ggduq9L9+KLKlQDIFuVCkfLEZCQNRbjfOuQhyKHAhBbzCO/BlvCbgmwjOZRsPY+NrfYO5D6m+Y3z4H6u/foetZKYApYgl57sJ5zjmmU11Q0A1wDi5pbiXPIe5QbGVzvAsnx2f33gOkNeFPNf/owjeYPTHHsKwF26Xcdj6PA+MAOU7DUh2ln5L8JHF8mm2d7wdRFjN5MNWoJtZ6PJdwdgfSpAVMXMor/NTid5LoACOfuPMyVmoQjS+gq1BfprI8Wo1Dcuyp9iftDCenh4WHjHHy02Nacx7YU+T2SK/gilGr+PRZjxI8EJnMqlahmC7rdY9+uyL8GqDLpiilZn5DLZ5XQtJpadLZ92wsWCUtakX8zprmM1mBcbLVglOL8Ta3HFUfFCkwqloKxOFePcqXvFzReKRTjHf9NpFJ2g7mo0z0ntfwlgRGgx8ulFIire9QaV+o55xel84ApFPWYK9bVjXONKx1KXeLW3LyT3xtgHU5bsbS0pdVaLEpPHum1cOKK9XCwKFeqMPQaRSSDFuH2JnEvhERd5RDltIvIYquVPYRwGaPS5gsvKXQTuEwYHgm2pGDVfTxXERkKwyPBtFBCgciHE1DhFDzbgERF4qM2I/cE9ifB3TDJZu+u8cNWo2B9l0SrEc73j34sWmsvmALqtkzdRd2/tJX7L6vSreY7Ju29jMvKCEsfII6K/Arnu3K6jeMXgY4CGx+G3CKzOsY7MNrWknhUMtJzz3thtWcrVAQWJWS1QjRXlspP/jJvN3XlmkroMemp0ieXxZW2F0yhog3qKV1j1VnzotcoijlwK1hkJY1NhKJe15KSKoeoSlgFxptoJGeaIRSrzVp9vmPKjyW4KrCocnPDtDhYl+euh2Np0Ug5VMGdm7Z9pg9dWsP6FqgH5p9rnjZWi3ZhhXAzWDq6xbjBoFV068VWSkOqtTYHVgcjHK2g5/ohVbdp0eplr55jS5+evZfq+yXlsNtaGZjBrX5SMbhZr4GagQmcXntn55zFrVqoxYdu/c8gR8Bo+wcxpv8nqDOXlQAAAABJRU5ErkJggg=="/>
+    </defs>
+</svg>
