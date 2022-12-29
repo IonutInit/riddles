@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 
 import "./Game.css";
 import "../components/RefreshPopUp.css";
-import placeholder2 from "../assets/images/placeholder2.jpg";
+import placeholder from "../assets/images/placeholder.png";
 
 import RefreshPopUp from "../components/RefreshPopUp";
 
@@ -300,7 +300,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
     <div className={`game ${startEffect ? "start-effect" : ""}`}>
       <div className="image-container">
         <img
-          src={!riddleImage ? placeholder2 : riddleImage}
+          src={!riddleImage ? placeholder : riddleImage}
           alt={"rendered representation of the riddle"}
           className="riddle-image"
         ></img>
@@ -337,6 +337,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
           onChange={(e) => setInput(e.target.value)}
           value={input}
         ></input>
+        <p className='notice'>{notice}</p>
         <button
           className={!isLoading ? "submit-button" : "submit-button-disabled"}
           onClick={handleSubmit}
@@ -364,7 +365,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
       </div>
 
       {/* <p>{riddleSolution}</p> */}
-      <p>{notice}</p>
+      
       {/* <p>{magicWord}</p> */}
       
       {/* <span>
