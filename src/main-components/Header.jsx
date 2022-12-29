@@ -37,15 +37,15 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
             onKeyDown={(e) => handleKeyDown(e)}
           />
         )}
-        {gameStart && (
+        
           <img
             src={info_button}
-            className=" submissions submissions-leftwards info"
+            className="submissions submissions-leftwards info"
             onClick={() => setButtonInfoPopUp(true)}
             tabIndex="0"
             onKeyDown={(e) => handleKeyDown(e)}
           />
-        )}
+        
       </div>
 
       {/* <button className="submit-riddle" onClick={() => setButtonPopUp(true)}>
@@ -64,6 +64,7 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
         trigger={buttonInfoPopUp}
         setTrigger={setButtonInfoPopUp}
         imageOptions={imageOptions}
+        gameStart={gameStart}
       >
         <div className="options-container">
           <button

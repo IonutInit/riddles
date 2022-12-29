@@ -111,6 +111,10 @@
     box-shadow: 0 0 10px #fff;
 }
 
+.accordion-start {
+    margin-top: 10vh;
+}
+
 .accordion-line {
     height: 5px;
     background-color: black;
@@ -124,8 +128,24 @@
     line-height: 1.5em;
 }
 
+.accordion-text h3 {
+   padding: 30px; 
+}
+.accordion-text p {
+    text-align: left;
+}
+
 .close-button {
     color: white;
     background-color: rgba(0,0,0,0);
     font-weight: 700;
+}
+
+.start-limerick {
+    line-height: 2em;
+}
+
+/* put here in case I might need it, to emphasise the last verse*/
+.start-limerick-last {
+    color: inherit;
 }

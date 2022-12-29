@@ -83,8 +83,8 @@ function App() {
             path="/play"
             element={<Game imageOptions={imageOptions} available={available} magicWord={magicWord}/>}
           />
-          <Route path="/win" element={<Win />} />
-          && <Route path="gameover" element={<Lose />} />
+          <Route path="/win" element={<Win magicWord={magicWord}/>} />
+          <Route path="gameover" element={<Lose />} />
         </Routes>
         <Footer />
       </Router>

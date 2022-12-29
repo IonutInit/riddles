@@ -9,8 +9,6 @@ import placeholder from "../assets/images/placeholder.png";
 import refreshButton from '../assets/images/refresh-button.png'
 
 import RefreshPopUp from "../components/RefreshPopUp";
-import RefreshIcon from "@mui/icons-material/Refresh";
-
 
 import {
   averageLetter,
