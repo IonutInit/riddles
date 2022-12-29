@@ -17,6 +17,7 @@
     align-items: center;
     gap: 50px;
     animation: showMe 0.5s forwards;
+    overflow: scroll;
 }
 
 @keyframes showMe{
@@ -31,11 +32,28 @@
     }
 }
 
+.info-popup::-webkit-scrollbar {
+    width: 0px;    
+  }
+
 .rate {
     padding-top: 100px;
     margin-bottom: -30px;
 }
 
+.info-titles {
+    letter-spacing: 0.15em;
+}
+
+.info-fine-print {
+    font-size: 16px;
+    letter-spacing: 0.1em;
+}
+
+.rate {
+    display: flex;
+    flex-direction: ;
+}
 
 .options-container {
     display: flex;
@@ -103,4 +121,5 @@
 
 .accordion-text {
     margin-top: 20px;
+    line-height: 1.5em;
 }
