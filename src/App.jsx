@@ -11,43 +11,45 @@ import Lose from "./pages/Lose";
 
 function App() {
   const [gameStart, setGameStart] = useState(false);
-  const [magicWord, setMagicWord] = useState('')
+  const [magicWord, setMagicWord] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const [available, setAvailable] = useState([]);
 
   //fetches the array of available riddles, which will be passed down as 'available'
   const getAvailable = () => {
-      async function availableArray() {
-        const arr = [];
-        const response = await fetch(
-          "https://the-path-of-riddles.onrender.com/api/v1/riddles/available"
-        );
-        const data = await response.json();
-        for (let i = 0; i < data.length; i++) {
-          arr.push(data[i].id);
-        }
-        setAvailable(arr);
-        setIsLoading(false);
+    async function availableArray() {
+      const arr = [];
+      const response = await fetch(
+        "https://the-path-of-riddles.onrender.com/api/v1/riddles/available"
+      );
+      const data = await response.json();
+      for (let i = 0; i < data.length; i++) {
+        arr.push(data[i].id);
       }
-      availableArray();  
+      setAvailable(arr);
+      setIsLoading(false);
+    }
+    availableArray();
   };
 
-
+  //fetches the winning word
   const getMagicWord = () => {
     setIsLoading(true);
     async function magicWord() {
-      const response = await fetch('https://the-path-of-riddles.onrender.com/api/v1/magicword')
-      const data = await response.json()
-      setMagicWord(data[0].magicword)
+      const response = await fetch(
+        "https://the-path-of-riddles.onrender.com/api/v1/magicword"
+      );
+      const data = await response.json();
+      setMagicWord(data[0].magicword);
     }
-    magicWord()
-  }
+    magicWord();
+  };
 
   const handleStart = () => {
     setGameStart(true);
-    getMagicWord()
-    getAvailable();    
+    getMagicWord();
+    getAvailable();
   };
 
   const [imageOptions, setImageOptions] = useState("expressionist painting");
@@ -76,9 +78,22 @@ function App() {
               />
             }
           />
-          {gameStart && <Route path="/play" element={<Game imageOptions={imageOptions} available={available} magicWord={magicWord}/>} />}
-          {gameStart && <Route path='/win' element={<Win magicWord={magicWord}/>}/>}
-          {gameStart && <Route path='gameover' element={<Lose />}/>}
+          {gameStart && (
+            <Route
+              path="/play"
+              element={
+                <Game
+                  imageOptions={imageOptions}
+                  available={available}
+                  magicWord={magicWord}
+                />
+              }
+            />
+          )}
+          {gameStart && (
+            <Route path="/win" element={<Win magicWord={magicWord} />} />
+          )}
+          {gameStart && <Route path="gameover" element={<Lose />} />}
           {/* <Route
             path="/play"
             element={<Game imageOptions={imageOptions} available={available} magicWord={magicWord}/>}

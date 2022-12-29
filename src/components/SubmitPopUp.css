@@ -31,37 +31,24 @@
     }
 }
 
-.hide-submit {
-    animation: hideMe 3s forwards;
+
+.submit-popup-shrink {
+    animation: hideMe 0.5s forwards;
 }
 
 @keyframes hideMe{
     0%{
         transform: scale(1);
     }
+    20%{
+        transform: scale(1.1);
+    }
     100%{
-        transform: scale(0.1) 
+        transform: scale(0) 
     }
 }
 
-/* .popup-inner {
-    background-color: red;
-    position: relative;
-    padding: 32px;
-    width: 50%;
-    max-width: 640px;
-    background-color: #fff;
 
-} */
-
-/* .popup-inner .close-button {
-    /* position: fixed;
-    top: 16px;
-    right: 16px;
-    height: 50px; */
-
-    font-size: 48px;
-/* } */ */
 
 .header .submission .popup-inner {
     display: flex;

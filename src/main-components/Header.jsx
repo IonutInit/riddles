@@ -26,8 +26,8 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
   return (
     <div className="header">
       <div className="header-line"></div>
-      <div className="header-title">The Riddle Fiddle</div>  
-      <div className="header-content">          
+      <div className="header-title">The Riddle Fiddle</div>
+      <div className="header-content">
         {gameStart && (
           <img
             src={submit_button}
@@ -37,24 +37,20 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
             onKeyDown={(e) => handleKeyDown(e)}
           />
         )}
-        
-          <img
-            src={info_button}
-            className="submissions submissions-leftwards info"
-            onClick={() => setButtonInfoPopUp(true)}
-            tabIndex="0"
-            onKeyDown={(e) => handleKeyDown(e)}
-          />
-        
+
+        <img
+          src={info_button}
+          className="submissions submissions-leftwards info"
+          onClick={() => setButtonInfoPopUp(true)}
+          tabIndex="0"
+          onKeyDown={(e) => handleKeyDown(e)}
+        />
       </div>
-
-
 
       <SubmitPopUp
         trigger={buttonSubmitPopUp}
         setTrigger={setButtonSubmitPopUp}
-      > 
-      </SubmitPopUp>
+      ></SubmitPopUp>
 
       <InfoPopUp
         trigger={buttonInfoPopUp}

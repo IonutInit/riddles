@@ -11,8 +11,23 @@ const SubmitPopUp = (props) => {
   const [warning, setWarning] = useState(false);
   const [thankYou, setThankYou] = useState(false);
 
+  const [shrinkOnClose, setShrinkOnClose] = useState(false);
+
+  const handleClose = () => {
+    setShrinkOnClose(true);
+    setTimeout(() => {
+      props.setTrigger(false);
+      setShrinkOnClose(false);
+    }, 500);
+  };
+
   const handleSubmit = () => {
-    if (riddle === "" || solution === "" || (email === "" || !email.includes('@'))) {
+    if (
+      riddle === "" ||
+      solution === "" ||
+      email === "" ||
+      !email.includes("@")
+    ) {
       setWarning(true);
       return;
     }
@@ -35,6 +50,7 @@ const SubmitPopUp = (props) => {
     setEmail("");
     setName("");
     setThankYou(true);
+
     setTimeout(() => {
       setThankYou(false);
       setWarning(false);
@@ -44,9 +60,7 @@ const SubmitPopUp = (props) => {
 
   return props.trigger ? (
     <div
-      className={
-        props.setTrigger ? "submit-popup " : "submit-popup hide-submit"
-      }
+      className={`submit-popup ${shrinkOnClose ? "submit-popup-shrink" : ""}`}
     >
       {/* <div className="=popup-inner"> */}
       <h3 className="riddle-title">Submit your own riddle</h3>
@@ -101,7 +115,7 @@ const SubmitPopUp = (props) => {
       {props.children}
       {/* </div> */}
 
-      <button className="close-button" onClick={() => props.setTrigger(false)}>
+      <button className="close-button" onClick={handleClose}>
         X
       </button>
 

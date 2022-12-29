@@ -4,7 +4,7 @@ import placeholder from "../assets/images/placeholder.png";
 
 import "./Start.css";
 
-const Start = ({ handleStart, isLoading, available, gameStart}) => {
+const Start = ({ handleStart, isLoading, available, gameStart }) => {
   if (available.length > 0) {
     return <Navigate to={"/play"} />;
   }
