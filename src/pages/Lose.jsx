@@ -1,12 +1,38 @@
+import {useState} from 'react'
+import { Navigate } from "react-router-dom";
+
+import './Lose.css'
+import gameOver from '../assets/images/game_over.png'
+
 const Lose = () => {
+  const [goBack, setGoBack] = useState(false)
+
+  if(goBack) {    
+      return <Navigate to={'/'}/>   
+  }
+
   return (
     <div>
-      <h1>You lost!!!</h1>
-      <h1>You lost!!!</h1>
-      <h1>You lost!!!</h1>
-      <h1>You lost!!!</h1>
-      <h1>You lost!!!</h1>
-      <h1>You lost!!!</h1>
+      <div className="game-over-container">
+        <div className="game-over-image-container">
+          <img
+          src={gameOver}
+          alt={'a cartoonish monster'}
+          className='lose-image'
+          >
+          </img>
+
+        <div className='sympathies-container'>
+          <h2>THOU HAST BEEN RIDDLETH!</h2>
+          <h4>It stands written in the annals:</h4>
+          <p>When the riddler runneth out of points, they have been riddleth.</p>
+        </div>
+
+        <button className='lose-go-back' onClick={() => setGoBack(true)}>
+            Go Back
+        </button>
+        </div>
+      </div>
     </div>
   );
 };
