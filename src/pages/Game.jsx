@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Navigate } from "react-router-dom";
 
 import Draggable from "react-draggable";
@@ -330,6 +330,9 @@ const Game = ({ imageOptions, available, magicWord }) => {
 
   //FINALLY, THE COMPONENT
 
+   //used for Fraggable deprecation error 
+   const nodeRef = useRef(null)
+
   return (
     <div className={`game ${startEffect ? "start-effect" : ""}`}>
       <div className="image-container">
@@ -348,8 +351,8 @@ const Game = ({ imageOptions, available, magicWord }) => {
           onClick={handleImageRefresh}
         />
 
-        <Draggable>
-          <div
+        <Draggable nodeRef={nodeRef}>
+          <div ref={nodeRef}
             className={`points-container ${
               pointsVanish ? "points-container-vanish" : ""
             }`}
@@ -380,8 +383,8 @@ const Game = ({ imageOptions, available, magicWord }) => {
         </div>
       </div>
 
-      <Draggable>
-        <p className="riddle-container">{riddle}</p>
+      <Draggable nodeRef={nodeRef}>
+        <p ref={nodeRef} className="riddle-container">{riddle}</p>
       </Draggable>
 
       <div className="input-container">
