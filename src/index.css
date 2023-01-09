@@ -1,13 +1,12 @@
 @font-face {
   font-family: Alphakind;
-  src: url('./assets/fonts/Alphakind.otf');
+  src: url('./assets/fonts/Alphakind.otf');  
+}
+
+@font-face {
   font-family: DieBruecke;
   src: url('./assets/fonts/DieBruecke.otf')
 }
-
-/* @font-face {
-  
-} */
 
 
 :root {
