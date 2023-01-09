@@ -13,7 +13,8 @@ export function checkSetSimilarity(input, keyword) {
     return null;
   }
 
-  input.toLowerCase();
+  input = input.toLowerCase();
+  
   if (input === keyword) {
     return true;
   }

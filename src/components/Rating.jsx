@@ -22,8 +22,8 @@ export default function RatingSize({ imageOptions }) {
       {
         <p className="info-fine-print">
           {!rating
-            ? "Please rate this riddle. Its score will appear here when there are enough ratings."
-            : "Thank you for rating!"}
+            ? "Please rate this riddle."
+             : "Thank you for rating!"}
         </p>
       }
     </Stack>
