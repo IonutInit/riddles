@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { checkEmail } from "../lib/checkEmail";
 
 import "./SubmitPopUp.css";
 
@@ -25,8 +26,7 @@ const SubmitPopUp = (props) => {
     if (
       riddle === "" ||
       solution === "" ||
-      email === "" ||
-      !email.includes("@")
+      !checkEmail(email)
     ) {
       setWarning(true);
       return;
@@ -44,6 +44,7 @@ const SubmitPopUp = (props) => {
         }),
       });
     }
+    setWarning(false)
     submitRiddle();
     setRiddle("");
     setSolution("");
@@ -84,7 +85,7 @@ const SubmitPopUp = (props) => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       ></input>
-      <p className="fine-print">To prevent spam and maybe to say Thank you!</p>
+      <p className="fine-print">To prevent spam and maybe to say thank you!</p>
 
       <input
         className={`riddle-solution ${
@@ -104,7 +105,6 @@ const SubmitPopUp = (props) => {
         placeholder="solution"
         value={solution}
         onChange={(e) => setSolution(e.target.value)}
-        required
       ></input>
       <p className="fine-print">...but don't let me guess too much!</p>
 
