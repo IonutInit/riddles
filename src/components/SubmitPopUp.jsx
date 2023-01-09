@@ -54,7 +54,7 @@ const SubmitPopUp = (props) => {
     setTimeout(() => {
       setThankYou(false);
       setWarning(false);
-      props.setTrigger(false);
+      handleClose()
     }, 1500);
   };
 
