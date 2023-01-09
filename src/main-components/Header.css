@@ -58,3 +58,19 @@
   display: flex;
   align-items: center;
 }
+
+.info {
+  animation: lookAtMe 0.5s linear;
+}
+
+@keyframes lookAtMe{
+  0%{
+      transform: scale(10);
+  }
+  50%{
+      transform: scale(5);
+  }
+  100%{
+      transform: scale(1) 
+  }
+}
