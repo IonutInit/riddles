@@ -25,7 +25,7 @@ const InfoPopUp = (props, { imageOptions }) => {
           <h2 className="rate info-titles">RATE THIS RIDDLE</h2>
           <CustomizedRating imageOptions={imageOptions} />
 
-          <h2 className="info-titles">IMAGE OPTIONS</h2>          
+          <h2 className="info-titles">IMAGE OPTIONS</h2>
           {props.children}
         </>
       )}
@@ -61,14 +61,23 @@ const InfoPopUp = (props, { imageOptions }) => {
             <h3>THE IMAGES</h3>
             <p>
               The images accompanying each riddle is generated on the spot by
-              OpenAI's DALL-E 2 engine. Each of them is unique, did not exist
+              OpenAI's DALL-E 2 engine. Each of them is unique. It did not exist
               before, and will stop existing once it dissapers. You can generate
               another image for the current riddle by pressing the refresh
               button the on the upper right corner of the image. You can also
               change the style of the images from the settings above.
             </p>
+            <br></br>
             <p>It takes about 5-10 seconds to generate an image.</p>
             <p>Careful, though, each new image will cost you 1 point!</p>
+            <br></br>
+            <p className="image-tip">
+              TIP: If you don't want to wait that much, or simply don't want any
+              images generated, you can de-activate the feature by pressing once
+              again the active button. If all buttons look the same, it means
+              that the opton has been de-activated.
+            </p>
+            <p>Push on any button to re-activate it.</p>
           </div>
         )}
       </div>

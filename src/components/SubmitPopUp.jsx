@@ -23,11 +23,7 @@ const SubmitPopUp = (props) => {
   };
 
   const handleSubmit = () => {
-    if (
-      riddle === "" ||
-      solution === "" ||
-      !checkEmail(email)
-    ) {
+    if (riddle === "" || solution === "" || !checkEmail(email)) {
       setWarning(true);
       return;
     }
@@ -44,7 +40,7 @@ const SubmitPopUp = (props) => {
         }),
       });
     }
-    setWarning(false)
+    setWarning(false);
     submitRiddle();
     setRiddle("");
     setSolution("");
@@ -55,7 +51,7 @@ const SubmitPopUp = (props) => {
     setTimeout(() => {
       setThankYou(false);
       setWarning(false);
-      handleClose()
+      handleClose();
     }, 1500);
   };
 

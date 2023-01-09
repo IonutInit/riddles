@@ -37,9 +37,10 @@ let options = [];
 let result = [];
 
 const Game = ({ imageOptions, available, magicWord }) => {
-
   //toggles image options
-  imageOptions === '' ? randomRiddleWithPicture = false : randomRiddleWithPicture = true;
+  imageOptions === ""
+    ? (randomRiddleWithPicture = false)
+    : (randomRiddleWithPicture = true);
 
   const [startEffect, setStartEffect] = useState(false);
 
@@ -160,7 +161,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
   const handleImageRefresh = () => {
     //nothing happens if image options are off
     if (imageOptions === "") {
-      return
+      return;
     }
 
     async function getImage() {
@@ -281,7 +282,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
         hints[hint].points = 0;
       }
       setInput("");
-      //displays the solution for timeout duration if image options are off, otherwise for the duration of loading 
+      //displays the solution for timeout duration if image options are off, otherwise for the duration of loading
       const solutionArray = riddleSolution.split("");
       setRiddle(
         <span>
@@ -301,12 +302,14 @@ const Game = ({ imageOptions, available, magicWord }) => {
       );
 
       setNotice("");
-      setIsLoading(true)
-      setTimeout(() => {
-        getRandomRiddle();
-        setNotice("");
-      }, imageOptions === "" ? 5000 : 0);
-
+      setIsLoading(true);
+      setTimeout(
+        () => {
+          getRandomRiddle();
+          setNotice("");
+        },
+        imageOptions === "" ? 5000 : 0
+      );
     } else if (checkSetSimilarity(input, riddleSolution) === 1) {
       setNotice(`You're very close`);
     } else if (checkSetSimilarity(input, riddleSolution) === null) {
@@ -330,8 +333,8 @@ const Game = ({ imageOptions, available, magicWord }) => {
 
   //FINALLY, THE COMPONENT
 
-   //used for Fraggable deprecation error 
-   const nodeRef = useRef(null)
+  //used for Fraggable deprecation error
+  const nodeRef = useRef(null);
 
   return (
     <div className={`game ${startEffect ? "start-effect" : ""}`}>
@@ -352,7 +355,8 @@ const Game = ({ imageOptions, available, magicWord }) => {
         />
 
         <Draggable nodeRef={nodeRef}>
-          <div ref={nodeRef}
+          <div
+            ref={nodeRef}
             className={`points-container ${
               pointsVanish ? "points-container-vanish" : ""
             }`}
@@ -384,7 +388,9 @@ const Game = ({ imageOptions, available, magicWord }) => {
       </div>
 
       <Draggable nodeRef={nodeRef}>
-        <p ref={nodeRef} className="riddle-container">{riddle}</p>
+        <p ref={nodeRef} className="riddle-container">
+          {riddle}
+        </p>
       </Draggable>
 
       <div className="input-container">

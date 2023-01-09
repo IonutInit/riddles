@@ -14,7 +14,7 @@ export function checkSetSimilarity(input, keyword) {
   }
 
   input = input.toLowerCase();
-  
+
   if (input === keyword) {
     return true;
   }
