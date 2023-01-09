@@ -37,6 +37,10 @@ let options = [];
 let result = [];
 
 const Game = ({ imageOptions, available, magicWord }) => {
+
+  //toggles image options
+  imageOptions === '' ? randomRiddleWithPicture = false : randomRiddleWithPicture = true;
+
   const [startEffect, setStartEffect] = useState(false);
 
   useEffect(() => {
@@ -154,6 +158,11 @@ const Game = ({ imageOptions, available, magicWord }) => {
 
   //IMAGE REFRESH
   const handleImageRefresh = () => {
+    //nothing happens if image options are off
+    if (imageOptions === "") {
+      return
+    }
+
     async function getImage() {
       setPictureIsLoading(true);
       setIsLoading(true);
@@ -186,7 +195,6 @@ const Game = ({ imageOptions, available, magicWord }) => {
       setIsLoading(false);
     }
     getImage();
-    console.log(JSON.stringify(prompt));
   };
 
   ///GAME BEGINS!!!
@@ -273,7 +281,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
         hints[hint].points = 0;
       }
       setInput("");
-      //displays the solution of a certain amount of time
+      //displays the solution for timeout duration if image options are off, otherwise for the duration of loading 
       const solutionArray = riddleSolution.split("");
       setRiddle(
         <span>
@@ -293,10 +301,12 @@ const Game = ({ imageOptions, available, magicWord }) => {
       );
 
       setNotice("");
+      setIsLoading(true)
       setTimeout(() => {
         getRandomRiddle();
         setNotice("");
-      }, 5000);
+      }, imageOptions === "" ? 5000 : 0);
+
     } else if (checkSetSimilarity(input, riddleSolution) === 1) {
       setNotice(`You're very close`);
     } else if (checkSetSimilarity(input, riddleSolution) === null) {
@@ -324,7 +334,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
     <div className={`game ${startEffect ? "start-effect" : ""}`}>
       <div className="image-container">
         <img
-          src={!riddleImage ? placeholder : riddleImage}
+          src={!riddleImage || imageOptions === "" ? placeholder : riddleImage}
           alt={"rendered representation of the riddle"}
           className="riddle-image"
         ></img>
@@ -333,8 +343,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
           alt={"generate new riddle representation"}
           className={`refresh-icon ${
             pictureIsLoading ? "picture-loading" : ""
-          }`}
-          // sx={{ fontSize: "64px" }}
+          } ${imageOptions === "" ? "refresh-icon-disabled" : ""}`}
           role="button"
           onClick={handleImageRefresh}
         />

@@ -122,6 +122,7 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
           >
             Pencil Sketch
           </button>
+          {imageOptions}
         </div>
       </InfoPopUp>
     </div>

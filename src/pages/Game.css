@@ -22,10 +22,10 @@
         filter: blur(7px)
     }
     50% {
-        filter: blur(7px)
+        filter: blur(5px)
     }
     75% {
-        filter: blur(3px)
+        filter: blur(2px)
     }
 }
 
@@ -73,7 +73,9 @@
     transition: 1s;
 }
 
-
+.refresh-icon-disabled {
+    z-index: -999;
+}
 
 /* @keyframes rotate {
     from {

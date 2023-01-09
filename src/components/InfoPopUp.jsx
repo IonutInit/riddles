@@ -24,7 +24,8 @@ const InfoPopUp = (props, { imageOptions }) => {
         <>
           <h2 className="rate info-titles">RATE THIS RIDDLE</h2>
           <CustomizedRating imageOptions={imageOptions} />
-          <h2 className="info-titles">IMAGE OPTIONS</h2>
+
+          <h2 className="info-titles">IMAGE OPTIONS</h2>          
           {props.children}
         </>
       )}
