@@ -11,7 +11,7 @@ const Start = ({
   gameStart,
   windowWidth,
 }) => {
-  if (windowWidth <= 1079) {
+  if (windowWidth <= 1023) {
     return <Navigate to={"/mobile"} />;
   }
 
