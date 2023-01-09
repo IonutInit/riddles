@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Header from "./main-components/Header";
 import Footer from "./main-components/Footer";
@@ -8,14 +8,24 @@ import Start from "./pages/Start";
 import Game from "./pages/Game";
 import Win from "./pages/Win";
 import Lose from "./pages/Lose";
+import Mobile from "./pages/Mobile";
 
 function App() {
+  const[windowWidth, setWindowWidth] = useState(window.innerWidth)
+
   const [gameStart, setGameStart] = useState(false);
   const [magicWord, setMagicWord] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const [available, setAvailable] = useState([]);
 
+  //placeholder for mobile optimization; based on the assumption that the user doesn't move and resize windows (and if they do, they aren't on mobile anyway)
+  //useEffect is unnecessary, but I wanted to test the feature out
+  useEffect(() => {
+    window.addEventListener('resize', () => setWindowWidth(window.innerWidth))
+  }, [windowWidth])
+
+  
   //fetches the array of available riddles, which will be passed down as 'available'
   const getAvailable = () => {
     async function availableArray() {
@@ -58,6 +68,8 @@ function App() {
     e.target.value === imageOptions ? setImageOptions('') : setImageOptions(e.target.value);   
   };
 
+  console.log(windowWidth)
+
   return (
     <div className="App">
       <Router>
@@ -75,6 +87,7 @@ function App() {
                 isLoading={isLoading}
                 available={available}
                 gameStart={gameStart}
+                windowWidth={windowWidth}
               />
             }
           />
@@ -94,6 +107,7 @@ function App() {
             <Route path="/win" element={<Win magicWord={magicWord} />} />
           )}
           {gameStart && <Route path="gameover" element={<Lose />} />}
+          <Route path='mobile' element={<Mobile />}/>
           {/* <Route
             path="/play"
             element={<Game imageOptions={imageOptions} available={available} magicWord={magicWord}/>}

@@ -4,9 +4,13 @@ import placeholder from "../assets/images/placeholder.png";
 
 import "./Start.css";
 
-const Start = ({ handleStart, isLoading, available, gameStart }) => {
+const Start = ({ handleStart, isLoading, available, gameStart, windowWidth }) => {
+  if(windowWidth <=1079) {
+    return (<Navigate to={'/mobile'}/>)
+  } 
+
   if (available.length > 0) {
-    return <Navigate to={"/play"} />;
+    return <Navigate to={"/play"} replace={true}/>;
   }
 
   return (

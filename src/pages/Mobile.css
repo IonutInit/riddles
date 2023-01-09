@@ -1,0 +1,6 @@
+.mobile {
+    padding-top: var(--headerHeight);
+    padding-bottom: var(--footerHeight);
+    margin-top: 100px;
+    line-height: 1.25em;
+}
