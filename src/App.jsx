@@ -11,8 +11,7 @@ import Lose from "./pages/Lose";
 import Mobile from "./pages/Mobile";
 
 function App() {
-  const [windowWidth, setWindowWidth] = useState(window.innerHeight);
-  //it turns out width is actually height?
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const [gameStart, setGameStart] = useState(false);
   const [magicWord, setMagicWord] = useState("");
