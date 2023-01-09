@@ -77,8 +77,6 @@
     text-align: center;
 }
 
-
-
 .riddle-solution {    
     width: 400px;
     height: 70px;
@@ -87,7 +85,6 @@
     text-align: center;
     
 }
-
 
 .riddle-submit {
     background-color: var(--color4);
@@ -110,7 +107,6 @@
     transform: scale(1);
     transition: 0.5s;
 }
-
 
 .notice {
     margin-top: -1em;

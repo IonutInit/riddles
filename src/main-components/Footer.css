@@ -6,9 +6,39 @@
     bottom: 0;
     left: 0;
     right: 0;
+    display: flex;
+    justify-content: center;
 }
 
 .footer-line {
     height: 5px;
-    background-color: black;;
+    background-color: black;
+}
+
+.footer-container {
+    width: 700px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.social-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.icons {
+    font-size: 1.8em;
+    color: black; 
+    transition: 0.1s;
+}
+
+.icons:hover {
+    transform: translateY(-3px);
+}
+
+.icons:not(:hover) {
+    transition: 0.1s;
 }

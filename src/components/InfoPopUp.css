@@ -68,7 +68,6 @@
 
 .rate {
     display: flex;
-    flex-direction: ;
 }
 
 .options-container {
@@ -164,4 +163,8 @@
 /* put here in case I might need it, to emphasise the last verse*/
 .start-limerick-last {
     color: inherit;
+}
+
+.image-tip {
+    color: #f3f3f3;
 }
