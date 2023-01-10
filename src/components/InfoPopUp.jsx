@@ -11,11 +11,10 @@ import "../pages/Game.css";
 
 const InfoPopUp = (props, { imageOptions }) => {
   const [accordion, setAccordion] = useState(false);
-  const [contactAccordion, setContactAccordion] = useState(false);
   const [shrinkOnClose, setShrinkOnClose] = useState(false);
 
-  //used for 'refreshing'
-  const linkRefresh = window.location.hostname;
+  // //used for 'refreshing'
+  // const linkRefresh = window.location.hostname;
 
   const handleClose = () => {
     setShrinkOnClose(true);
@@ -172,7 +171,7 @@ const InfoPopUp = (props, { imageOptions }) => {
           <h2 className="info-titles">TROUBLESHOOT</h2>
           <button
             className="troubleshoot-button"
-            onClick={() => (window.location.href = linkRefresh)}
+            onClick={() => window.location.assign(window.location.hostname)}
           >
             Press this button to refresh
           </button>
