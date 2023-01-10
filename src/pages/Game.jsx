@@ -10,6 +10,8 @@ import refreshButton from "../assets/images/refresh-button.png";
 
 import RefreshPopUp from "../components/RefreshPopUp";
 
+import { countPics } from "../lib/countPics";
+
 import {
   averageLetter,
   approximateLengthHarder,
@@ -30,19 +32,26 @@ import {
 
 import { changePoints } from "../lib/changePoints";
 
-//toggle between generating image or not
+//sets the limit of how many images the user can generate daily (put here for convenience)
+let picLimit = 7
+let picCount = JSON.parse(localStorage.getItem('picCount'))
+
+
+//toggle between generating image or not (used during production, then integrated as is)
 let randomRiddleWithPicture = false;
 
 let options = [];
 let result = [];
 
 const Game = ({ imageOptions, available, magicWord }) => {
+
+
   //toggles image options
   imageOptions === ""
     ? (randomRiddleWithPicture = false)
     : (randomRiddleWithPicture = true);
 
-  const [startEffect, setStartEffect] = useState(false);
+    const [startEffect, setStartEffect] = useState(false);
 
   useEffect(() => {
     setStartEffect(true);
@@ -52,6 +61,10 @@ const Game = ({ imageOptions, available, magicWord }) => {
   //obvious use
   const [win, setWin] = useState(false);
   let winningWord = magicWord;
+
+  //daily image use hook
+  // const [pics, setPics] = useState(picCount.count)
+  // console.log(pics)
 
   //game hooks
   const [gameSteps, setGameSteps] = useState(1);
@@ -72,7 +85,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
 
   //action button hooks (i.e. Refresh and Hint)
   const [refreshPopUp, setRefreshPopUp] = useState(false);
-  const [refreshEffect, setRefreshEffect] = useState(false);
+  // const [refreshEffect, setRefreshEffect] = useState(false);
 
   //submit hooks
   const [input, setInput] = useState("");
@@ -115,21 +128,18 @@ const Game = ({ imageOptions, available, magicWord }) => {
     async function randomRiddle() {
       if (!randomRiddleWithPicture) {
         setIsLoading(true);
-        console.log(isLoading);
         const response = await fetch(
           `https://the-path-of-riddles.onrender.com/api/v1/riddles/${randomId}`
         );
-        // console.log(response)
         const data = await response.json();
         setRiddle(data[0].riddle);
         setRiddleSolution(data[0].solution);
-        // setRiddleSolution(data.riddle[0].solution);
         setSolutionSynonyms(data[0].synonyms);
-        // setRiddleImage(data.imgUrl.url);
 
         setIsLoading(false);
         setStartEffect(false); //for some reason it didn't want to set itself off in the useEffect at the beginning
       } else {
+        countPics(picLimit)
         setIsLoading(true);
         const response = await fetch(
           `https://the-path-of-riddles.onrender.com/api/v1/combined/${randomId}`,
@@ -159,6 +169,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
 
   //IMAGE REFRESH
   const handleImageRefresh = () => {
+    countPics(picLimit)
     //nothing happens if image options are off
     if (imageOptions === "") {
       return;
@@ -187,7 +198,6 @@ const Game = ({ imageOptions, available, magicWord }) => {
         }
 
         const data = await response.json();
-        console.log(data.url);
         setRiddleImage(data.url);
       } catch (error) {
         setResponse(error.message);
@@ -428,7 +438,9 @@ const Game = ({ imageOptions, available, magicWord }) => {
         </button>
       </div>
 
-      {/* <p>{winningWord}</p> */}
+      {/* <p>{pics}</p> */}
+      <p>{winningWord}</p>
+      
 
       <RefreshPopUp
         trigger={refreshPopUp}
