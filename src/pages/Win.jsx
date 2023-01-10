@@ -25,7 +25,7 @@ const Win = ({ magicWord }) => {
           <h2>Congratulations!</h2>
           <h4>You made it!</h4>
           <p>{`How did you manage to figure out ${magicWord}?!`}</p>
-          <p>Well cheers to you. Etc.</p>
+          <p>Well cheers to you!!!</p>
         </div>
 
         <button className="win-go-back" onClick={() => setGoBack(true)}>
@@ -36,4 +36,4 @@ const Win = ({ magicWord }) => {
   );
 };
 
-export default Win;
+export default Win

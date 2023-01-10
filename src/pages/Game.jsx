@@ -43,6 +43,10 @@ let options = [];
 let result = [];
 
 const Game = ({ imageOptions, available, magicWord }) => {
+
+   //used for Draggable deprecation error
+   const nodeRef = useRef(null);
+
   //toggles image options
   imageOptions === ""
     ? (randomRiddleWithPicture = false)
@@ -338,10 +342,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
 
   //FINALLY, THE COMPONENT
 
-  //used for Fraggable deprecation error
-  const nodeRef = useRef(null);
-
-  return (
+ return (
     <div className={`game ${startEffect ? "start-effect" : ""}`}>
       <div className="image-container">
         <img
