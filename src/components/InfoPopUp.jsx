@@ -166,21 +166,17 @@ const InfoPopUp = (props, { imageOptions }) => {
       {props.gameStart && (
         <>
           <h2 className="info-titles">TROUBLESHOOT</h2>
-          <a className="troubleshoot-button-div"
-          href={window.location.hostname}
+          <a
+            className="troubleshoot-button-div"
+            href="https://riddles.artifices.xyz"
           >
-            <button
-            className="troubleshoot-button"
-            
-          >
-            Press this button to refresh
-          </button>
+            <button className="troubleshoot-button">
+              Press this button to refresh
+            </button>
           </a>
-          
         </>
       )}
 
-        
       <button className="close-button" onClick={handleClose}>
         X
       </button>
