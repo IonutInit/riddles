@@ -36,4 +36,4 @@ const Win = ({ magicWord }) => {
   );
 };
 
-export default Win
+export default Win;
