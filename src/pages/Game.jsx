@@ -224,7 +224,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
 
     //creates an array enumerating the viable options, each of them times their chance
     let availableHints = hints.filter((x) => x.status === true);
- 
+
     if (availableHints.length === 0) {
       setHint(result.push("There are no more hints available"));
       return;

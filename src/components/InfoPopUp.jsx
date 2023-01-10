@@ -13,9 +13,6 @@ const InfoPopUp = (props, { imageOptions }) => {
   const [accordion, setAccordion] = useState(false);
   const [shrinkOnClose, setShrinkOnClose] = useState(false);
 
-  // //used for 'refreshing'
-  // const linkRefresh = window.location.hostname;
-
   const handleClose = () => {
     setShrinkOnClose(true);
     setTimeout(() => {
@@ -169,15 +166,21 @@ const InfoPopUp = (props, { imageOptions }) => {
       {props.gameStart && (
         <>
           <h2 className="info-titles">TROUBLESHOOT</h2>
-          <button
+          <a className="troubleshoot-button-div"
+          href={window.location.hostname}
+          >
+            <button
             className="troubleshoot-button"
-            onClick={() => window.location.assign("riddles.artifices.xyz")}
+            
           >
             Press this button to refresh
           </button>
+          </a>
+          
         </>
       )}
 
+        
       <button className="close-button" onClick={handleClose}>
         X
       </button>

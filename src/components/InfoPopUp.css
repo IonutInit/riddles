@@ -182,6 +182,10 @@
     padding-top: 20px;
 }
 
+.troubleshoot-button-div {
+   width: 100%;
+}
+
 .troubleshoot-button {
     width: 55%;
     height: 75px;
