@@ -43,9 +43,8 @@ let options = [];
 let result = [];
 
 const Game = ({ imageOptions, available, magicWord }) => {
-
-   //used for Draggable deprecation error
-   const nodeRef = useRef(null);
+  //used for Draggable deprecation error
+  const nodeRef = useRef(null);
 
   //toggles image options
   imageOptions === ""
@@ -63,7 +62,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
   const [win, setWin] = useState(false);
   let winningWord = magicWord;
 
- //game hooks
+  //game hooks
   const [gameSteps, setGameSteps] = useState(1);
   const [points, setPoints] = useState(20);
 
@@ -82,7 +81,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
 
   //action button hooks (i.e. Refresh and Hint)
   const [refreshPopUp, setRefreshPopUp] = useState(false);
- 
+
   //submit hooks
   const [input, setInput] = useState("");
   const [notice, setNotice] = useState("");
@@ -117,7 +116,6 @@ const Game = ({ imageOptions, available, magicWord }) => {
 
   //RANDOM RIDDLE
   const getRandomRiddle = () => {
-    // console.log(available)
     let randomPick = available[Math.floor(Math.random() * available.length)];
     const randomId = available.splice(available.indexOf(randomPick), 1);
 
@@ -149,9 +147,8 @@ const Game = ({ imageOptions, available, magicWord }) => {
             }),
           }
         );
-        console.log(response);
         const data = await response.json();
-        console.log(data);
+
         setRiddle(data.riddle[0].riddle);
         setRiddleSolution(data.riddle[0].solution);
         setSolutionSynonyms(data.riddle[0].synonyms);
@@ -207,6 +204,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
 
   const getHints = (solution, synonymsString) => {
     //filters for optiions that are still within the game play and which haven't been yet called more than they are supposed to
+    //de-activates the synonyms option if there are no synonyms
     hints.map((x) =>
       x.lowerLimit <= gameSteps && x.upperLimit >= gameSteps
         ? (x.status = true)
@@ -219,9 +217,14 @@ const Game = ({ imageOptions, available, magicWord }) => {
       }
     }
 
-    //creates an array enumerating the viable options each of them times their chance
-    let availableHints = hints.filter((x) => x.status === true);
+    let synonymCall = hints.find((x) => x.call === synonym);
+    if (!solutionSynonyms.length) {
+      synonymCall.status = false;
+    }
 
+    //creates an array enumerating the viable options, each of them times their chance
+    let availableHints = hints.filter((x) => x.status === true);
+ 
     if (availableHints.length === 0) {
       setHint(result.push("There are no more hints available"));
       return;
@@ -342,7 +345,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
 
   //FINALLY, THE COMPONENT
 
- return (
+  return (
     <div className={`game ${startEffect ? "start-effect" : ""}`}>
       <div className="image-container">
         <img

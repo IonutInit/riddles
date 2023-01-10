@@ -146,7 +146,7 @@ const InfoPopUp = (props, { imageOptions }) => {
             </p>
             <br></br>
             <p className="tip">
-              CAREFUL THOUGH! A wrng submission will cost you thye usual 5
+              CAREFUL THOUGH! A wrong submission will cost you thye usual 5
               points!
             </p>
           </div>
@@ -171,7 +171,7 @@ const InfoPopUp = (props, { imageOptions }) => {
           <h2 className="info-titles">TROUBLESHOOT</h2>
           <button
             className="troubleshoot-button"
-            onClick={() => window.location.assign(window.location.hostname)}
+            onClick={() => window.location.assign("riddles.artifices.xyz")}
           >
             Press this button to refresh
           </button>
