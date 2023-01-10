@@ -14,6 +14,7 @@
   --color2: #ffb852;
   --color3: #328e13;
   --color4: #96bfe6;
+  --background: #f3f3f3;
 
   --font1: Alphakind;
   --font2: DieBruecke;
@@ -29,7 +30,7 @@
   line-height: 24px;
 
   color: var(--color3);
-  background-color: #c2c2c2;
+  background-color: var(--background);
 
   text-align: center;
   

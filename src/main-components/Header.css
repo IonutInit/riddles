@@ -55,7 +55,7 @@
   }
 
 .submissions:hover {
-  filter: drop-shadow(0px 4px 6px black);
+  filter: drop-shadow(0px 5px 2px black);
   transform: scale(1.05) rotate(10deg);
   transition: 0.3s;
 }

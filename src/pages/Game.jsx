@@ -33,9 +33,8 @@ import {
 import { changePoints } from "../lib/changePoints";
 
 //sets the limit of how many images the user can generate daily (put here for convenience)
-let picLimit = 7
-let picCount = JSON.parse(localStorage.getItem('picCount'))
-
+let picLimit = 7;
+let picCount = JSON.parse(localStorage.getItem("picCount"));
 
 //toggle between generating image or not (used during production, then integrated as is)
 let randomRiddleWithPicture = false;
@@ -44,14 +43,12 @@ let options = [];
 let result = [];
 
 const Game = ({ imageOptions, available, magicWord }) => {
-
-
   //toggles image options
   imageOptions === ""
     ? (randomRiddleWithPicture = false)
     : (randomRiddleWithPicture = true);
 
-    const [startEffect, setStartEffect] = useState(false);
+  const [startEffect, setStartEffect] = useState(false);
 
   useEffect(() => {
     setStartEffect(true);
@@ -139,7 +136,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
         setIsLoading(false);
         setStartEffect(false); //for some reason it didn't want to set itself off in the useEffect at the beginning
       } else {
-        countPics(picLimit)
+        countPics(picLimit);
         setIsLoading(true);
         const response = await fetch(
           `https://the-path-of-riddles.onrender.com/api/v1/combined/${randomId}`,
@@ -169,7 +166,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
 
   //IMAGE REFRESH
   const handleImageRefresh = () => {
-    countPics(picLimit)
+    countPics(picLimit);
     //nothing happens if image options are off
     if (imageOptions === "") {
       return;
@@ -275,13 +272,13 @@ const Game = ({ imageOptions, available, magicWord }) => {
     setShrinkRefresh(true);
     setTimeout(() => {
       getRandomRiddle();
-    setPoints((points) => points - 5);
-    setGameSteps((gameSteps) => gameSteps + 1);
-    setRefreshPopUp(false);
-    result = [];
-    setHint(result);
-    setShrinkRefresh(false);
-    }, 500)    
+      setPoints((points) => points - 5);
+      setGameSteps((gameSteps) => gameSteps + 1);
+      setRefreshPopUp(false);
+      result = [];
+      setHint(result);
+      setShrinkRefresh(false);
+    }, 500);
   };
 
   const handleSubmit = () => {
@@ -443,14 +440,17 @@ const Game = ({ imageOptions, available, magicWord }) => {
       </div>
 
       {/* <p>{winningWord}</p> */}
-      
 
       <RefreshPopUp
         trigger={refreshPopUp}
         shrinkRefresh={shrinkRefresh}
         // setTrigger={setRefreshPopUp}
       >
-        <div className={`refresh-button-container ${shrinkRefresh ? "refresh-popup-shrink" : ""}`}>
+        <div
+          className={`refresh-button-container ${
+            shrinkRefresh ? "refresh-popup-shrink" : ""
+          }`}
+        >
           <button className="refresh-buttons" onClick={handleRefresh}>
             YES
           </button>

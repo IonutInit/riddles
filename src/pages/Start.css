@@ -9,21 +9,6 @@
     padding-bottom: var(--footerHeight);
 }
 
-/* .start-start {
-    -webkit-animation: startStart 1s infinite linear;
-}
-@-webkit-keyframes startStart {
-    0% {
-        filter: sepia(20%) blur(1px)
-    }
-    25% {
-        filter: sepia(50%) blur(3px)
-    }
-    100% {
-        filter: sepia(80%) blur(5px)
-    }
-} */
-
 .start-container {
 
 }
@@ -47,10 +32,11 @@
     height: 70px;
     margin: 1em;
     border-radius: 15px;
+    color: black;
 }
 
 .start-button:hover {
-    box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 10px #f3f3f3;
     transform: scale(1.1);
     transition: 0.5s;
 }

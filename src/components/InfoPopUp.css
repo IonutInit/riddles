@@ -123,7 +123,7 @@
     background-color: var(--color3);
     border-radius: 10px;
     color: black;
-    box-shadow: 0 0 10px #fff;
+    box-shadow: 4px 4px 2px var(--background);
 }
 
 .accordion-start {
@@ -134,8 +134,15 @@
     height: 5px;
     background-color: black;
     margin-top: 20px;
-    width: 70%;
-    
+    width: 70%;    
+}
+
+.accordion-line2 {
+    height: 3px;
+    background-color: black;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;    
 }
 
 .accordion-text {
@@ -144,7 +151,9 @@
 }
 
 .accordion-text h3 {
-   padding: 30px; 
+   /* padding-top: 30px;  */
+   font-size: 32px;
+   letter-spacing: 0.5em;
 }
 .accordion-text p {
     text-align: left;
@@ -165,6 +174,32 @@
     color: inherit;
 }
 
-.image-tip {
-    color: #f3f3f3;
+.tip {
+    color: var(--color2);
+}
+
+.video {
+    padding-top: 20px;
+}
+
+.troubleshoot-button {
+    width: 55%;
+    height: 75px;
+    background-color: var(--color3);
+    border-radius: 10px;
+    font-family: var(--font2);
+    font-size: 36px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.19), 3px 3px rgba(0,0,0,0.23);
+    margin-top: -30px;
+    letter-spacing: 0.2em;
+}
+
+.troubleshoot-button:hover {
+    transform: translateY(-3px);
+    transition: 0.1s;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.19), 5px 5px rgba(0,0,0,0.23);
+}
+
+.troubleshoot-button:not(:hover) {
+    transition: 0.1s;
 }
