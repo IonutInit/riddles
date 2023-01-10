@@ -31,7 +31,7 @@ const Footer = () => {
         <div className="social-container">
           <a
             className="icons"
-            href={`https://www.facebook.com/sharer/sharer.php?u=riddles.artifices.xyz`}
+            href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -47,7 +47,7 @@ const Footer = () => {
           </a>
           <a
             className="icons"
-            href="whatsapp://send?text=riddles.artifices.xyz"
+            href={`whatsapp://send?text=${shareUrl}`}
             target="_blank"
             rel="noopener noreferrer"
           >

@@ -99,8 +99,9 @@
 
 .riddle-submit:hover {
     transform: scale(1.1);
-    transition: 0.5s;
+    transition: 0.3s;
     box-shadow: 0 0 10px #fff;
+    /* box-shadow: 0 5px 20px rgba(0,0,0,0.19), 5px 15px rgba(0,0,0,0.23);    */
 }
 
 .riddle-submit:not(:hover) {

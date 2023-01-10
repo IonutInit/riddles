@@ -19,7 +19,7 @@ function App() {
 
   const [available, setAvailable] = useState([]);
 
-  //placeholder for mobile optimization; based on the assumption that the user doesn't move and resize windows (and if they do, they aren't on mobile anyway)
+  //placeholder for mobile optimization; based on the assumption that the initial screen size is the only criteria that matters (if they resize it afterwards--though real users rarely do--they can re-resize it)
   //useEffect is unnecessary, but I wanted to test the feature out
   useEffect(() => {
     window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
@@ -68,8 +68,6 @@ function App() {
       ? setImageOptions("")
       : setImageOptions(e.target.value);
   };
-
-  console.log(windowWidth);
 
   return (
     <div className="App">

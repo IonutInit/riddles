@@ -40,17 +40,16 @@
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
-
-
 .picture-loading {
-    -webkit-animation: name 4s infinite linear;
+    animation: loading 4s infinite linear;
 }
-@-webkit-keyframes name {
+
+@keyframes loading {
     0% {
-        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
     }
     100% {
-        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
 }}
 
 
@@ -99,6 +98,7 @@
     color: #c2c2c2;
     box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23);
     transition: 1s;
+    cursor: default;
 }
 
 .points-container-vanish {
@@ -124,6 +124,7 @@
     font-size: larger;
     line-height: 1.2em;
     color: black;
+    cursor: default;
 }
 
 
@@ -167,7 +168,7 @@
     font-family: var(--font1);
     font-size: 24px;
     text-align: center;
-    background-color: #c2c2c2;
+    background-color:var(--background);
     border: none;
    border-bottom: 5px solid var(--color3);
    
@@ -214,6 +215,7 @@
 }
 
 .submit-button:hover {
+    box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 8px 3px rgba(0,0,0,0.23);
     transform: rotate(-2deg) scale(1.05);
     transition: 0.5s;
 }
@@ -268,17 +270,39 @@
     border-radius: 10px;
     font-family: var(--font2);
     font-size: 36px;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.19), 3px 3px rgba(0,0,0,0.23);
 }
 
 .control-buttons:hover {
-    transform: scale(1.05);
-    transition: 0.5s;
+    transform: translateY(-3px);
+    transition: 0.1s;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.19), 5px 5px rgba(0,0,0,0.23);
+    /* transform: scale(1.05); */
+    /* transition: 0.5s; */
 }
 
 .control-buttons:not(:hover) {
-    transition: 0.5s;
+    transition: 0.1s;
 }
+
+
+.refresh-popup-shrink {
+    animation: hideMe 0.5s forwards;
+}
+
+
+@keyframes hideMe{
+    0%{
+        transform: scale(1);
+    }
+    20%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(0) 
+    }
+}
+
 
 .solution-title {
     color: var(--color3);

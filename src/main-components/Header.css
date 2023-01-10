@@ -39,11 +39,25 @@
 
   .submissions {
     width: 64px;
+    animation: lookAtMe 0.5s linear;
+  }
+
+  @keyframes lookAtMe{
+    0%{
+        transform: scale(10);
+    }
+    50%{
+        transform: scale(5);
+    }
+    100%{
+        transform: scale(1) 
+    }
   }
 
 .submissions:hover {
+  filter: drop-shadow(0px 5px 2px black);
   transform: scale(1.05) rotate(10deg);
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
 .submissions-leftwards:hover {
@@ -57,20 +71,4 @@
 .header .popup {
   display: flex;
   align-items: center;
-}
-
-.info {
-  animation: lookAtMe 0.5s linear;
-}
-
-@keyframes lookAtMe{
-  0%{
-      transform: scale(10);
-  }
-  50%{
-      transform: scale(5);
-  }
-  100%{
-      transform: scale(1) 
-  }
 }
