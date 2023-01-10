@@ -59,11 +59,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
   const [win, setWin] = useState(false);
   let winningWord = magicWord;
 
-  //daily image use hook
-  // const [pics, setPics] = useState(picCount.count)
-  // console.log(pics)
-
-  //game hooks
+ //game hooks
   const [gameSteps, setGameSteps] = useState(1);
   const [points, setPoints] = useState(20);
 
@@ -82,8 +78,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
 
   //action button hooks (i.e. Refresh and Hint)
   const [refreshPopUp, setRefreshPopUp] = useState(false);
-  // const [refreshEffect, setRefreshEffect] = useState(false);
-
+ 
   //submit hooks
   const [input, setInput] = useState("");
   const [notice, setNotice] = useState("");
@@ -166,7 +161,6 @@ const Game = ({ imageOptions, available, magicWord }) => {
 
   //IMAGE REFRESH
   const handleImageRefresh = () => {
-    countPics(picLimit);
     //nothing happens if image options are off
     if (imageOptions === "") {
       return;

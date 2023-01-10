@@ -61,7 +61,7 @@ function App() {
     getAvailable();
   };
 
-  const [imageOptions, setImageOptions] = useState("");
+  const [imageOptions, setImageOptions] = useState("expressionist painting");
 
   const handleImageOptions = (e) => {
     e.target.value === imageOptions
