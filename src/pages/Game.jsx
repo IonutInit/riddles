@@ -272,12 +272,16 @@ const Game = ({ imageOptions, available, magicWord }) => {
   };
 
   const handleRefresh = () => {
-    getRandomRiddle();
+    setShrinkRefresh(true);
+    setTimeout(() => {
+      getRandomRiddle();
     setPoints((points) => points - 5);
     setGameSteps((gameSteps) => gameSteps + 1);
     setRefreshPopUp(false);
     result = [];
     setHint(result);
+    setShrinkRefresh(false);
+    }, 500)    
   };
 
   const handleSubmit = () => {
@@ -438,8 +442,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
         </button>
       </div>
 
-      {/* <p>{pics}</p> */}
-      <p>{winningWord}</p>
+      {/* <p>{winningWord}</p> */}
       
 
       <RefreshPopUp
@@ -447,7 +450,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
         shrinkRefresh={shrinkRefresh}
         // setTrigger={setRefreshPopUp}
       >
-        <div className="refresh-button-container">
+        <div className={`refresh-button-container ${shrinkRefresh ? "refresh-popup-shrink" : ""}`}>
           <button className="refresh-buttons" onClick={handleRefresh}>
             YES
           </button>
