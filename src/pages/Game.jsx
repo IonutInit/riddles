@@ -236,6 +236,9 @@ const Game = ({ imageOptions, available, magicWord }) => {
       }
     }
 
+    console.log(gameSteps)
+    console.log(options)
+
     //one of these instances is being called to provide the hint
     let rand = Math.floor(Math.random() * options.length);
     setHint(result.push(options[rand](solution, synonymsString)));
@@ -255,7 +258,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
     //refreshes the options array for the next call
     options = [];
 
-    console.log(hints);
+    // console.log(hints);
 
     return hints;
   };
