@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useState} from "react";
 
 import CustomizedRating from "./Rating";
 import YouTube from "react-youtube";
@@ -7,9 +6,8 @@ import YouTube from "react-youtube";
 import "./InfoPopUp.css";
 import "../pages/Game.css";
 
-//gameStart prop does not reach to here!
-
 const InfoPopUp = (props, { imageOptions }) => {
+
   const [accordion, setAccordion] = useState(false);
   const [shrinkOnClose, setShrinkOnClose] = useState(false);
 

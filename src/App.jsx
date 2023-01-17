@@ -1,8 +1,10 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Header from "./main-components/Header";
 import Footer from "./main-components/Footer";
+
+import RiddleIdContext from './components/RiddleIdContext'
 
 import Start from "./pages/Start";
 import Game from "./pages/Game";
@@ -18,6 +20,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [available, setAvailable] = useState([]);
+
+  //entire hook, used to tranfer riddle id from game page to header modal
+  const riddleId = useState(null);
 
   //placeholder for mobile optimization; based on the assumption that the initial screen size is the only criteria that matters (if they resize it afterwards--though real users rarely do--they can re-resize it)
   //useEffect is unnecessary, but I wanted to test the feature out
@@ -70,9 +75,10 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="App">      
       <Router>
-        <Header
+      <RiddleIdContext.Provider value={riddleId}>        
+          <Header
           imageOptions={imageOptions}
           handleImageOptions={handleImageOptions}
           gameStart={gameStart}
@@ -115,7 +121,9 @@ function App() {
           <Route path="gameover" element={<Lose />} /> */}
         </Routes>
         <Footer />
+        </RiddleIdContext.Provider> 
       </Router>
+             
     </div>
   );
 }

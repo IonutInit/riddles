@@ -1,10 +1,13 @@
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import StarIcon from "@mui/icons-material/Star";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
-export default function RatingSize({ imageOptions }) {
+import RiddleIdContext from "./RiddleIdContext";
+
+export default function RatingSize() {
   const [rating, setRating] = useState(0);
+  const [riddleId] = useContext(RiddleIdContext)
 
   return (
     <Stack spacing={1}>
@@ -17,8 +20,9 @@ export default function RatingSize({ imageOptions }) {
         disabled={rating > 0}
         emptyIcon={<StarIcon fontSize="inherit" sx={{ color: "white" }} />}
       />
-      <p>{imageOptions}</p>
-      {/* {!rating ? <p>No rating</p> : <p>{rating}</p>} */}
+      {!rating ? <p>No rating</p> : <p>{rating}</p>}
+      <p>{riddleId}</p>
+      
       {
         <p className="info-fine-print">
           {!rating ? "Please rate this riddle." : "Thank you for rating!"}

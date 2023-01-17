@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import { Navigate } from "react-router-dom";
 
 import Draggable from "react-draggable";
@@ -7,6 +7,8 @@ import "./Game.css";
 import "../components/RefreshPopUp.css";
 import placeholder from "../assets/images/placeholder.png";
 import refreshButton from "../assets/images/refresh-button.png";
+
+import RiddleIdContext from "../components/RiddleIdContext";
 
 import RefreshPopUp from "../components/RefreshPopUp";
 
@@ -71,6 +73,8 @@ const Game = ({ imageOptions, available, magicWord }) => {
   const [riddleSolution, setRiddleSolution] = useState("");
   const [solutionSynonyms, setSolutionSynonyms] = useState("");
   const [riddleImage, setRiddleImage] = useState("");
+  // eslint-disable-next-line no-unused-vars
+  const [_, setRiddleId] = useContext(RiddleIdContext)
 
   //hint hooks
   const [hint, setHint] = useState(result);
@@ -129,6 +133,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
         setRiddle(data[0].riddle);
         setRiddleSolution(data[0].solution);
         setSolutionSynonyms(data[0].synonyms);
+        setRiddleId(data[0].id)
 
         setIsLoading(false);
         setStartEffect(false); //for some reason it didn't want to set itself off in the useEffect at the beginning
@@ -153,6 +158,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
         setRiddleSolution(data.riddle[0].solution);
         setSolutionSynonyms(data.riddle[0].synonyms);
         setRiddleImage(data.imgUrl.url);
+        setRiddleId(data.riddle[0].id)
       }
       setIsLoading(false);
       setStartEffect(false); //see comment on first block of IF statement
