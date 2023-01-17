@@ -75,6 +75,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
   const [riddleImage, setRiddleImage] = useState("");
   // eslint-disable-next-line no-unused-vars
   const [_, setRiddleId] = useContext(RiddleIdContext)
+  // const [_, setRating] = useContext(RiddleIdContext)
 
   //hint hooks
   const [hint, setHint] = useState(result);
@@ -205,6 +206,17 @@ const Game = ({ imageOptions, available, magicWord }) => {
     }
     getImage();
   };
+  
+  //RATINGS
+  const handleRatings = () => {
+    async function getRiddleRating() {
+      const response = await fetch(`https://riddles-api.artifices.xyz/api/v1/ratings/34`)
+      const data = response[0].round
+      setRiddleRating(data)
+    }
+    getRiddleRating()
+  }
+
 
   ///GAME BEGINS!!!
 
