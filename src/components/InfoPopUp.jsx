@@ -3,6 +3,8 @@ import { useState} from "react";
 import CustomizedRating from "./Rating";
 import YouTube from "react-youtube";
 
+import { clientPath } from "../lib/path";
+
 import "./InfoPopUp.css";
 import "../pages/Game.css";
 
@@ -166,7 +168,7 @@ const InfoPopUp = (props, { imageOptions }) => {
           <h2 className="info-titles">TROUBLESHOOT</h2>
           <a
             className="troubleshoot-button-div"
-            href="https://riddles.artifices.xyz"
+            href={`${clientPath}`}
           >
             <button className="troubleshoot-button">
               Press this button to refresh

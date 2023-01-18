@@ -5,6 +5,9 @@ import { useState, useEffect, useContext } from "react";
 
 import RiddleIdContext from "./RiddleIdContext";
 
+import {APIpath} from '../lib/path';
+import {key} from '../lib/auth'
+
 export default function RatingSize() {
   const [rating, setRating] = useState(0);
   const [riddleId] = useContext(RiddleIdContext)
@@ -13,7 +16,11 @@ export default function RatingSize() {
   useEffect(() => {
     async function getRiddleRating() {
       try {
-        const response = await fetch(`https://riddles-api.artifices.xyz/api/v1/ratings/${riddleId}`)        
+        const response = await fetch(`${APIpath}/ratings/${riddleId}`,{
+          headers: {
+            'Authorization': `${key}`
+          }
+        })        
       const data = await response.json() 
       data[0].round === 0 ? null : setRiddleRating(`${data[0].round} stars`)    
       } catch (error) {
@@ -24,9 +31,10 @@ export default function RatingSize() {
   },[riddleRating, riddleId])
 
   async function submitRating() {
-    await fetch('https://riddles-api.artifices.xyz/api/v1/ratings/post', {
+    await fetch(`${APIpath}/ratings/post`, {
       method: "POST",
         headers: {
+          "Authorization": `${key}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({

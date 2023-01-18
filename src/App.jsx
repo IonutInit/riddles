@@ -12,6 +12,9 @@ import Win from "./pages/Win";
 import Lose from "./pages/Lose";
 import Mobile from "./pages/Mobile";
 
+import {APIpath} from './lib/path';
+import {key} from './lib/auth'
+
 function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -35,7 +38,11 @@ function App() {
     async function availableArray() {
       const arr = [];
       const response = await fetch(
-        "https://the-path-of-riddles.onrender.com/api/v1/riddles/available"
+        `${APIpath}/riddles/available`, {
+          headers: {
+            'Authorization': `${key}`
+          }
+        }
       );
       const data = await response.json();
       for (let i = 0; i < data.length; i++) {
@@ -52,7 +59,11 @@ function App() {
     setIsLoading(true);
     async function magicWord() {
       const response = await fetch(
-        "https://the-path-of-riddles.onrender.com/api/v1/magicword"
+        `${APIpath}/magicword`, {
+          headers: {
+            'Authorization': `${key}`
+          }
+        }
       );
       const data = await response.json();
       setMagicWord(data[0].magicword);

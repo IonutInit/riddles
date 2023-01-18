@@ -1,3 +1,5 @@
+import { clientPath } from "../lib/path";
+
 import "./Lose.css";
 import gameOver from "../assets/images/game_over.png";
 
@@ -22,7 +24,7 @@ const Lose = () => {
             </p>
           </div>
 
-          <a href="https://riddles.artifices.xyz">
+          <a href={`${clientPath}`}>
           <button className="lose-go-back" >Play again</button>
           </a>
           

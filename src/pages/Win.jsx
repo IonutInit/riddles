@@ -1,3 +1,5 @@
+import { clientPath } from "../lib/path";
+
 import "./Win.css";
 import win from "../assets/images/win.png";
 
@@ -19,7 +21,7 @@ const Win = ({ magicWord }) => {
           <p>Well cheers to you!!!</p>
         </div>
 
-        <a href="https://riddles.artifices.xyz">
+        <a href={`${clientPath}`}>
           <button className="win-go-back">
           Go Back
         </button>

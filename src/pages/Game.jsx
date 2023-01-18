@@ -12,6 +12,8 @@ import RiddleIdContext from "../components/RiddleIdContext";
 
 import RefreshPopUp from "../components/RefreshPopUp";
 
+import {APIpath} from '../lib/path';
+import {key} from '../lib/auth'
 import { countPics } from "../lib/countPics";
 
 import {
@@ -38,6 +40,7 @@ import { changePoints } from "../lib/changePoints";
 let randomRiddleWithPicture = true;
 
 //sets the limit of how many images the user can generate daily (put here for convenience)
+//NOT YET USED
 let picLimit = 7;
 let picCount = JSON.parse(localStorage.getItem("picCount"));
 
@@ -128,7 +131,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
       if (!randomRiddleWithPicture) {
         setIsLoading(true);
         const response = await fetch(
-          `https://the-path-of-riddles.onrender.com/api/v1/riddles/${randomId}`
+          `${APIpath}/riddles/${randomId}`
         );
         const data = await response.json();
         setRiddle(data[0].riddle);
@@ -142,10 +145,11 @@ const Game = ({ imageOptions, available, magicWord }) => {
         countPics(picLimit);
         setIsLoading(true);
         const response = await fetch(
-          `https://the-path-of-riddles.onrender.com/api/v1/combined/${randomId}`,
+          `${APIpath}/combined/${randomId}`,
           {
             method: "POST",
             headers: {
+              "Authorization": `${key}`,
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
@@ -180,10 +184,11 @@ const Game = ({ imageOptions, available, magicWord }) => {
       setPoints(points - 1);
       try {
         const response = await fetch(
-          "https://the-path-of-riddles.onrender.com/api/v1/openai/img",
+          `${APIpath}/openai/img`,
           {
             method: "POST",
             headers: {
+              "Authorization": `${key}`,
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
@@ -207,15 +212,15 @@ const Game = ({ imageOptions, available, magicWord }) => {
     getImage();
   };
   
-  //RATINGS
-  const handleRatings = () => {
-    async function getRiddleRating() {
-      const response = await fetch(`https://riddles-api.artifices.xyz/api/v1/ratings/34`)
-      const data = response[0].round
-      setRiddleRating(data)
-    }
-    getRiddleRating()
-  }
+  // //RATINGS
+  // const handleRatings = () => {
+  //   async function getRiddleRating() {
+  //     const response = await fetch(`${APIpath}/v1/ratings/${riddle}`)
+  //     const data = response[0].round
+  //     setRiddleRating(data)
+  //   }
+  //   getRiddleRating()
+  // }
 
 
   ///GAME BEGINS!!!
