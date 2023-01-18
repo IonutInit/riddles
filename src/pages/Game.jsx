@@ -134,10 +134,10 @@ const Game = ({ imageOptions, available, magicWord }) => {
           `${APIpath}/riddles/${randomId}`
         );
         const data = await response.json();
-        setRiddle(data[0].riddle);
-        setRiddleSolution(data[0].solution);
-        setSolutionSynonyms(data[0].synonyms);
-        setRiddleId(data[0].id)
+        setRiddle(data.data[0].riddle);
+        setRiddleSolution(data.data[0].solution);
+        setSolutionSynonyms(data.data[0].synonyms);
+        setRiddleId(data.data[0].id)
 
         setIsLoading(false);
         setStartEffect(false); //for some reason it didn't want to set itself off in the useEffect at the beginning
@@ -159,11 +159,11 @@ const Game = ({ imageOptions, available, magicWord }) => {
         );
         const data = await response.json();
 
-        setRiddle(data.riddle[0].riddle);
-        setRiddleSolution(data.riddle[0].solution);
-        setSolutionSynonyms(data.riddle[0].synonyms);
-        setRiddleImage(data.imgUrl.url);
-        setRiddleId(data.riddle[0].id)
+        setRiddle(data.data.riddle[0].riddle);
+        setRiddleSolution(data.data.riddle[0].solution);
+        setSolutionSynonyms(data.data.riddle[0].synonyms);
+        setRiddleImage(data.data.imgUrl.url);
+        setRiddleId(data.data.riddle[0].id)
       }
       setIsLoading(false);
       setStartEffect(false); //see comment on first block of IF statement
@@ -202,7 +202,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
         }
 
         const data = await response.json();
-        setRiddleImage(data.url);
+        setRiddleImage(data.data.url);
       } catch (error) {
         setResponse(error.message);
       }

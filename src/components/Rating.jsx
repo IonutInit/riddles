@@ -16,25 +16,31 @@ export default function RatingSize() {
   useEffect(() => {
     async function getRiddleRating() {
       try {
-        const response = await fetch(`${APIpath}/ratings/${riddleId}`,{
-          headers: {
-            'Authorization': `${key}`
-          }
-        })        
-      const data = await response.json() 
-      data[0].round === 0 ? null : setRiddleRating(`${data[0].round} stars`)    
+        const response = await fetch(`${APIpath}/ratings/${riddleId}`
+        // ,{
+        //   headers: {
+        //     'Authorization': `${key}`
+        //   }
+        // }
+        )        
+      const data = await response.json()
+      const rating = data.data[0].round 
+      rating === 0 ? null : setRiddleRating(`${rating} stars`)    
       } catch (error) {
         console.log(error.message)
-      }      
+      }    
     }
     getRiddleRating()
   },[riddleRating, riddleId])
+
+  console.log(riddleId)
+ 
 
   async function submitRating() {
     await fetch(`${APIpath}/ratings/post`, {
       method: "POST",
         headers: {
-          "Authorization": `${key}`,
+          // "Authorization": `${key}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({

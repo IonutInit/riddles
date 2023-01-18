@@ -45,8 +45,8 @@ function App() {
         }
       );
       const data = await response.json();
-      for (let i = 0; i < data.length; i++) {
-        arr.push(data[i].id);
+      for (let i = 0; i < data.data.length; i++) {
+        arr.push(data.data[i].id);
       }
       setAvailable(arr);
       setIsLoading(false);
@@ -66,7 +66,7 @@ function App() {
         }
       );
       const data = await response.json();
-      setMagicWord(data[0].magicword);
+      setMagicWord(data.data[0].magicword);
     }
     magicWord();
   };
@@ -84,6 +84,7 @@ function App() {
       ? setImageOptions("")
       : setImageOptions(e.target.value);
   };
+
 
   return (
     <div className="App">      
