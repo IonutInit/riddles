@@ -1,18 +1,9 @@
-import { useState } from "react";
-import { Navigate } from "react-router-dom";
-
 import "./Win.css";
 import win from "../assets/images/win.png";
 
 //see comment in Loose.jsx regarding navigation
 
 const Win = ({ magicWord }) => {
-  const [goBack, setGoBack] = useState(false);
-
-  if (goBack) {
-    return <Navigate to={"/"} />;
-  }
-
   return (
     <div className="win-container">
       <div className="win-image-container">
@@ -28,9 +19,12 @@ const Win = ({ magicWord }) => {
           <p>Well cheers to you!!!</p>
         </div>
 
-        <button className="win-go-back" onClick={() => setGoBack(true)}>
+        <a href="https://riddles.artifices.xyz">
+          <button className="win-go-back">
           Go Back
         </button>
+        </a>
+        
       </div>
     </div>
   );

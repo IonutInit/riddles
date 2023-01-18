@@ -1,19 +1,9 @@
-import { useState } from "react";
-import { Navigate } from "react-router-dom";
-
 import "./Lose.css";
 import gameOver from "../assets/images/game_over.png";
 
-//For the time being, on win/lose conditions gamseState is not reset, which means '/' navigates directly to '/play'
-//This might actually better, at least for losing. If kept like that, check that all the other parameters are reset
+//I have tried to route to '/' (which due to gameState would navigate directly to '/play') but due to uni-directional data flow I could not reset the hints, so I oped for a hard refresh on 'Play Again'
 
 const Lose = () => {
-  const [goBack, setGoBack] = useState(false);
-
-  if (goBack) {
-    return <Navigate to={"/"} />;
-  }
-
   return (
     <div>
       <div className="game-over-container">
@@ -32,9 +22,10 @@ const Lose = () => {
             </p>
           </div>
 
-          <button className="lose-go-back" onClick={() => setGoBack(true)}>
-            Play again
-          </button>
+          <a href="https://riddles.artifices.xyz">
+          <button className="lose-go-back" >Play again</button>
+          </a>
+          
         </div>
       </div>
     </div>
