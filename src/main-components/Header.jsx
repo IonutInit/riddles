@@ -8,6 +8,9 @@ import info_button from "../assets/images/info_button.svg";
 
 import "./Header.css";
 
+//toggle buttons disabled state
+const buttonState = false
+
 const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
   const [buttonSubmitPopUp, setButtonSubmitPopUp] = useState(false);
   const [buttonInfoPopUp, setButtonInfoPopUp] = useState(false);
@@ -65,6 +68,7 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
               imageOptions === "expressionist painting" ? "option-active" : ""
             }`}
             onClick={(e) => handleImageOptions(e)}
+            disabled={buttonState}
           >
             Expressionist
           </button>
@@ -74,6 +78,7 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
               imageOptions === "impressionist painting" ? "option-active" : ""
             }`}
             onClick={(e) => handleImageOptions(e)}
+            disabled={buttonState}
           >
             Impressionist
           </button>
@@ -83,6 +88,7 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
               imageOptions === "abstract cubist painting" ? "option-active" : ""
             }`}
             onClick={(e) => handleImageOptions(e)}
+            disabled={buttonState}
           >
             Abstract
           </button>
@@ -92,6 +98,7 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
               imageOptions === "renaissance painting" ? "option-active" : ""
             }`}
             onClick={(e) => handleImageOptions(e)}
+            disabled={buttonState}
           >
             Classical
           </button>
@@ -101,6 +108,7 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
               imageOptions === "photorealistic painting" ? "option-active" : ""
             }`}
             onClick={(e) => handleImageOptions(e)}
+            disabled={buttonState}
           >
             Photorealist
           </button>
@@ -110,6 +118,7 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
               imageOptions === "watercolour" ? "option-active" : ""
             }`}
             onClick={(e) => handleImageOptions(e)}
+            disabled={buttonState}
           >
             Watercolour
           </button>
@@ -119,6 +128,7 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
               imageOptions === "pencil sketch" ? "option-active" : ""
             }`}
             onClick={(e) => handleImageOptions(e)}
+            disabled={buttonState}
           >
             Pencil Sketch
           </button>
