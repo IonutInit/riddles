@@ -72,7 +72,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
 
   //game hooks
   const [gameSteps, setGameSteps] = useState(1);
-  const [points, setPoints] = useState(20);
+  const [points, setPoints] = useState(100);
 
   //riddle element hooks
   const [riddle, setRiddle] = useState("");

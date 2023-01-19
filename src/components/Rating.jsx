@@ -6,7 +6,7 @@ import { useState, useEffect, useContext } from "react";
 import RiddleIdContext from "./RiddleIdContext";
 
 import {APIpath} from '../lib/path';
-import {key} from '../lib/auth'
+// import {key} from '../lib/auth'
 
 export default function RatingSize() {
   const [rating, setRating] = useState(0);
@@ -24,7 +24,7 @@ export default function RatingSize() {
         // }
         )        
       const data = await response.json()
-      const rating = data.data[0].round 
+      const rating = data.data[0].value 
       rating === 0 ? null : setRiddleRating(`${rating} stars`)    
       } catch (error) {
         console.log(error.message)
