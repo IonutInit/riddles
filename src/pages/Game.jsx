@@ -324,6 +324,13 @@ const Game = ({ imageOptions, available, magicWord }) => {
       }, 500);
   };
 
+  const noticeDisplay = (notice) => {
+    setNotice(notice)
+    setTimeout(() => {
+      setNotice('')
+    }, 3000)
+  }
+
   const handleSubmit = () => {
     if (checkSetSimilarity(input, riddleSolution) === true) {
       //CORRECT
@@ -359,15 +366,15 @@ const Game = ({ imageOptions, available, magicWord }) => {
         imageOptions === "" ? 5000 : 0
       );
     } else if (checkSetSimilarity(input, riddleSolution) === 1) {
-      setNotice(`You're very close`);
+      noticeDisplay(`You're very close`)
     } else if (checkSetSimilarity(input, riddleSolution) === null) {
-      setNotice(`Field is empty`);
+      noticeDisplay(`Field is empty`)
     } else if (checkSetSimilarity(input, riddleSolution) === undefined) {
       if (checkSynonymSimilarity(input, solutionSynonyms) === 2) {
-        setNotice(`You're on the right track`);
+        noticeDisplay(`You're on the right track`)
       } else {
         //INCORRECT!!
-        setNotice("Incorrect");
+        noticeDisplay('Incorrect')
         setGameSteps((gameSteps) => gameSteps + 1);
         setPoints((points) => points - 5);
         setInput("");
