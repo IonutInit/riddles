@@ -253,7 +253,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
     let availableHints = hints.filter((x) => x.status === true);
 
     if (availableHints.length === 0) {
-      setHint(result.push("Oops! There are no more hints available"));
+      setHint(result.push("Oops! Looks like there are no more hints available"));
       setDisableHint(true)
       return;
     }
@@ -283,9 +283,12 @@ const Game = ({ imageOptions, available, magicWord }) => {
     rand = Math.floor(Math.random() * upcomingHints.length);
     upcomingHints[rand].chance++;
 
+    console.log(result)
+    console.log(hint)
+
     //refreshes the options array for the next call
-    options = [];
-  
+    options = [];   
+
     return hints;
   };
 
@@ -298,18 +301,27 @@ const Game = ({ imageOptions, available, magicWord }) => {
     setPoints((points) => points - changePoints(gameSteps, 1, 3));
   };
 
+  const refreshHints = () => {
+    result = [];
+    setHint([]);
+    setDisableHint(false)
+    setInput("")
+    //resets the "points" of each hint, as the process will start anew
+    for (let hint in hints) {
+      hints[hint].points = 0;
+    }
+  }
+
   const handleRefresh = () => {
-    setShrinkRefresh(true);
-    setTimeout(() => {
-      getRandomRiddle();
-      setPoints((points) => points - 5);
-      setGameSteps((gameSteps) => gameSteps + 1);
-      setRefreshPopUp(false);
-      result = [];
-      setHint([]);
-      setDisableHint(false)
-      setShrinkRefresh(false);
-    }, 500);
+      setShrinkRefresh(true);
+      refreshHints()
+      setTimeout(() => {
+        getRandomRiddle();
+        setPoints((points) => points - 5);
+        setGameSteps((gameSteps) => gameSteps + 1);
+        setRefreshPopUp(false);
+        setShrinkRefresh(false);
+      }, 500);
   };
 
   const handleSubmit = () => {
@@ -317,14 +329,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
       //CORRECT
       setGameSteps((gameSteps) => gameSteps + 1);
       setPoints((points) => points + changePoints(gameSteps, 7, 3));
-      result = [];
-      setHint([]);
-      setDisableHint(false)
-      //resets the "points" of each hint, as the process will start anew
-      for (let hint in hints) {
-        hints[hint].points = 0;
-      }
-      setInput("");
+      refreshHints()
       //displays the solution for timeout duration if image options are off, otherwise for the duration of loading
       const solutionArray = riddleSolution.split("");
       setRiddle(
