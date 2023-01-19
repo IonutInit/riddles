@@ -47,7 +47,10 @@ let picCount = JSON.parse(localStorage.getItem("picCount"));
 let options = [];
 let result = [];
 
+export const usedSynonyms = []
+
 const Game = ({ imageOptions, available, magicWord }) => {
+ 
   //used for Draggable deprecation error
   const nodeRef = useRef(null);
 
@@ -82,6 +85,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
 
   //hint hooks
   const [hint, setHint] = useState(result);
+  const [disableHint, setDisableHint] = useState(false)
 
   //loading hooks
   const [isLoading, setIsLoading] = useState(false);
@@ -249,7 +253,8 @@ const Game = ({ imageOptions, available, magicWord }) => {
     let availableHints = hints.filter((x) => x.status === true);
 
     if (availableHints.length === 0) {
-      setHint(result.push("There are no more hints available"));
+      setHint(result.push("Oops! There are no more hints available"));
+      setDisableHint(true)
       return;
     }
 
@@ -259,14 +264,14 @@ const Game = ({ imageOptions, available, magicWord }) => {
       }
     }
 
-    console.log(gameSteps)
-    console.log(options)
-
+    // console.log(gameSteps)
+    // console.log(options)
+  
     //one of these instances is being called to provide the hint
     let rand = Math.floor(Math.random() * options.length);
     setHint(result.push(options[rand](solution, synonymsString)));
 
-    //it adds a point for the instance that has been called
+    //it adds a point to the instance that has been called
     for (let i = 0; i < availableHints.length; i++) {
       if (availableHints[i].call.name === options[rand].name) {
         availableHints[i].points++;
@@ -280,9 +285,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
 
     //refreshes the options array for the next call
     options = [];
-
-    // console.log(hints);
-
+  
     return hints;
   };
 
@@ -303,7 +306,8 @@ const Game = ({ imageOptions, available, magicWord }) => {
       setGameSteps((gameSteps) => gameSteps + 1);
       setRefreshPopUp(false);
       result = [];
-      setHint(result);
+      setHint([]);
+      setDisableHint(false)
       setShrinkRefresh(false);
     }, 500);
   };
@@ -314,7 +318,8 @@ const Game = ({ imageOptions, available, magicWord }) => {
       setGameSteps((gameSteps) => gameSteps + 1);
       setPoints((points) => points + changePoints(gameSteps, 7, 3));
       result = [];
-      setHint(result);
+      setHint([]);
+      setDisableHint(false)
       //resets the "points" of each hint, as the process will start anew
       for (let hint in hints) {
         hints[hint].points = 0;
@@ -457,7 +462,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
         <button
           className="control-buttons hints-button"
           onClick={handleHints}
-          disabled={isLoading}
+          disabled={isLoading || disableHint}
         >
           HINTS
         </button>
