@@ -1,4 +1,5 @@
-import { Navigate } from "react-router-dom";
+import { useState } from "react";
+import { Navigate} from "react-router-dom";
 
 import placeholder from "../assets/images/placeholder.png";
 
@@ -18,6 +19,7 @@ const Start = ({
   if (available.length > 0) {
     return <Navigate to={"/play"} replace={true} />;
   }
+
 
   return (
     <div className={`start ${gameStart ? "start-start" : ""}`}>

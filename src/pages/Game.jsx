@@ -306,7 +306,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
     setHint([]);
     setDisableHint(false)
     setInput("")
-    //resets the "points" of each hint, as the process will start anew
+    //resets the points of each hint, as the process will start anew
     for (let hint in hints) {
       hints[hint].points = 0;
     }
