@@ -37,14 +37,13 @@ export default function RatingSize() {
  
 
   async function submitRating() {
-    await fetch(`${APIpath}/ratings/post`, {
+    await fetch(`${APIpath}/ratings/${riddleId}`, {
       method: "POST",
         headers: {
           // "Authorization": `${key}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          riddle_id: riddleId,
           rating,
         })
     })
