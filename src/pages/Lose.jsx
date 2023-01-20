@@ -25,7 +25,7 @@ const Lose = () => {
           </div>
 
           <a href={`${clientPath}`}>
-            <button className="lose-go-back">Play again</button>
+            <button className="lose-go-back">Try again</button>
           </a>
         </div>
       </div>
