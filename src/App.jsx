@@ -107,22 +107,7 @@ function App() {
             />
 
             {/* to be replaced with below when necessary */}
-            <Route
-              path="/play"
-              element={
-                <Game
-                  imageOptions={imageOptions}
-                  available={available}
-                  magicWord={magicWord}
-                />
-              }
-            />
-            <Route path="/win" element={<Win magicWord={magicWord} />} />
-            <Route path="gameover" element={<Lose />} />
-            {/* ----------------------------------- */}
-
-            {/* KEEP THIS FOR EASIER HANDLING IN PRODUCTION */}
-            {/* {gameStart && (
+            {gameStart && (
               <Route
                 path="/play"
                 element={
@@ -137,7 +122,22 @@ function App() {
             {gameStart && (
               <Route path="/win" element={<Win magicWord={magicWord} />} />
             )}
-            {gameStart && <Route path="gameover" element={<Lose />} />} */}
+            {gameStart && <Route path="gameover" element={<Lose />} />}
+            {/* ----------------------------------- */}
+
+             {/* KEEP THIS FOR EASIER HANDLING IN PRODUCTION */}
+            {/* <Route
+              path="/play"
+              element={
+                <Game
+                  imageOptions={imageOptions}
+                  available={available}
+                  magicWord={magicWord}
+                />
+              }
+            />
+            <Route path="/win" element={<Win magicWord={magicWord} />} />
+            <Route path="gameover" element={<Lose />} /> */}
             {/* END OF KEEP THIS */}
 
             <Route path="mobile" element={<Mobile />} />
