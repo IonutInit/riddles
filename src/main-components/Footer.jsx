@@ -4,7 +4,7 @@ import {
   faTwitterSquare,
   faWhatsappSquare,
   faGithubSquare,
-  faLinkedin
+  faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 
 import "./Footer.css";
@@ -54,10 +54,12 @@ const Footer = () => {
           >
             <FontAwesomeIcon icon={faWhatsappSquare} />
           </a>
-          <a className="icons"
+          <a
+            className="icons"
             href={`https://www.linkedin.com/shareArticle?url=${shareUrl}&title=${shareTitle}`}
             target="_blank"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+          >
             <FontAwesomeIcon icon={faLinkedin} />
           </a>
         </div>

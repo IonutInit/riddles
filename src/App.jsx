@@ -4,7 +4,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./main-components/Header";
 import Footer from "./main-components/Footer";
 
-import RiddleIdContext from './components/RiddleIdContext'
+import ErrorBoundary from "./main-components/ErrorBoundary";
+
+import RiddleIdContext from "./components/RiddleIdContext";
 
 import Start from "./pages/Start";
 import Game from "./pages/Game";
@@ -12,8 +14,8 @@ import Win from "./pages/Win";
 import Lose from "./pages/Lose";
 import Mobile from "./pages/Mobile";
 
-import {APIpath} from './lib/path';
-import {key} from './lib/auth'
+import { APIpath } from "./lib/path";
+import { key } from "./lib/auth";
 
 function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -37,13 +39,11 @@ function App() {
   const getAvailable = () => {
     async function availableArray() {
       const arr = [];
-      const response = await fetch(
-        `${APIpath}/riddles/available`, {
-          headers: {
-            'Authorization': `${key}`
-          }
-        }
-      );
+      const response = await fetch(`${APIpath}/riddles/available`, {
+        headers: {
+          Authorization: `${key}`,
+        },
+      });
       const data = await response.json();
       for (let i = 0; i < data.data.length; i++) {
         arr.push(data.data[i].id);
@@ -58,13 +58,11 @@ function App() {
   const getMagicWord = () => {
     setIsLoading(true);
     async function magicWord() {
-      const response = await fetch(
-        `${APIpath}/magicword`, {
-          headers: {
-            'Authorization': `${key}`
-          }
-        }
-      );
+      const response = await fetch(`${APIpath}/magicword`, {
+        headers: {
+          Authorization: `${key}`,
+        },
+      });
       const data = await response.json();
       setMagicWord(data.data[0].magicword);
     }
@@ -77,7 +75,7 @@ function App() {
     getAvailable();
   };
 
-  const [imageOptions, setImageOptions] = useState("");
+  const [imageOptions, setImageOptions] = useState("expressionist painting");
 
   const handleImageOptions = (e) => {
     e.target.value === imageOptions
@@ -85,30 +83,30 @@ function App() {
       : setImageOptions(e.target.value);
   };
 
-
   return (
-    <div className="App">      
+    <div className="App">
       <Router>
-      <RiddleIdContext.Provider value={riddleId}>        
+        <RiddleIdContext.Provider value={riddleId}>
           <Header
-          imageOptions={imageOptions}
-          handleImageOptions={handleImageOptions}
-          gameStart={gameStart}
-        />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Start
-                handleStart={handleStart}
-                isLoading={isLoading}
-                available={available}
-                gameStart={gameStart}
-                windowWidth={windowWidth}
-              />
-            }
+            imageOptions={imageOptions}
+            handleImageOptions={handleImageOptions}
+            gameStart={gameStart}
           />
-          {gameStart && (
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Start
+                  handleStart={handleStart}
+                  isLoading={isLoading}
+                  available={available}
+                  gameStart={gameStart}
+                  windowWidth={windowWidth}
+                />
+              }
+            />
+
+            {/* to be replaced with below when necessary */}
             <Route
               path="/play"
               element={
@@ -119,25 +117,44 @@ function App() {
                 />
               }
             />
-          )}
-          {gameStart && (
             <Route path="/win" element={<Win magicWord={magicWord} />} />
-          )}
-          {gameStart && <Route path="gameover" element={<Lose />} />}
-          <Route path="mobile" element={<Mobile />} />
-          {/* <Route
-            path="/play"
-            element={<Game imageOptions={imageOptions} available={available} magicWord={magicWord}/>}
-          />
-          <Route path="/win" element={<Win magicWord={magicWord}/>} />
-          <Route path="gameover" element={<Lose />} /> */}
-        </Routes>
-        <Footer />
-        </RiddleIdContext.Provider> 
+            <Route path="gameover" element={<Lose />} />
+            {/* ----------------------------------- */}
+
+            {/* KEEP THIS FOR EASIER HANDLING IN PRODUCTION */}
+            {/* {gameStart && (
+              <Route
+                path="/play"
+                element={
+                  <Game
+                    imageOptions={imageOptions}
+                    available={available}
+                    magicWord={magicWord}
+                  />
+                }
+              />
+            )}
+            {gameStart && (
+              <Route path="/win" element={<Win magicWord={magicWord} />} />
+            )}
+            {gameStart && <Route path="gameover" element={<Lose />} />} */}
+            {/* END OF KEEP THIS */}
+
+            <Route path="mobile" element={<Mobile />} />
+          </Routes>
+          <Footer />
+        </RiddleIdContext.Provider>
       </Router>
-             
     </div>
   );
 }
 
-export default App;
+function AppWithBoundary() {
+  return (
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
+  );
+}
+
+export default AppWithBoundary;

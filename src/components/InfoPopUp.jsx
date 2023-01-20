@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState } from "react";
 
 import CustomizedRating from "./Rating";
 import YouTube from "react-youtube";
@@ -9,7 +9,6 @@ import "./InfoPopUp.css";
 import "../pages/Game.css";
 
 const InfoPopUp = (props, { imageOptions }) => {
-
   const [accordion, setAccordion] = useState(false);
   const [shrinkOnClose, setShrinkOnClose] = useState(false);
 
@@ -166,10 +165,7 @@ const InfoPopUp = (props, { imageOptions }) => {
       {props.gameStart && (
         <>
           <h2 className="info-titles">TROUBLESHOOT</h2>
-          <a
-            className="troubleshoot-button-div"
-            href={`${clientPath}`}
-          >
+          <a className="troubleshoot-button-div" href={`${clientPath}`}>
             <button className="troubleshoot-button">
               Press this button to refresh
             </button>

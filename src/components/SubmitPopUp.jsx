@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { checkEmail } from "../lib/checkEmail";
 
+import { key } from "../lib/auth";
+
 import "./SubmitPopUp.css";
 
 const SubmitPopUp = (props) => {
@@ -22,7 +24,7 @@ const SubmitPopUp = (props) => {
     }, 500);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     if (riddle === "" || solution === "" || !checkEmail(email)) {
       setWarning(true);
       return;
@@ -32,6 +34,7 @@ const SubmitPopUp = (props) => {
       await fetch("https://the-path-of-riddles.onrender.com/api/v1/riddles/", {
         method: "POST",
         headers: {
+          Authorization: `${key}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -53,13 +56,13 @@ const SubmitPopUp = (props) => {
       setWarning(false);
       handleClose();
     }, 1500);
+    e.preventDefault(); //I'm not seeing any effects(?)
   };
 
   return props.trigger ? (
     <div
       className={`submit-popup ${shrinkOnClose ? "submit-popup-shrink" : ""}`}
     >
-      {/* <div className="=popup-inner"> */}
       <h3 className="riddle-title">Submit your own riddle</h3>
 
       <input
@@ -104,7 +107,7 @@ const SubmitPopUp = (props) => {
       ></input>
       <p className="fine-print">...but don't let me guess too much!</p>
 
-      <button className="riddle-submit" onClick={handleSubmit}>
+      <button className="riddle-submit" onClick={(e) => handleSubmit(e)}>
         Submit
       </button>
 

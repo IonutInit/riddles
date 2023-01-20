@@ -5,53 +5,51 @@ import { useState, useEffect, useContext } from "react";
 
 import RiddleIdContext from "./RiddleIdContext";
 
-import {APIpath} from '../lib/path';
+import { APIpath } from "../lib/path";
 // import {key} from '../lib/auth'
+//AUTHORIZATION DISABLED AS IT MADE IT SLOWED DOWN FETCHING
 
 export default function RatingSize() {
   const [rating, setRating] = useState(0);
-  const [riddleId] = useContext(RiddleIdContext)
-  const [riddleRating, setRiddleRating] = useState('No rating')
+  const [riddleId] = useContext(RiddleIdContext);
+  const [riddleRating, setRiddleRating] = useState("No ratings so far");
 
   useEffect(() => {
     async function getRiddleRating() {
       try {
-        const response = await fetch(`${APIpath}/ratings/${riddleId}`
-        // ,{
-        //   headers: {
-        //     'Authorization': `${key}`
-        //   }
-        // }
-        )        
-      const data = await response.json()
-      const rating = data.data[0].value 
-      rating === 0 ? null : setRiddleRating(`${rating} stars`)    
-      } catch (error) {
-        console.log(error.message)
-      }    
+        const response = await fetch(
+          `${APIpath}/ratings/${riddleId}`
+          // ,{
+          //   headers: {
+          //     'Authorization': `${key}`
+          //   }
+          // }
+        );
+        const data = await response.json();
+        const rating = data.data[0].value;
+        rating === 0 ? null : setRiddleRating(`${rating} stars on average`);
+      } catch {
+        //nothing
+      }
     }
-    getRiddleRating()
-  },[riddleRating, riddleId])
-
-  console.log(riddleId)
- 
+    getRiddleRating();
+  }, [riddleRating, riddleId]);
 
   async function submitRating() {
     await fetch(`${APIpath}/ratings/${riddleId}`, {
       method: "POST",
-        headers: {
-          // "Authorization": `${key}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          rating,
-        })
-    })
-
+      headers: {
+        // "Authorization": `${key}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        rating,
+      }),
+    });
   }
 
   if (rating !== 0) {
-    submitRating()
+    submitRating();
   }
 
   return (
@@ -67,9 +65,8 @@ export default function RatingSize() {
       />
       {
         <p className="info-fine-print">
-          {!rating ? `${riddleRating} so far.` : "Thank you for rating!"}
+          {!rating ? `${riddleRating}` : "Thank you for rating!"}
         </p>
-        
       }
     </Stack>
   );

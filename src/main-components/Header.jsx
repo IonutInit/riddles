@@ -9,7 +9,7 @@ import info_button from "../assets/images/info_button.svg";
 import "./Header.css";
 
 //toggle buttons disabled state
-const buttonState = false
+const buttonState = false;
 
 const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
   const [buttonSubmitPopUp, setButtonSubmitPopUp] = useState(false);

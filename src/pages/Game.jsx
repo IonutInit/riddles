@@ -12,8 +12,8 @@ import RiddleIdContext from "../components/RiddleIdContext";
 
 import RefreshPopUp from "../components/RefreshPopUp";
 
-import {APIpath} from '../lib/path';
-import {key} from '../lib/auth'
+import { APIpath } from "../lib/path";
+import { key } from "../lib/auth";
 import { countPics } from "../lib/countPics";
 
 import {
@@ -47,10 +47,9 @@ let picCount = JSON.parse(localStorage.getItem("picCount"));
 let options = [];
 let result = [];
 
-export const usedSynonyms = []
+export const usedSynonyms = [];
 
 const Game = ({ imageOptions, available, magicWord }) => {
- 
   //used for Draggable deprecation error
   const nodeRef = useRef(null);
 
@@ -72,7 +71,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
 
   //game hooks
   const [gameSteps, setGameSteps] = useState(1);
-  const [points, setPoints] = useState(100);
+  const [points, setPoints] = useState(10);
 
   //riddle element hooks
   const [riddle, setRiddle] = useState("");
@@ -80,12 +79,12 @@ const Game = ({ imageOptions, available, magicWord }) => {
   const [solutionSynonyms, setSolutionSynonyms] = useState("");
   const [riddleImage, setRiddleImage] = useState("");
   // eslint-disable-next-line no-unused-vars
-  const [_, setRiddleId] = useContext(RiddleIdContext)
+  const [_, setRiddleId] = useContext(RiddleIdContext);
   // const [_, setRating] = useContext(RiddleIdContext)
 
   //hint hooks
   const [hint, setHint] = useState(result);
-  const [disableHint, setDisableHint] = useState(false)
+  const [disableHint, setDisableHint] = useState(false);
 
   //loading hooks
   const [isLoading, setIsLoading] = useState(false);
@@ -134,40 +133,35 @@ const Game = ({ imageOptions, available, magicWord }) => {
     async function randomRiddle() {
       if (!randomRiddleWithPicture) {
         setIsLoading(true);
-        const response = await fetch(
-          `${APIpath}/riddles/${randomId}`
-        );
+        const response = await fetch(`${APIpath}/riddles/${randomId}`);
         const data = await response.json();
         setRiddle(data.data[0].riddle);
         setRiddleSolution(data.data[0].solution);
         setSolutionSynonyms(data.data[0].synonyms);
-        setRiddleId(data.data[0].id)
+        setRiddleId(data.data[0].id);
 
         setIsLoading(false);
         setStartEffect(false); //for some reason it didn't want to set itself off in the useEffect at the beginning
       } else {
         countPics(picLimit);
         setIsLoading(true);
-        const response = await fetch(
-          `${APIpath}/combined/${randomId}`,
-          {
-            method: "POST",
-            headers: {
-              "Authorization": `${key}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              style: imageOptions,
-            }),
-          }
-        );
+        const response = await fetch(`${APIpath}/combined/${randomId}`, {
+          method: "POST",
+          headers: {
+            Authorization: `${key}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            style: imageOptions,
+          }),
+        });
         const data = await response.json();
 
         setRiddle(data.data.riddle[0].riddle);
         setRiddleSolution(data.data.riddle[0].solution);
         setSolutionSynonyms(data.data.riddle[0].synonyms);
         setRiddleImage(data.data.imgUrl.url);
-        setRiddleId(data.data.riddle[0].id)
+        setRiddleId(data.data.riddle[0].id);
       }
       setIsLoading(false);
       setStartEffect(false); //see comment on first block of IF statement
@@ -187,19 +181,16 @@ const Game = ({ imageOptions, available, magicWord }) => {
       setIsLoading(true);
       setPoints(points - 1);
       try {
-        const response = await fetch(
-          `${APIpath}/openai/img`,
-          {
-            method: "POST",
-            headers: {
-              "Authorization": `${key}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              prompt: `${riddle} ${imageOptions}`,
-            }),
-          }
-        );
+        const response = await fetch(`${APIpath}/openai/img`, {
+          method: "POST",
+          headers: {
+            Authorization: `${key}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            prompt: `${riddle} ${imageOptions}`,
+          }),
+        });
 
         if (!response.ok) {
           throw new Error(`That didn't work`);
@@ -215,7 +206,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
     }
     getImage();
   };
-  
+
   // //RATINGS
   // const handleRatings = () => {
   //   async function getRiddleRating() {
@@ -225,7 +216,6 @@ const Game = ({ imageOptions, available, magicWord }) => {
   //   }
   //   getRiddleRating()
   // }
-
 
   ///GAME BEGINS!!!
 
@@ -253,8 +243,10 @@ const Game = ({ imageOptions, available, magicWord }) => {
     let availableHints = hints.filter((x) => x.status === true);
 
     if (availableHints.length === 0) {
-      setHint(result.push("Oops! Looks like there are no more hints available"));
-      setDisableHint(true)
+      setHint(
+        result.push("Oops! Looks like there are no more hints available")
+      );
+      setDisableHint(true);
       return;
     }
 
@@ -264,9 +256,6 @@ const Game = ({ imageOptions, available, magicWord }) => {
       }
     }
 
-    // console.log(gameSteps)
-    // console.log(options)
-  
     //one of these instances is being called to provide the hint
     let rand = Math.floor(Math.random() * options.length);
     setHint(result.push(options[rand](solution, synonymsString)));
@@ -283,60 +272,59 @@ const Game = ({ imageOptions, available, magicWord }) => {
     rand = Math.floor(Math.random() * upcomingHints.length);
     upcomingHints[rand].chance++;
 
-    console.log(result)
-    console.log(hint)
-
     //refreshes the options array for the next call
-    options = [];   
+    options = [];
 
     return hints;
   };
 
   //HANDLERS FOR HINTS, REFRESH AND SUBMIT BUTTONS
 
-  const handleHints = () => {
+  const handleHints = (e) => {
     getHints(riddleSolution, solutionSynonyms);
     let allHints = [...result];
     setHint(allHints);
     setPoints((points) => points - changePoints(gameSteps, 1, 3));
+    e.preventDefault(); //I'm not seeing any effects(?)
   };
 
   const refreshHints = () => {
     result = [];
     setHint([]);
-    setDisableHint(false)
-    setInput("")
+    setDisableHint(false);
+    setInput("");
     //resets the points of each hint, as the process will start anew
     for (let hint in hints) {
       hints[hint].points = 0;
     }
-  }
+  };
 
-  const handleRefresh = () => {
-      setShrinkRefresh(true);
-      refreshHints()
-      setTimeout(() => {
-        getRandomRiddle();
-        setPoints((points) => points - 5);
-        setGameSteps((gameSteps) => gameSteps + 1);
-        setRefreshPopUp(false);
-        setShrinkRefresh(false);
-      }, 500);
+  const handleRefresh = (e) => {
+    setShrinkRefresh(true);
+    refreshHints();
+    e.preventDefault(); //I'm not seeing any effects(?)
+    setTimeout(() => {
+      getRandomRiddle();
+      setPoints((points) => points - 5);
+      setGameSteps((gameSteps) => gameSteps + 1);
+      setRefreshPopUp(false);
+      setShrinkRefresh(false);
+    }, 500);
   };
 
   const noticeDisplay = (notice) => {
-    setNotice(notice)
+    setNotice(notice);
     setTimeout(() => {
-      setNotice('')
-    }, 3000)
-  }
+      setNotice("");
+    }, 3000);
+  };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     if (checkSetSimilarity(input, riddleSolution) === true) {
       //CORRECT
       setGameSteps((gameSteps) => gameSteps + 1);
       setPoints((points) => points + changePoints(gameSteps, 7, 3));
-      refreshHints()
+      refreshHints();
       //displays the solution for timeout duration if image options are off, otherwise for the duration of loading
       const solutionArray = riddleSolution.split("");
       setRiddle(
@@ -366,19 +354,20 @@ const Game = ({ imageOptions, available, magicWord }) => {
         imageOptions === "" ? 5000 : 0
       );
     } else if (checkSetSimilarity(input, riddleSolution) === 1) {
-      noticeDisplay(`You're very close`)
+      noticeDisplay(`You're very close`);
     } else if (checkSetSimilarity(input, riddleSolution) === null) {
-      noticeDisplay(`Field is empty`)
+      noticeDisplay(`Field is empty`);
     } else if (checkSetSimilarity(input, riddleSolution) === undefined) {
       if (checkSynonymSimilarity(input, solutionSynonyms) === 2) {
-        noticeDisplay(`You're on the right track`)
+        noticeDisplay(`You're on the right track`);
       } else {
         //INCORRECT!!
-        noticeDisplay('Incorrect')
+        noticeDisplay("Incorrect");
         setGameSteps((gameSteps) => gameSteps + 1);
         setPoints((points) => points - 5);
         setInput("");
       }
+      e.preventDefault(); //I'm not seeing any effects(?)
     }
 
     if (input === winningWord) {
@@ -456,7 +445,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
         <p className="notice">{notice}</p>
         <button
           className={!isLoading ? "submit-button" : "submit-button-disabled"}
-          onClick={handleSubmit}
+          onClick={(e) => handleSubmit(e)}
           disabled={isLoading}
         >
           {isLoading ? "Loading..." : "Submit"}
@@ -473,7 +462,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
         </button>
         <button
           className="control-buttons hints-button"
-          onClick={handleHints}
+          onClick={(e) => handleHints(e)}
           disabled={isLoading || disableHint}
         >
           HINTS
@@ -492,7 +481,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
             shrinkRefresh ? "refresh-popup-shrink" : ""
           }`}
         >
-          <button className="refresh-buttons" onClick={handleRefresh}>
+          <button className="refresh-buttons" onClick={(e) => handleRefresh(e)}>
             YES
           </button>
           <button className="refresh-buttons" onClick={handleRefreshClose}>

@@ -12,7 +12,7 @@
 }
 
 .start-effect {
-    -webkit-animation: start 7s infinite linear;
+    -webkit-animation: start 8s linear;
 }
 @-webkit-keyframes start {
     0% {
@@ -251,9 +251,8 @@
     position: absolute; 
     top: 20px; 
     font-size: 12px;
-    color: gray;
+    color:var(--color2);
 }
-
 
 .control {
     width: 512px;

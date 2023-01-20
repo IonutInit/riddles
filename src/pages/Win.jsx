@@ -22,11 +22,8 @@ const Win = ({ magicWord }) => {
         </div>
 
         <a href={`${clientPath}`}>
-          <button className="win-go-back">
-          Go Back
-        </button>
+          <button className="win-go-back">Go Back</button>
         </a>
-        
       </div>
     </div>
   );

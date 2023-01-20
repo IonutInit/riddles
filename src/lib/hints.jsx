@@ -1,7 +1,7 @@
 import { threshold } from "./threshold";
 
-let usedLetters = []
-const usedSynonyms = []
+let usedLetters = [];
+const usedSynonyms = [];
 
 // import { usedSynonyms } from "../pages/Game";
 
@@ -78,22 +78,23 @@ export const approximateLengthEasiest = (word, synonymsString) => {
 
 //Example of random letters without duplication, but cannot handle uni-directional data flow
 export const randomLetter = (word, synonymString) => {
-    let [...letterSet] = new Set(word);
-    //hardcoded randomLetter limit
-    //the if statements is used to flush out the array of used letters if it's larger than the limit; combined with the limit itself, it can return the correct maximum number of results
-    if(usedLetters.length >= 3)  {
-      usedLetters.splice(0, usedLetters.length)
-    }
-    let result;
-    if (usedLetters.length === letterSet.length) {
-        return 'No more letters.' //will not be used, as there aren't any two-letter solutions
-    }
-    do {
-        result = letterSet[Math.floor(Math.random() * letterSet.length)].toUpperCase()
-    } while (usedLetters.includes(result))
-    usedLetters.push(result)
-    return `One of the letters is ${result}.`
-}
+  let [...letterSet] = new Set(word);
+  //hardcoded randomLetter limit
+  //the if statements is used to flush out the array of used letters if it's larger than the limit; combined with the limit itself, it can return the correct maximum number of results
+  if (usedLetters.length >= 3) {
+    usedLetters.splice(0, usedLetters.length);
+  }
+  let result;
+  if (usedLetters.length === letterSet.length) {
+    return "No more letters."; //will not be used, as there aren't any two-letter solutions
+  }
+  do {
+    result =
+      letterSet[Math.floor(Math.random() * letterSet.length)].toUpperCase();
+  } while (usedLetters.includes(result));
+  usedLetters.push(result);
+  return `One of the letters is ${result}.`;
+};
 
 // export const synonym = (word, synonymsString) => {
 //   let synonyms = synonymsString.split(",");
@@ -104,22 +105,22 @@ export const randomLetter = (word, synonymString) => {
 
 // Example of synonyms without duplication, but cannot handle uni-directional data flow
 export const synonym = (word, synonymString) => {
-    const synonyms = synonymString.split(',');
-    //hardcoded synonym limit
-    //see randomLimit for explanation of the if statement
-    if (usedSynonyms.length >= 2) {
-      usedSynonyms.splice(0, usedSynonyms.length)
-    }
-    let result;
-    if (usedSynonyms.length === synonyms.length) {
-        return 'Oops, it seems there are no more synonyms...'
-    }
-    do {
-        result = synonyms[Math.floor(Math.random() * synonyms.length)].trim()
-    } while (usedSynonyms.includes(result));
-    usedSynonyms.push(result)
-    return `Another word for it might be ${result}.`
-}
+  const synonyms = synonymString.split(",");
+  //hardcoded synonym limit
+  //see randomLimit for explanation of the if statement
+  if (usedSynonyms.length >= 2) {
+    usedSynonyms.splice(0, usedSynonyms.length);
+  }
+  let result;
+  if (usedSynonyms.length === synonyms.length) {
+    return "Oops, it seems there are no more synonyms...";
+  }
+  do {
+    result = synonyms[Math.floor(Math.random() * synonyms.length)].trim();
+  } while (usedSynonyms.includes(result));
+  usedSynonyms.push(result);
+  return `Another word for it might be ${result}.`;
+};
 
 export const firstLetter = (word, synonymsString) => {
   return `The first letter of the solution is ${word[0].toUpperCase()}.`;
@@ -128,4 +129,3 @@ export const firstLetter = (word, synonymsString) => {
 export const endLetter = (word, synonymsString) => {
   return `The solution ends in ${word[word.length - 1].toUpperCase()}.`;
 };
-
