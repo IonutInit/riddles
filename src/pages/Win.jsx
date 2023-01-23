@@ -16,9 +16,11 @@ const Win = ({ magicWord }) => {
         ></img>
         <div className="congratulations-container">
           <h2>Congratulations!</h2>
-          <h4>You made it!</h4>
+          {/* <h4>You made it!</h4>
           <p>{`How did you manage to figure out ${magicWord}?!`}</p>
-          <p>Well cheers to you!!!</p>
+          <p>Well cheers to you!!!</p> */}
+          <p>You figured out the magic word!</p>
+          <p>But it won't be so east next time...</p>
         </div>
 
         <a href={`${clientPath}`}>
