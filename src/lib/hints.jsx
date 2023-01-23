@@ -71,11 +71,6 @@ export const approximateLengthEasiest = (word, synonymsString) => {
   return `The solution is ${word.length} letters long.`;
 };
 
-// export const randomLetter = (word, synonymsString) => {
-//   const rand = Math.floor(Math.random() * word.length);
-//   return `One of the letters is ${word[rand].toUpperCase()}.`;
-// };
-
 //Example of random letters without duplication, but cannot handle uni-directional data flow
 export const randomLetter = (word, synonymString) => {
   let [...letterSet] = new Set(word);
@@ -86,7 +81,7 @@ export const randomLetter = (word, synonymString) => {
   }
   let result;
   if (usedLetters.length === letterSet.length) {
-    return "No more letters."; //will not be used, as there aren't any two-letter solutions
+    return "There are no more letters in this word."; //will not be used, as there aren't any two-letter solutions
   }
   do {
     result =
@@ -95,13 +90,6 @@ export const randomLetter = (word, synonymString) => {
   usedLetters.push(result);
   return `One of the letters is ${result}.`;
 };
-
-// export const synonym = (word, synonymsString) => {
-//   let synonyms = synonymsString.split(",");
-//   const rand = Math.floor(Math.random() * synonyms.length);
-
-//   return `Another word for it could be ${synonyms[rand].replace(" ", "")}.`;
-// };
 
 // Example of synonyms without duplication, but cannot handle uni-directional data flow
 export const synonym = (word, synonymString) => {
