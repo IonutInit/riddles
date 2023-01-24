@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import SubmitPopUp from "../components/SubmitPopUp";
 import InfoPopUp from "../components/InfoPopUp";
@@ -15,14 +15,16 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
   const [buttonSubmitPopUp, setButtonSubmitPopUp] = useState(false);
   const [buttonInfoPopUp, setButtonInfoPopUp] = useState(false);
 
+  const inputRef = useRef()
+
   const handleKeyDown = (e) => {
     if (e.key === "i") {
       setButtonInfoPopUp(true);
-      console.log("you pressed i");
+      // console.log("you pressed i");
     }
-    if (e.key === "r") {
+    if (e.key === "s") {
       setButtonSubmitPopUp(true);
-      console.log("you pressed r");
+      // console.log("you pressed r");
     }
   };
 
@@ -36,8 +38,12 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
             src={submit_button}
             className="submissions submit-riddle"
             onClick={() => setButtonSubmitPopUp(true)}
+            role='button'
             tabIndex="0"
             onKeyDown={(e) => handleKeyDown(e)}
+            alt=""
+            aria-label="Press s if you want to submit your own riddle."
+            aria-haspopup='true'
           />
         )}
 
@@ -45,8 +51,12 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
           src={info_button}
           className="submissions submissions-leftwards info"
           onClick={() => setButtonInfoPopUp(true)}
+          role='button'
           tabIndex="0"
           onKeyDown={(e) => handleKeyDown(e)}
+          alt=""
+          aria-label="Press i for more info and options."
+          aria-haspopup='true'
         />
       </div>
 
@@ -69,6 +79,7 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
             }`}
             onClick={(e) => handleImageOptions(e)}
             disabled={buttonState}
+            ref={inputRef}
           >
             Expressionist
           </button>
@@ -79,6 +90,7 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
             }`}
             onClick={(e) => handleImageOptions(e)}
             disabled={buttonState}
+            ref={inputRef}
           >
             Impressionist
           </button>
@@ -89,6 +101,7 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
             }`}
             onClick={(e) => handleImageOptions(e)}
             disabled={buttonState}
+            ref={inputRef}
           >
             Abstract
           </button>
@@ -99,6 +112,7 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
             }`}
             onClick={(e) => handleImageOptions(e)}
             disabled={buttonState}
+            ref={inputRef}
           >
             Classical
           </button>
@@ -109,6 +123,7 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
             }`}
             onClick={(e) => handleImageOptions(e)}
             disabled={buttonState}
+            ref={inputRef}
           >
             Photorealist
           </button>
@@ -119,6 +134,7 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
             }`}
             onClick={(e) => handleImageOptions(e)}
             disabled={buttonState}
+            ref={inputRef}
           >
             Watercolour
           </button>
@@ -129,6 +145,7 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
             }`}
             onClick={(e) => handleImageOptions(e)}
             disabled={buttonState}
+            ref={inputRef}
           >
             Pencil Sketch
           </button>

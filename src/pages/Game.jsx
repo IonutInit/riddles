@@ -404,6 +404,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
             onMouseOver={() => setPointsVanish(false)} //has been disabled - replaced by Draggable
             onFocus={() => setPointsVanish(false)} //same as above
             onMouseLeave={() => setPointsVanish(false)}
+            // aria-live='polite'
           >
             <h3>{points}</h3>
             <p>points</p>
@@ -418,10 +419,10 @@ const Game = ({ imageOptions, available, magicWord }) => {
           onFocus={() => setHintsVanish(false)}
           onMouseLeave={() => setHintsVanish(false)}
         >
-          <ul className="hints-list">
+          <ul className="hints-list" tabIndex='0' aria-label='Active hints' aria-live='assertive'>
             {hint.map((h) => (
               <li key={hint.indexOf(h)} className="hints-item">
-                {h}
+                {h} 
               </li>
             ))}
           </ul>

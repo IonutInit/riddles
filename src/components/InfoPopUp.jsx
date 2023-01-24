@@ -20,6 +20,12 @@ const InfoPopUp = (props, { imageOptions }) => {
     }, 500);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "x") {
+      handleClose();
+    }
+  };
+
   return props.trigger ? (
     <div className={`info-popup ${shrinkOnClose ? "info-popup-shrink" : ""}`}>
       {props.gameStart && (
@@ -47,7 +53,14 @@ const InfoPopUp = (props, { imageOptions }) => {
               You start with 21 points. Solve the riddles that appear on screen,
               while keeping your positive score.
             </p>
-            <p style={{ textAlign: "center", fontSize: "larger", color: 'var(--color2)', paddingTop: '5px' }}>
+            <p
+              style={{
+                textAlign: "center",
+                fontSize: "larger",
+                color: "var(--color2)",
+                paddingTop: "5px",
+              }}
+            >
               Find the MAGIC WORD!
             </p>
             <YouTube
@@ -74,12 +87,13 @@ const InfoPopUp = (props, { imageOptions }) => {
             <h3>THE IMAGES</h3>
             <div className="accordion-line2"></div>
             <p>
-              The images accompanying each riddle are generated on the spot, based on the words of the riddle, by
-              OpenAI's DALL-E 2 engine. Each of them is unique. It did not exist
-              before, and will stop existing once it dissapers. You can generate
-              another image for the current riddle by pressing the refresh
-              button the on the upper right corner of the image. You can also
-              change the style from the settings above.
+              The images accompanying each riddle are generated on the spot,
+              based on the words of the riddle, by OpenAI's DALL-E 2 engine.
+              Each of them is unique. It did not exist before, and will stop
+              existing once it disappers. You can generate another image for the
+              current riddle by pressing the refresh button on the upper
+              right corner of the image. You can also change the style from the
+              settings above.
             </p>
             <br></br>
             <p>Each new image costs 1 point!</p>
@@ -87,13 +101,13 @@ const InfoPopUp = (props, { imageOptions }) => {
             <p className="tip">
               TIP: It takes about 5-10 seconds to generate a new image. If you
               don't want to wait that long, or simply don't care about the
-              images, you can de-activate them at any time by pressing the
-              active style button (if all buttons look the same, it means that the
-              opton has been de-activated).
+              images, you can deactivate them at any time by pressing the
+              active style button (if all buttons look the same, it means that
+              the opton has been deactivated).
             </p>
             <br></br>
             <p className="tip">
-              Press on any button to re-activate image generation with your
+              Press on any button to reactivate image generation with your
               chosen style.
             </p>
             <br></br>
@@ -103,10 +117,10 @@ const InfoPopUp = (props, { imageOptions }) => {
             <div className="accordion-line2"></div>
             <p>
               If you're stuck just press the HINTS button. The riddle fairies
-              will give you one of several hints, at random, which will
-              be more or less useful. These include the average letter of the
-              solution (as if that's a thing), a random letter, ending or
-              starting letters, or words that are similar in meaning.
+              will give you one of several hints, at random, which will be more
+              or less useful. These include the average letter of the solution
+              (as if that's a thing), a random letter, ending or starting
+              letters, or words that are similar in meaning.
             </p>
             <br></br>
             <p className="tip">
@@ -123,9 +137,10 @@ const InfoPopUp = (props, { imageOptions }) => {
             <h3>THE MAGIC WORD</h3>
             <div className="accordion-line2"></div>
             <p>
-              The final aim of the game is to guess the <span className="tip">MAGIC WORD</span>. If the
-              solution of a riddle that you guessed correctly contains one or
-              more letters of the magic word, they will be highlighted{"  "}
+              The final aim of the game is to guess the{" "}
+              <span className="tip">MAGIC WORD</span>. If the solution of a
+              riddle that you guessed correctly contains one or more letters of
+              the magic word, they will be highlighted{"  "}
               <span
                 className="winning-puzzle"
                 style={{ background: "black", letterSpacing: "0.25em" }}
@@ -173,7 +188,12 @@ const InfoPopUp = (props, { imageOptions }) => {
         </>
       )}
 
-      <button className="close-button" onClick={handleClose}>
+      <button
+        tabIndex="0"
+        className="close-button"
+        onClick={handleClose}
+        onKeyDown={(e) => handleKeyDown(e)}
+      >
         X
       </button>
     </div>

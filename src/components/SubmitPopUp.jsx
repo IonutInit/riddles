@@ -59,22 +59,31 @@ const SubmitPopUp = (props) => {
     e.preventDefault(); //I'm not seeing any effects(?)
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit();
+    }
+    if (e.key === "x") {
+      handleClose();
+    }
+  };
+
   return props.trigger ? (
     <div
       className={`submit-popup ${shrinkOnClose ? "submit-popup-shrink" : ""}`}
     >
       <h3 className="riddle-title">Submit your own riddle</h3>
-
       <input
+        aria-label="Sumit your name"
         className="riddle-solution"
         placeholder="name"
         value={name}
         onChange={(e) => setName(e.target.value)}
       ></input>
-      <p className="fine-print">
+      <p className="fine-print" aria-hidden="true">
         Name, nickname, or dog`s name. It's completely optional.
       </p>
-      <p className="fine-print">
+      <p className="fine-print" aria-hidden="true">
         I'll use it for attribution.
       </p>
 
@@ -87,7 +96,9 @@ const SubmitPopUp = (props) => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       ></input>
-      <p className="fine-print">To prevent spam and maybe to say thank you!</p>
+      <p className="fine-print" aria-hidden="true">
+        To prevent spam and maybe to say thank you!
+      </p>
 
       <input
         className={`riddle-solution ${
@@ -97,7 +108,9 @@ const SubmitPopUp = (props) => {
         value={riddle}
         onChange={(e) => setRiddle(e.target.value)}
       ></input>
-      <p className="fine-print">Give me you best riddle!...</p>
+      <p className="fine-print" aria-hidden="true">
+        Give me you best riddle!...
+      </p>
 
       <input
         className={`riddle-solution ${
@@ -108,16 +121,28 @@ const SubmitPopUp = (props) => {
         value={solution}
         onChange={(e) => setSolution(e.target.value)}
       ></input>
-      <p className="fine-print">...but don't let me guess too much!</p>
+      <p className="fine-print" aria-hidden="true">
+        ...but don't let me guess too much!
+      </p>
 
-      <button className="riddle-submit" onClick={(e) => handleSubmit(e)}>
+      <button
+        tabIndex="0"
+        className="riddle-submit"
+        onClick={(e) => handleSubmit(e)}
+        onKeyDown={(e) => handleKeyDown(e)}
+        aria-label="Press Enter to submit."
+      >
         Submit
       </button>
 
       {props.children}
-      {/* </div> */}
 
-      <button className="close-button" onClick={handleClose}>
+      <button
+        tabIndex="0"
+        className="close-button"
+        onClick={handleClose}
+        onKeyDown={(e) => handleKeyDown(e)}
+      >
         X
       </button>
 

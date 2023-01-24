@@ -125,7 +125,7 @@ function App() {
             {gameStart && <Route path="gameover" element={<Lose />} />}
             {/* ----------------------------------- */}
 
-             {/* KEEP THIS FOR EASIER HANDLING IN PRODUCTION */}
+            {/* KEEP THIS FOR EASIER HANDLING IN PRODUCTION */}
             {/* <Route
               path="/play"
               element={
