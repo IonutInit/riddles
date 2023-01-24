@@ -74,6 +74,9 @@ const SubmitPopUp = (props) => {
       <p className="fine-print">
         Name, nickname, or dog`s name. It's completely optional.
       </p>
+      <p className="fine-print">
+        I'll use it for attribution.
+      </p>
 
       <input
         className={`riddle-solution ${
