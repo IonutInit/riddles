@@ -24,6 +24,9 @@ const InfoPopUp = (props, { imageOptions }) => {
     if (e.key === "x") {
       handleClose();
     }
+    if (e.key === "Enter") {
+      setAccordion(!accordion);
+    }
   };
 
   return props.trigger ? (
@@ -32,8 +35,9 @@ const InfoPopUp = (props, { imageOptions }) => {
         <>
           <h2 className="rate info-titles">RATE THIS RIDDLE</h2>
           <CustomizedRating imageOptions={imageOptions} />
-
-          <h2 className="info-titles">IMAGE OPTIONS</h2>
+          <h2 className="info-titles" aria-label="Image options">
+            IMAGE OPTIONS
+          </h2>
           {props.children}
         </>
       )}
@@ -42,6 +46,10 @@ const InfoPopUp = (props, { imageOptions }) => {
         <h2
           className="accordion-title info-titles"
           onClick={() => setAccordion(!accordion)}
+          role="button"
+          tabIndex="0"
+          onKeyDown={(e) => handleKeyDown(e)}
+          aria-label="How to play. Press Enter to expand."
         >
           HOW TO PLAY {accordion ? "-" : "+"}
         </h2>
@@ -91,8 +99,8 @@ const InfoPopUp = (props, { imageOptions }) => {
               based on the words of the riddle, by OpenAI's DALL-E 2 engine.
               Each of them is unique. It did not exist before, and will stop
               existing once it disappers. You can generate another image for the
-              current riddle by pressing the refresh button on the upper
-              right corner of the image. You can also change the style from the
+              current riddle by pressing the refresh button on the upper right
+              corner of the image. You can also change the style from the
               settings above.
             </p>
             <br></br>
@@ -101,9 +109,9 @@ const InfoPopUp = (props, { imageOptions }) => {
             <p className="tip">
               TIP: It takes about 5-10 seconds to generate a new image. If you
               don't want to wait that long, or simply don't care about the
-              images, you can deactivate them at any time by pressing the
-              active style button (if all buttons look the same, it means that
-              the opton has been deactivated).
+              images, you can deactivate them at any time by pressing the active
+              style button (if all buttons look the same, it means that the
+              opton has been deactivated).
             </p>
             <br></br>
             <p className="tip">
@@ -190,6 +198,7 @@ const InfoPopUp = (props, { imageOptions }) => {
 
       <button
         tabIndex="0"
+        aria-label="Close"
         className="close-button"
         onClick={handleClose}
         onKeyDown={(e) => handleKeyDown(e)}

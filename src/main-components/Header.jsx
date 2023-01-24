@@ -15,7 +15,7 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
   const [buttonSubmitPopUp, setButtonSubmitPopUp] = useState(false);
   const [buttonInfoPopUp, setButtonInfoPopUp] = useState(false);
 
-  const inputRef = useRef()
+  const inputRef = useRef();
 
   const handleKeyDown = (e) => {
     if (e.key === "i") {
@@ -38,12 +38,12 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
             src={submit_button}
             className="submissions submit-riddle"
             onClick={() => setButtonSubmitPopUp(true)}
-            role='button'
+            role="button"
             tabIndex="0"
             onKeyDown={(e) => handleKeyDown(e)}
             alt=""
-            aria-label="Press s if you want to submit your own riddle."
-            aria-haspopup='true'
+            aria-label="Submit your own riddle. Press s."
+            aria-haspopup="true"
           />
         )}
 
@@ -51,12 +51,12 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
           src={info_button}
           className="submissions submissions-leftwards info"
           onClick={() => setButtonInfoPopUp(true)}
-          role='button'
+          role="button"
           tabIndex="0"
           onKeyDown={(e) => handleKeyDown(e)}
           alt=""
-          aria-label="Press i for more info and options."
-          aria-haspopup='true'
+          aria-label="Info and options. Press i."
+          aria-haspopup="true"
         />
       </div>
 

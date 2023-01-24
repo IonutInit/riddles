@@ -9,10 +9,6 @@
     padding-bottom: var(--footerHeight);
 }
 
-.start-container {
-
-}
-
 .start-image {
     padding-top: 2em;
     height: var(--imagesize);    

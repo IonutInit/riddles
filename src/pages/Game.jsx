@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/tabindex-no-positive */
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
+//I have used tabIndex so the user could easily navigate between the elements of the game, until proper keybord navigation is set up.
+
 import { useEffect, useState, useRef, useContext } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -382,16 +386,17 @@ const Game = ({ imageOptions, available, magicWord }) => {
       <div className="image-container">
         <img
           src={!riddleImage || imageOptions === "" ? placeholder : riddleImage}
-          alt={"rendered representation of the riddle"}
+          alt={""}
           className="riddle-image"
         ></img>
         <img
           src={refreshButton}
-          alt={"generate new riddle representation"}
+          alt={""}
           className={`refresh-icon ${
             pictureIsLoading ? "picture-loading" : ""
           } ${imageOptions === "" ? "refresh-icon-disabled" : ""}`}
-          role="button"
+          aria-hidden={true}
+          tabIndex="-1"
           onClick={handleImageRefresh}
         />
 
@@ -404,7 +409,8 @@ const Game = ({ imageOptions, available, magicWord }) => {
             onMouseOver={() => setPointsVanish(false)} //has been disabled - replaced by Draggable
             onFocus={() => setPointsVanish(false)} //same as above
             onMouseLeave={() => setPointsVanish(false)}
-            // aria-live='polite'
+            role="button" //only to make to element "interactive"
+            tabIndex="2"
           >
             <h3>{points}</h3>
             <p>points</p>
@@ -419,10 +425,15 @@ const Game = ({ imageOptions, available, magicWord }) => {
           onFocus={() => setHintsVanish(false)}
           onMouseLeave={() => setHintsVanish(false)}
         >
-          <ul className="hints-list" tabIndex='0' aria-label='Active hints' aria-live='assertive'>
+          <ul
+            className="hints-list"
+            tabIndex="1"
+            aria-label="Hints"
+            aria-live="polite"
+          >
             {hint.map((h) => (
               <li key={hint.indexOf(h)} className="hints-item">
-                {h} 
+                {h}
               </li>
             ))}
           </ul>
@@ -430,7 +441,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
       </div>
 
       <Draggable nodeRef={nodeRef}>
-        <p ref={nodeRef} className="riddle-container">
+        <p ref={nodeRef} className="riddle-container" tabIndex="2" aria-live="polite">
           {riddle}
         </p>
       </Draggable>
@@ -442,12 +453,15 @@ const Game = ({ imageOptions, available, magicWord }) => {
           placeholder="answer me..."
           onChange={(e) => setInput(e.target.value)}
           value={input}
+          aria-label='Answer me'
+          tabIndex='2'
         ></input>
-        <p className="notice">{notice}</p>
+        <p className="notice" aria-label={notice} aria-live={'assertive'}>{notice}</p>
         <button
           className={!isLoading ? "submit-button" : "submit-button-disabled"}
           onClick={(e) => handleSubmit(e)}
           disabled={isLoading}
+          tabIndex='2'
         >
           {isLoading ? "Loading..." : "Submit"}
         </button>
@@ -458,6 +472,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
           className="control-buttons refresh-button"
           onClick={() => setRefreshPopUp(true)}
           disabled={isLoading}
+          aria-label='Get a new riddle'
         >
           REFRESH
         </button>
@@ -465,6 +480,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
           className="control-buttons hints-button"
           onClick={(e) => handleHints(e)}
           disabled={isLoading || disableHint}
+          tabIndex='1'
         >
           HINTS
         </button>

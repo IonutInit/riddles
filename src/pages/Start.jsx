@@ -30,10 +30,11 @@ const Start = ({
     <div className={`start ${gameStart ? "start-start" : ""}`}>
       <img src={placeholder} alt={"placeholder"} className="start-image"></img>
       <button
-        tabIndex="0"
+        tabIndex="1"
         className="start-button"
         onClick={handleStart}
         onKeyDown={(e) => handleKeyDown(e)}
+        aria-label={!isLoading ? "Start game" : "Game loading"}
       >
         {!isLoading ? "START GAME" : "Loading..."}
       </button>

@@ -24,6 +24,7 @@ const Footer = () => {
             href={"https://riddles.cojocaru.co.uk"}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Visit documentation"
           >
             <FontAwesomeIcon icon={faGithubSquare} />
           </a>
@@ -35,6 +36,7 @@ const Footer = () => {
             href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Share on Facebook"
           >
             <FontAwesomeIcon icon={faFacebookSquare} />
           </a>
@@ -43,6 +45,7 @@ const Footer = () => {
             href={`https://twitter.com/share?url=${shareUrl}&text=${shareTitle}`}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Share on Twitter"
           >
             <FontAwesomeIcon icon={faTwitterSquare} />
           </a>
@@ -51,6 +54,7 @@ const Footer = () => {
             href={`whatsapp://send?text=${shareUrl}`}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Share on WhatsApp"
           >
             <FontAwesomeIcon icon={faWhatsappSquare} />
           </a>
@@ -59,6 +63,7 @@ const Footer = () => {
             href={`https://www.linkedin.com/shareArticle?url=${shareUrl}&title=${shareTitle}`}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Share on LinkedIn"
           >
             <FontAwesomeIcon icon={faLinkedin} />
           </a>

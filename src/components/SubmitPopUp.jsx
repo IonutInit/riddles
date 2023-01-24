@@ -74,7 +74,7 @@ const SubmitPopUp = (props) => {
     >
       <h3 className="riddle-title">Submit your own riddle</h3>
       <input
-        aria-label="Sumit your name"
+        // aria-label="Sumbit your name"
         className="riddle-solution"
         placeholder="name"
         value={name}
@@ -140,6 +140,7 @@ const SubmitPopUp = (props) => {
       <button
         tabIndex="0"
         className="close-button"
+        aria-label="Close"
         onClick={handleClose}
         onKeyDown={(e) => handleKeyDown(e)}
       >
