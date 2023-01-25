@@ -75,7 +75,7 @@ function App() {
     getAvailable();
   };
 
-  const [imageOptions, setImageOptions] = useState("");
+  const [imageOptions, setImageOptions] = useState("expressionist painting");
 
   const handleImageOptions = (e) => {
     e.target.value === imageOptions
@@ -107,7 +107,7 @@ function App() {
             />
 
             {/* to be replaced with below when necessary */}
-            {/* {gameStart && (
+            {gameStart && (
               <Route
                 path="/play"
                 element={
@@ -122,11 +122,11 @@ function App() {
             {gameStart && (
               <Route path="/win" element={<Win magicWord={magicWord} />} />
             )}
-            {gameStart && <Route path="gameover" element={<Lose />} />} */}
+            {gameStart && <Route path="gameover" element={<Lose />} />}
             {/* ----------------------------------- */}
 
             {/* KEEP THIS FOR EASIER HANDLING IN PRODUCTION */}
-            <Route
+            {/* <Route
               path="/play"
               element={
                 <Game
@@ -137,7 +137,7 @@ function App() {
               }
             />
             <Route path="/win" element={<Win magicWord={magicWord} />} />
-            <Route path="gameover" element={<Lose />} />
+            <Route path="gameover" element={<Lose />} /> */}
             {/* END OF KEEP THIS */}
 
             <Route path="mobile" element={<Mobile />} />
