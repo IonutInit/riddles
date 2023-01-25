@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Navigate } from "react-router-dom";
 
 import placeholder from "../assets/images/placeholder.png";
@@ -30,6 +29,7 @@ const Start = ({
     <div className={`start ${gameStart ? "start-start" : ""}`}>
       <img src={placeholder} alt={"placeholder"} className="start-image"></img>
       <button
+        // eslint-disable-next-line jsx-a11y/tabindex-no-positive
         tabIndex="1"
         className="start-button"
         onClick={handleStart}

@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+//Probably due to imperfect design, but I have to import variables which are not used directly
+
 /* eslint-disable jsx-a11y/tabindex-no-positive */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 //I have used tabIndex so the user could easily navigate between the elements of the game, until proper keybord navigation is set up.

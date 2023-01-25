@@ -46,6 +46,7 @@ const InfoPopUp = (props, { imageOptions }) => {
         <h2
           className="accordion-title info-titles"
           onClick={() => setAccordion(!accordion)}
+          // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
           role="button"
           tabIndex="0"
           onKeyDown={(e) => handleKeyDown(e)}
@@ -96,7 +97,7 @@ const InfoPopUp = (props, { imageOptions }) => {
             <div className="accordion-line2"></div>
             <p>
               The images accompanying each riddle are generated on the spot,
-              based on the words of the riddle, by OpenAI's DALL-E 2 engine.
+              based on the words of the riddle, by OpenAI&apos;s DALL-E 2 engine.
               Each of them is unique. It did not exist before, and will stop
               existing once it disappers. You can generate another image for the
               current riddle by pressing the refresh button on the upper right
@@ -108,7 +109,7 @@ const InfoPopUp = (props, { imageOptions }) => {
             <br></br>
             <p className="tip">
               TIP: It takes about 5-10 seconds to generate a new image. If you
-              don't want to wait that long, or simply don't care about the
+              don&apos;t want to wait that long, or simply don&apos;t care about the
               images, you can deactivate them at any time by pressing the active
               style button (if all buttons look the same, it means that the
               opton has been deactivated).
@@ -124,10 +125,10 @@ const InfoPopUp = (props, { imageOptions }) => {
             <h3>THE HINTS</h3>
             <div className="accordion-line2"></div>
             <p>
-              If you're stuck just press the HINTS button. The riddle fairies
+              If you&apos;re stuck just press the HINTS button. The riddle fairies
               will give you one of several hints, at random, which will be more
               or less useful. These include the average letter of the solution
-              (as if that's a thing), a random letter, ending or starting
+              (as if that&apos;s a thing), a random letter, ending or starting
               letters, or words that are similar in meaning.
             </p>
             <br></br>
@@ -159,9 +160,9 @@ const InfoPopUp = (props, { imageOptions }) => {
             </p>
             <br></br>
             <p>
-              Use that time to make a note of the letters. Then, whenever you're
+              Use that time to make a note of the letters. Then, whenever you&apos;re
               ready, SUBMIT THE MAGIC WORD as if it were the solution to the
-              riddle that's currently displaying.
+              riddle that&apos;s currently displaying.
             </p>
             <br></br>
             <p className="tip">
@@ -176,9 +177,9 @@ const InfoPopUp = (props, { imageOptions }) => {
         <div className="start-limerick">
           <p>There once was a man who loved riddles,</p>
           <p>He solved them with ease, and never did fiddle.</p>
-          <p>He'd sit down and think</p>
+          <p>He&apos;d sit down and think</p>
           <p>Till the answer would sink</p>
-          <p>And then he'd laugh and say...</p>
+          <p>And then he&apos;d laugh and say...</p>
           <p className="start-limerick-last">That was quite the diddle!</p>
           <br></br>
         </div>

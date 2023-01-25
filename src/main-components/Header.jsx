@@ -38,6 +38,7 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
             src={submit_button}
             className="submissions submit-riddle"
             onClick={() => setButtonSubmitPopUp(true)}
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
             role="button"
             tabIndex="0"
             onKeyDown={(e) => handleKeyDown(e)}
@@ -51,6 +52,7 @@ const Header = ({ imageOptions, handleImageOptions, gameStart }) => {
           src={info_button}
           className="submissions submissions-leftwards info"
           onClick={() => setButtonInfoPopUp(true)}
+          // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
           role="button"
           tabIndex="0"
           onKeyDown={(e) => handleKeyDown(e)}

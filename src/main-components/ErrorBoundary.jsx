@@ -29,7 +29,7 @@ class ErrorBoundary extends Component {
           <h2>Oops, something went wrong...</h2>
           <br></br>
           <a href={`${clientPath}`}>
-            <button className="boundary-button">Let's try again</button>
+            <button className="boundary-button">Let&apos;s try again</button>
           </a>
         </div>
       );

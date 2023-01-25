@@ -81,10 +81,10 @@ const SubmitPopUp = (props) => {
         onChange={(e) => setName(e.target.value)}
       ></input>
       <p className="fine-print" aria-hidden="true">
-        Name, nickname, or dog`s name. It's completely optional.
+        Name, nickname, or dog`s name. It&apos;s completely optional.
       </p>
       <p className="fine-print" aria-hidden="true">
-        I'll use it for attribution.
+        I&apos;ll use it for attribution.
       </p>
 
       <input
@@ -122,7 +122,7 @@ const SubmitPopUp = (props) => {
         onChange={(e) => setSolution(e.target.value)}
       ></input>
       <p className="fine-print" aria-hidden="true">
-        ...but don't let me guess too much!
+        ...but don&apos;t let me guess too much!
       </p>
 
       <button
