@@ -336,7 +336,8 @@ const Game = ({ imageOptions, available, magicWord }) => {
       const solutionArray = riddleSolution.split("");
       setRiddle(
         <span>
-          <span className="solution-title">Correct! The answer is</span>
+          <span className="solution-title"
+          >Correct! The answer is</span>
           <br></br>
           <span className="solution">
             {solutionArray.map((s) => (
@@ -444,7 +445,7 @@ const Game = ({ imageOptions, available, magicWord }) => {
       </div>
 
       <Draggable nodeRef={nodeRef}>
-        <p ref={nodeRef} className="riddle-container" tabIndex="2" aria-live="polite">
+        <p ref={nodeRef} className="riddle-container" tabIndex="2" aria-live="polite" >
           {riddle}
         </p>
       </Draggable>
