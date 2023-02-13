@@ -21,7 +21,7 @@ const Footer = () => {
         <div className="documentation-container">
           <a
             className="icons"
-            href={"https://riddles.cojocaru.co.uk"}
+            href={"https://docs.cojocaru.co.uk/the-riddle-fiddle/"}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit documentation"
